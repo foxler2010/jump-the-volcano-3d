@@ -10,6 +10,12 @@
 //ANSI colors template: \u001b[0m
 //for me to use when coding
 
+//By the way, some text is word wrapped in the code using newlines, others it is just a long line.
+//This is because the Eclipse console is too small for me to see everything.
+//I word wrapped everything in-code, then found an automatic word-wrap mode in the console. Now I'm trying to
+//un-word-wrap everything. The final result is as follows: A BIG HOT MESS. Hopefully the problem will be fixed
+//When I start testing versions of this in my PCs CLI before releasing.
+
 package top.drewssite.volcano;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -21,9 +27,14 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		
 		//WELCOME THE PLAYER TO THE GAME
-		System.out.println("Welcome to Jump The Volcano! Please enter in the display mode, your starting level, and beggining money to begin.");
+		System.out.println("--------------------------------------------------------------------------");
+		System.out.println("Welcome to Jump The Volcano! Please enter in the display mode, your starting level, and beginning money to begin.");
 		System.out.println("The reccomended values for level and money are 0 and 0, respectively, as a traditional game means you start with no money or experience.");
 		System.out.println();
+		
+		
+		
+		
 		
 		
 		//SET DISPLAY MODE
@@ -32,35 +43,52 @@ public class Main {
 		System.out.println("To enable ANSI escape codes coloring, type in the number 1.");
 		System.out.println("To disable this functionality and use only default color text please enter the number 2");
 		System.out.println("It is highly reccomended to use color mode unless your console does not support it.");
-		System.out.println("This is highly unlikely if you are running a graphical environment with a console emulator active.");
+		System.out.println("Chances are you support it, if you are running a graphical environment with a console emulator.");
 		System.out.println();
 		System.out.print("Enter in your display mode number here: ");
-		//make a boolean and string, both of which are important.
-		//initialize string with value of 1, so it is initialized/set somewhere other than the scanner.
+		//make a boolean and integer, both of which are important.
+		//initialize integer with value of 1, so it is initialized/set somewhere other than the scanner.
 		//for some reason it is a compile error if that requirement is not satisfied.
 		boolean colorsOn = true;
-		String displayModeNumber = "1";
+		int displayModeNumber = 1;
 		try {
-			//set string to scanned text
-			displayModeNumber = scanner.next();
+			//set integer to scanned number
+			displayModeNumber = scanner.nextInt();
 		} catch(InputMismatchException e) {
 			//tell the user what happened and "catch" the value they typed into a variable.
 			//this is required or else the next prompt would scan the invalid token.
 			//since this one scans it the next prompt doesn't end up with an exception.
-			System.out.println("That's not an integer. Until I implement a better error handler it has been auto-set to 0 for you.");
-			System.out.println();
+			System.out.println("That's not an integer. Until I implement a better error handler it has been auto-set to 1 for you.");
 			@SuppressWarnings("unused")
 			String catcher = scanner.next();
 		}
 		//convert string to boolean. auto-set boolean to true if string doesn't match either '1' or '2'
 		//also if no match, then notify player.
-		if (displayModeNumber == "1") {
+		if (displayModeNumber == 1) {
 			colorsOn = true;
-		} else if (displayModeNumber == "2") {
+			System.out.println();
+			System.out.println("OK. The following text should be in color: \n\\u001b[31mThis text should be red!\n\\u001b[32mThis text should be green!\n\\u001b[0mThis text should be the default color.");
+			System.out.println();
+			System.out.println("If you saw any weird codes in the text and/or it wasn't colored correctly,\nyou should kill this program and select display mode 2 next time.");
+		} else if (displayModeNumber == 2) {
 			colorsOn = false;
+			System.out.println();
+			System.out.println("OK. The game will display all text using the default color.");
+			System.out.println("ANSI escape codes coloring has been disabled.");
+		} else {
+			colorsOn = true;
+			System.out.println();
+			System.out.println("You didn't enter a 1 or 2. Until I implement a better error handler it has been auto-set to 1 for you.");
+			System.out.println("If you aren't okay with colors being active, kill the program and enter the number 2 next time instead of doing something else.");
 		}
 		//NEWLINE FOR BETTER READABILITY
 		System.out.println();
+		
+		
+		
+		
+		
+		
 		
 		//SET STARTING LEVEL
 		System.out.print("Please enter in starting level here: ");
@@ -85,8 +113,9 @@ public class Main {
 			//tell the user what happened and "catch" the value they typed into a variable
 			//this is required or else the next prompt would scan the invalid token.
 			//since this one scans it the next prompt doesn't end up with an exception.
+			System.out.println();
 			if (colorsOn == true) {
-				System.out.println("Either that's not an integer or you tried to be overpowered and gave yourself an experience level above \u001b[32m2^31-1!\u001b[0m Until I implement a better error handler it has been auto-set to \u001b[32m0\u001b[0m for you.");
+				System.out.println("Either that's not an integer or you tried to be overpowered and gave yourself an experience level above \u001b[32m2^31-1\u001b[0m! Until I implement a better error handler it has been auto-set to \u001b[32m0\u001b[0m for you.");
 			} else {
 				System.out.println("Either that's not an integer or you tried to be overpowered and gave yourself an experience level above 2^31-1! Until I implement a better error handler it has been auto-set to 0 for you.");
 			}
@@ -97,6 +126,12 @@ public class Main {
 		}
 		//NEWLINE FOR BETTER READABILITY
 		System.out.println();
+		
+		
+		
+		
+		
+		
 		
 		//SET STARTING MONEY
 		System.out.println("Okay, now let's set your starting money.");
@@ -111,13 +146,23 @@ public class Main {
 			//tell the user what happened and "catch" the value they typed into a variable
 			//this is required or else the next prompt would scan the invalid token.
 			//since this one scans it the next prompt doesn't end up with an exception.
-			System.out.println("Either that's not a decimal or whole number, or you've gone above and beyond and typed in a number that's so big it coudn't be written in here even if I used scientififc notation! Until I implement a better error handler it has been auto-set to 0 for you.");
 			System.out.println();
+			if (colorsOn == true) {
+				System.out.println("Either that's not a decimal or whole number, or you've gone above and beyond and typed in a number that's so big it couldn't be written in here even if I used scientififc notation! Until I implement a better error handler it has been auto-set to \u001b[31m0\u001b[0m for you.");
+			} else {
+				System.out.println("Either that's not a decimal or whole number, or you've gone above and beyond and typed in a number that's so big it couldn't be written in here even if I used scientififc notation! Until I implement a better error handler it has been auto-set to 0 for you.");
+			}
 			@SuppressWarnings("unused")
 			String catcher = scanner.next();
 		}
 		//NEWLINE FOR BETTER READABILITY
 		System.out.println();
+		
+		
+		
+		
+		
+		
 		
 		//MAKE PLAYER
 		Player player = new Player(startLevel, startMoney);
@@ -140,7 +185,7 @@ public class Main {
 		
 		
 		
-		//thanks for playing! shown after the player has chosen to quit
+		//ENDGAME (NOT TO BE CONFUSED WITH AVENGERS)
 		System.out.println("Thank you for playing Jump The Volcano! I hope you enjoyed the game, and have a good day.");
 		//close scanner
 		scanner.close();

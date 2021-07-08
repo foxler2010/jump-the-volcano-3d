@@ -23,6 +23,6 @@ You will have prompts for both these values in-game, and they should override th
 A normal game usually starts with you having absolutely nothing. These parameters are just for if you want to resume an old game (yeah im lazy and didn't implement a 'saving' feature yet). I would reccomend leaving them at 0 so you start with 0 money and level 0 (now please don't come running to me if you lost your 'save' and can't get it back. This is not a long-term game. It can be played in the moment and you will still have fun. I don't care about your save, I really only made this feature to help with testing.)
 --END SIDE NOTE--
 
-4. Finally start playing. The game starts as soon as you hit enter on the "java main <parameters>" command. The rules are self-explanatory. You get options every turn and based on what you choose certain things happen. There is a lot of randomization involved so every game is different.
+4. Finally start playing. The game starts as soon as you hit enter on the "java top.drewssite.volcano.Main <parameters>" command. The rules are self-explanatory. You get options every turn and based on what you choose certain things happen. There is a lot of randomization involved so every game is different.
 
 5. That's it. Have fun playing Jump The Volcano!

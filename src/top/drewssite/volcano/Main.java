@@ -192,6 +192,7 @@ public class Main {
 		//MAKE PLAYER
 		Player player = new Player(getStartLevel(), getStartMoney());
 		//printed after the last setup prompt, informing player of their stats
+		//moving to inside of loop soon
 		System.out.println("Great! Your level is " + player.getLevel() + "...\n...and you have $" + player.getMoney() + " in your wallet.");
 		System.out.println();
 		
@@ -209,10 +210,19 @@ public class Main {
 		 * 4. Repeat from step 1, starting a new turn
 		 */
 		
+		//initialize boolean to track whether we are continuing the loop or not
+		boolean continuingGame = true;
+		//the loop begins
+		while (continuingGame == true) {
+			//phase 1
+			//phase 2
+			//phase 3
+		}
 		
 		
-		//ENDGAME (NOT TO BE CONFUSED WITH AVENGERS)
-		System.out.println("Thank you for playing Jump The Volcano! I hope you enjoyed the game, and have a good day.");
+		
+		//ENDGAME
+		System.out.println("Thank you for playing Jump The Volcano. Come again soon!");
 		
 		//CLOSE SCANNER
 		scanner.close();

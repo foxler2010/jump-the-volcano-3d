@@ -193,7 +193,8 @@ public class Main {
 		Player player = new Player(getStartLevel(), getStartMoney());
 		//printed after the last setup prompt, informing player of their stats
 		//moving to inside of loop soon
-		System.out.println("Great! Your level is " + player.getLevel() + "...\n...and you have $" + player.getMoney() + " in your wallet.");
+		System.out.println("Great! Let's get started with the game.");
+		System.out.println();
 		System.out.println();
 		
 		
@@ -215,6 +216,7 @@ public class Main {
 		//the loop begins
 		while (continuingGame == true) {
 			//phase 1
+			System.out.println("Your level is " + player.getLevel() + "...\n...and you have $" + player.getMoney() + " in your wallet.");
 			//phase 2
 			//phase 3
 		}

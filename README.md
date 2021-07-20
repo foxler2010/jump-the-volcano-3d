@@ -36,6 +36,14 @@ First off, I can't give a lot of support if you are on Windows. I use Linux, and
 Also, on Mac, I cannot give a ton of support, but I might ahve some suggestions to help. But that's only because Mac is based off of Unix, and I like Unix. I really don't know much else about it so don't expect much from me. Like with Windows, feel free to make a patch and send it me, just don't expect any official compatibility updates from me.
 
 Now, if it is not an OS problem, be sure you ran the command correctly. My setup for Eclipse IDE gives me a folder structure of this: /root-of-project/bin/top/drewssite/volcano/Main.class.
-I navigate to the /bin/ folder in the CLI and run the command "java top.drewssite.volcano.Main <starting level>". This is the correct Java way of running a class file, so if you aren't sure if you are running it the right way, just mimic what I described above.
-  
+I navigate to the /bin/ folder in the CLI and run the command "java top.drewssite.volcano.Main <starting level>". This is the 
+correct Java way of running a class file, so if you aren't sure if you are running it the right way, just mimic what I 
+described above.
+
 This is a very new project and I have not yet gotten any support requests and so cannot make an FAQ. One will be added later once I get requests for support.
+  
+# Licensing
+
+I don't care what you do with this game, just please mention Foxler2010 as the original author of it. If you would like to do anything that you think I might not like, or might violate the GPL, please contact me. I'm pretty open about licensig so odds are you can do whatever you want.
+
+Unless it's a movie. I would like to be paid for that.

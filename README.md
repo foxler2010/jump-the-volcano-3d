@@ -31,7 +31,7 @@ A normal game usually starts with you having absolutely nothing. These parameter
 
 # Troubleshooting
 
-First off, I can't give a lot of support if you are on Windows. I use Linux, and you should too, but I can live with it if you decide to continue using Windows for now. That being said, if you have problems that seem to pertain to the OS, you're goign to have to debug them yourself. Feel free to make a patch to fix it and please send it to me so I can make a pr of it. Just knough that I won't do anything about your problem.
+First off, I can't give a lot of support if you are on Windows. I use Linux, and you should too, but I can live with it if you decide to continue using Windows for now. That being said, if you have problems that seem to pertain to the OS, you're going to have to debug them yourself. Feel free to make a patch to fix it and please send it to me so I can make a pr of it. Just know that I won't do anything about your problem.
 
 Also, on Mac, I cannot give a ton of support, but I might ahve some suggestions to help. But that's only because Mac is based off of Unix, and I like Unix. I really don't know much else about it so don't expect much from me. Like with Windows, feel free to make a patch and send it me, just don't expect any official compatibility updates from me.
 

@@ -124,6 +124,7 @@ public class Main {
 		//if the parameter is invalid then the default will be 0
 		try {
 			//parameter is a string[] so parse [0] as an integer
+			setStartLevel(Integer.parseInt(args[0]));
 		} catch(ArrayIndexOutOfBoundsException e) {
 			//if no parameter is entered
 			setStartLevel(0);

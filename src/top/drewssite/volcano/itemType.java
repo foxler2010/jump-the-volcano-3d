@@ -3,12 +3,14 @@
  */
 package top.drewssite.volcano;
 
-//best way to define type of item
-//i am thinking of switching to the 'inheritance' way of doing it
-//i already am getting the structure going... it is a bit mixed up currently
+//this is one way to find out what an item 'is'.
+//combined with the inheritance and abstraction of items, categorization should be very easy
 public enum itemType {
-	MONSTER,
-	PET,
+	//below could be considered a roadmap of all types of items that are,
+	//or will be added to the game
+	MONSTER, //added!
+	PET, //added!
 	KIT,
+	WEAPON,
 	OTHER
 }

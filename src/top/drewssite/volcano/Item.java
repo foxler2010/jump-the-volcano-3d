@@ -1,19 +1,14 @@
 package top.drewssite.volcano;
 
-public class Item {
+public abstract class Item {
 	
 	//VARS
 	private String name;
-	private double price;
 	private itemType type;
 	
 	//GETTERS & SETTERS
 	public String getName() {
 		return name;
-	}
-	
-	public double getPrice() {
-		return price;
 	}
 	
 	public itemType getType() {
@@ -24,17 +19,12 @@ public class Item {
 		this.name = name;
 	}
 	
-	public void setPrice(double price) {
-		this.price = price;
-	}
-	
 	public void setType(itemType type) {
 		this.type = type;
 	}
 	
-	public Item(String name, double price, itemType type) {
+	public Item(String name, itemType type) {
 		this.name = name;
-		this.price = price;
 		this.type = type;
 	}
 	

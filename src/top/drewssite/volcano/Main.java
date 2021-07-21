@@ -120,20 +120,10 @@ public class Main {
 		
 		//SET STARTING LEVEL
 		System.out.print("Please enter in starting level here: ");
-		//because of the initialization here, if an exception occurs the default will be whatever parameter you entered when calling the program.
-		//if the parameter is invalid then the default will be 0
-		try {
-			//parameter is a string[] so parse [0] as an integer
-			setStartLevel(Integer.parseInt(args[0]));
-		} catch(ArrayIndexOutOfBoundsException e) {
-			//if no parameter is entered
-			setStartLevel(0);
-		} catch(NumberFormatException e) {
-			//if parameter cannot be computed to integer
-			setStartLevel(0);
-		}
+		//because of the initialization here, if an exception occurs the default will be 0
+		setStartLevel(0);
 		//scan user input, output to var
-		//if exception, set it to the default (which is the parameter entered in the CLI)
+		//if exception, set it to the default (which is 0)
 		try {
 			setStartLevel(scanner.nextInt());
 		} catch(InputMismatchException e) {
@@ -190,9 +180,13 @@ public class Main {
 		setup(args);
 		
 		//MAKE PLAYER
-		Player player = new Player(getStartLevel(), getStartMoney());
-		//printed after the last setup prompt, informing player of their stats
-		//moving to inside of loop soon
+		//might add a "naming" system, to name your character.
+		//The name only exists to satisfy the requirements of the "Animal" class
+		//also might change the current strength value later, when I code the combat system.
+		//(hint: weapons will modify your strength)
+		Player player = new Player("Player", 10, getStartLevel(), getStartMoney());
+		
+		//LET'S START THE GAME!
 		System.out.println("Great! Let's get started with the game.");
 		System.out.println();
 		System.out.println();
@@ -216,9 +210,19 @@ public class Main {
 		//the loop begins
 		while (continuingGame == true) {
 			//phase 1
-			System.out.println("Your level is " + player.getLevel() + "...\n...and you have $" + player.getMoney() + " in your wallet.");
+			if(colorsOn() == true) {
+				System.out.println("Your level is \u001b[32m" + player.getLevel() + "\u001b[0m...\n...and you have $\u001b[31m" + player.getMoney() + "\u001b[0m in your wallet.");
+			} else {
+				System.out.println("Your level is " + player.getLevel() + "...\n...and you have $" + player.getMoney() + " in your wallet.");
+			}
+			System.out.println();
+			System.out.println("Would you like to view your inventory? ");
+			//ask y/n q for whether to view or not and then respond accordingly
 			//phase 2
 			//phase 3
+			
+			//for testing purposes, stop the loop after one turn
+			continuingGame = false;
 		}
 		
 		

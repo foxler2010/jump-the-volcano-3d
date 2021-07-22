@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Main {
+class Main {
 	
 	//VARS
 	private static int startLevel;
@@ -28,46 +28,46 @@ public class Main {
 	private static ArrayList<Item> startingInventory;
 	
 	//GETTERS AND SETTERS
-	public static int getStartLevel() {
+	static int getStartLevel() {
 		return startLevel;
 	}
 	
-	public static double getStartMoney() {
+	static double getStartMoney() {
 		return startMoney;
 	}
 	
 	//named without a 'get' since it reads better as a question (are the colorsOn()?)
-	public static boolean colorsOn() {
+	static boolean colorsOn() {
 		return colorsOn;
 	}
 	
 	//setters only ever used once per var... typed them anyway...
-	public static void setStartLevel(int newStartLevel) {
+	static void setStartLevel(int newStartLevel) {
 		startLevel = newStartLevel;
 	}
 	
-	public static void setStartMoney(double newStartMoney) {
+	static void setStartMoney(double newStartMoney) {
 		startMoney = newStartMoney;
 	}
 	
 	//setColorsOn() would sound weird so i opted to use 'Mode' instead of 'On'
-	public static void setColorMode(boolean newColorMode) {
+	static void setColorMode(boolean newColorMode) {
 		colorsOn = newColorMode;
 	}
 	
 	//STARTING INVENTORY MANAGEMENT
 	//THIS WILL BE CALLED BY THE PLAYER SO IT MUST BE EASY TO USE!!
-	public static void addItemToInventory(Item item) {
+	static void addItemToInventory(Item item) {
 		startingInventory.add(item);
 	}
 	
 	//MAKE SCANNER
-	public static Scanner scanner = new Scanner(System.in);
+	static Scanner scanner = new Scanner(System.in);
 	
 	
 	
 	//SETUP METHOD (very long, but collapsible if you use a good IDE to view the file)
-	public static void setup(String args[]) {
+	static void setup(String args[]) {
 		//WELCOME THE PLAYER TO THE GAME
 		System.out.println("--------------------------------------------------------------------------");
 		System.out.println("Welcome to Jump The Volcano! Please enter in the display mode, your starting level, and beginning money to begin.");
@@ -180,7 +180,7 @@ public class Main {
 	
 	
 	//MAIN METHOD
-	public static void main(String args[]) {
+	static void main(String args[]) {
 		
 		//RUN SETUP
 		setup(args);

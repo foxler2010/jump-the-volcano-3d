@@ -15,6 +15,7 @@
  */
 
 package top.drewssite.volcano;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -24,6 +25,7 @@ public class Main {
 	private static int startLevel;
 	private static double startMoney;
 	private static boolean colorsOn;
+	private static ArrayList<Item> startingInventory;
 	
 	//GETTERS AND SETTERS
 	public static int getStartLevel() {
@@ -53,7 +55,11 @@ public class Main {
 		colorsOn = newColorMode;
 	}
 	
-	
+	//STARTING INVENTORY MANAGEMENT
+	//THIS WILL BE CALLED BY THE PLAYER SO IT MUST BE EASY TO USE!!
+	public static void addItemToInventory(Item item) {
+		startingInventory.add(item);
+	}
 	
 	//MAKE SCANNER
 	public static Scanner scanner = new Scanner(System.in);
@@ -184,7 +190,7 @@ public class Main {
 		//The name only exists to satisfy the requirements of the "Animal" class
 		//also might change the current strength value later, when I code the combat system.
 		//(hint: weapons will modify your strength)
-		Player player = new Player("Player", 10, getStartLevel(), getStartMoney());
+		Player player = new Player("Player", 10, getStartLevel(), getStartMoney(), startingInventory);
 		
 		//LET'S START THE GAME!
 		System.out.println("Great! Let's get started with the game.");

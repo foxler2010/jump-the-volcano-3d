@@ -12,5 +12,6 @@ public enum itemType {
 	PET, //added!
 	KIT,
 	WEAPON,
+	JUNK,
 	OTHER
 }

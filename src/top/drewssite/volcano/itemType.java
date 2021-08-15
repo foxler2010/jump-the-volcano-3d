@@ -10,5 +10,5 @@ enum itemType {
 	KIT,
 	WEAPON,
 	JUNK,
-	OTHER
+	OTHER //added!
 }

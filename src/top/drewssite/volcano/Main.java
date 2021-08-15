@@ -11,6 +11,7 @@
  * ANSI color codes for me to use when coding
  * Red:   \u001b[31m
  * Green: \u001b[32m
+ * Yellow: \u001b[33m
  * Reset: \u001b[0m
  */
 
@@ -24,7 +25,6 @@ class Main {
 	//VARS
 	private static int startLevel;
 	private static double startMoney;
-	private static boolean colorsOn;
 	private static ArrayList<Item> startingInventory;
 	
 	//GETTERS AND SETTERS
@@ -36,11 +36,6 @@ class Main {
 		return startMoney;
 	}
 	
-	//named without a 'get' since it reads better as a question (are the colorsOn()?)
-	static boolean colorsOn() {
-		return colorsOn;
-	}
-	
 	//setters only ever used once per var... typed them anyway...
 	static void setStartLevel(int newStartLevel) {
 		startLevel = newStartLevel;
@@ -50,14 +45,9 @@ class Main {
 		startMoney = newStartMoney;
 	}
 	
-	//setColorsOn() would sound weird so i opted to use 'Mode' instead of 'On'
-	static void setColorMode(boolean newColorMode) {
-		colorsOn = newColorMode;
-	}
-	
 	//STARTING INVENTORY MANAGEMENT
-	//THIS WILL BE CALLED BY THE PLAYER SO IT MUST BE EASY TO USE!!
-	static void addItemToInventory(Item item) {
+	//THIS WILL (SOMETIMES) BE CALLED BY THE PLAYER SO IT MUST BE EASY TO USE!!
+	public static void addItemToInventory(Item item) {
 		startingInventory.add(item);
 	}
 	
@@ -67,62 +57,12 @@ class Main {
 	
 	
 	//SETUP METHOD (very long, but collapsible if you use a good IDE to view the file)
-	static void setup(String args[]) {
+	static void setup() {
 		//WELCOME THE PLAYER TO THE GAME
 		System.out.println("--------------------------------------------------------------------------");
-		System.out.println("Welcome to Jump The Volcano! Please enter in the display mode, your starting level, and beginning money to begin.");
+		System.out.println("Welcome to Jump The Volcano! Please enter in your starting level and money to begin.");
 		System.out.println("The reccomended values for level and money are 0 and 0, respectively, as a traditional game means you start with no money or experience.");
 		System.out.println();
-			
-		
-		
-		//SET DISPLAY MODE
-		//print a lot of words to signify the super-importance-ness of this decision
-		System.out.println("Please specify your display mode. There are two modes to choose from.");
-		System.out.println("To enable ANSI escape codes coloring, type in the number 1.");
-		System.out.println("To disable this functionality and use only default color text please enter the number 2");
-		System.out.println("It is highly reccomended to use color mode unless your console does not support it.");
-		System.out.println("Chances are you support it, if you are running a graphical environment with a console emulator.");
-		System.out.println();
-		System.out.print("Enter in your display mode number here: ");
-		//make a boolean and integer, both of which are important.
-		//initialize integer with value of 1, so it is initialized/set somewhere other than the scanner.
-		//for some reason it is a compile error if that requirement is not satisfied.
-		int displayModeNumber = 1;
-		try {
-			//set integer to scanned number
-			displayModeNumber = scanner.nextInt();
-		} catch(InputMismatchException e) {
-			//tell the user what happened and "catch" the value they typed into a variable.
-			//this is required or else the next prompt would scan the invalid token.
-			//since this one scans it the next prompt doesn't end up with an exception.
-			System.out.println("That's not an integer. Until I implement a better error handler it has been auto-set to 1 for you.");
-			@SuppressWarnings("unused")
-			String catcher = scanner.next();
-		}
-		//convert string to boolean. auto-set boolean to true if string doesn't match either '1' or '2'
-		//also if no match, then notify player.
-		if (displayModeNumber == 1) {
-			setColorMode(true);
-			System.out.println();
-			System.out.println("OK. The following text should be in color: \n\u001b[31mThis text should be red!\n\u001b[32mThis text should be green!\n\u001b[0mThis text should be the default color.");
-			System.out.println();
-			System.out.println("If you saw any weird codes in the text and/or it wasn't colored correctly,\nyou should kill this program and select display mode 2 next time.");
-		} else if (displayModeNumber == 2) {
-			setColorMode(false);
-			System.out.println();
-			System.out.println("OK. The game will display all text using the default color.");
-			System.out.println("ANSI escape codes coloring has been disabled.");
-		} else {
-			setColorMode(true);
-			System.out.println();
-			System.out.println("You didn't enter a 1 or 2. Until I implement a better error handler it has been auto-set to 1 for you.");
-			System.out.println("If you aren't okay with colors being active, kill the program and enter the number 2 next time instead of doing something else.");
-		}
-		//NEWLINE FOR BETTER READABILITY
-		System.out.println();
-		
-		
 		
 		//SET STARTING LEVEL
 		System.out.print("Please enter in starting level here: ");
@@ -137,13 +77,7 @@ class Main {
 			//this is required or else the next prompt would scan the invalid token.
 			//since this one scans it the next prompt doesn't end up with an exception.
 			System.out.println();
-			if (colorsOn() == true) {
-				System.out.println("Either that's not an integer or you tried to be overpowered and gave yourself an experience level above \u001b[32m2^31-1\u001b[0m! Until I implement a better error handler it has been auto-set to \u001b[32m0\u001b[0m for you.");
-			} else {
-				System.out.println("Either that's not an integer or you tried to be overpowered and gave yourself an experience level above 2^31-1! Until I implement a better error handler it has been auto-set to 0 for you.");
-			}
-				
-			System.out.println();
+			System.out.println("Either that's not an integer or you tried to be overpowered and gave yourself an experience level above \u001b[32m2^31-1\u001b[0m! Until I implement a better error handler it has been auto-set to \u001b[32m0\u001b[0m for you.");
 			@SuppressWarnings("unused")
 			String catcher = scanner.next();
 		}
@@ -165,46 +99,64 @@ class Main {
 			//this is required or else the next prompt would scan the invalid token.
 			//since this one scans it the next prompt doesn't end up with an exception.
 			System.out.println();
-			if (colorsOn() == true) {
-				System.out.println("Either that's not a decimal or whole number, or you've gone above and beyond and typed in a number that's so big it couldn't be written in here even if I used scientififc notation! Until I implement a better error handler it has been auto-set to \u001b[31m0\u001b[0m for you.");
-			} else {
-				System.out.println("Either that's not a decimal or whole number, or you've gone above and beyond and typed in a number that's so big it couldn't be written in here even if I used scientififc notation! Until I implement a better error handler it has been auto-set to 0 for you.");
-			}
-		@SuppressWarnings("unused")
-		String catcher = scanner.next();
+			System.out.println("Either that's not a decimal or whole number, or you've gone above and beyond and typed in a number that's so big it couldn't be written in here even if I used scientififc notation! Until I implement a better error handler it has been auto-set to \u001b[31m0\u001b[0m for you.");
+			@SuppressWarnings("unused")
+			String catcher = scanner.next();
 		}
 		//NEWLINE FOR BETTER READABILITY
 		System.out.println();
 	}
 	
+	//PROMPT CODE
+	//FOR EASY PROMPTS
+	//this will display the first parameter, take a value, and compare it to the two second parameters.
+	//it returns true/false, respectively
+	static boolean prompt(String prompt, String isTrue, String isFalse) {
+		boolean answer = true;
+		boolean responseIsValid = false;
+		while(responseIsValid == false) {
+			System.out.print(prompt);
+			String response = scanner.next();
+			System.out.println();
+			if(response.equals(isTrue)) {
+				answer = true;
+				responseIsValid = true;
+			} else if(response.equals(isFalse)) {
+				answer = false;
+				responseIsValid = true;
+			} else {
+				System.out.println("That answer is invalid. Please try again.");
+				System.out.println();
+				responseIsValid = false;
+			}
+		}
+		return answer;
+		
+	}
+	
 	
 	
 	//MAIN METHOD
-	static void main(String args[]) {
+	public static void main(String args[]) {
 		
 		//RUN SETUP
-		setup(args);
+		setup();
 		
 		//MAKE PLAYER
-		//might add a "naming" system, to name your character.
-		//The name only exists to satisfy the requirements of the "Animal" class
-		//also might change the current strength value later, when I code the combat system.
-		//(hint: weapons will modify your strength)
 		Player player = new Player("Player", 10, getStartLevel(), getStartMoney(), startingInventory);
 		
 		//LET'S START THE GAME!
 		System.out.println("Great! Let's get started with the game.");
 		System.out.println();
+		System.out.println("--------------------------------------------------------------------------");
 		System.out.println();
-		
-		
 		
 		/*
 		 * MAIN LOOP WILL BE HERE
 		 * 
 		 * Structure of it:
 		 * 
-		 * 1. Report info to the player on their level, balance, and important inventory items
+		 * 1. Report info to the player on their level, balance, and important inventory items (DONE!)	
 		 * 2. Prompt them on what they would like to do. This prompt has different choices every time
 		 * 3. Carry out the action. changing the player's instance vars along the way. This is the only step where the vars are changed.
 		 * 	  Report on what has changed.
@@ -212,20 +164,38 @@ class Main {
 		 */
 		
 		//initialize boolean to track whether we are continuing the loop or not
+		//also make a turn counter because it's useful
 		boolean continuingGame = true;
+		int turns = 0;
 		//the loop begins
 		while (continuingGame == true) {
-			//phase 1
-			if(colorsOn() == true) {
-				System.out.println("Your level is \u001b[32m" + player.getLevel() + "\u001b[0m...\n...and you have $\u001b[31m" + player.getMoney() + "\u001b[0m in your wallet.");
-			} else {
-				System.out.println("Your level is " + player.getLevel() + "...\n...and you have $" + player.getMoney() + " in your wallet.");
-			}
+			//PHASE 1
+			//reported no matter what
+			System.out.println("Turn: \u001b[33m" + turns + "\u001b[0m");
+			System.out.println("Your level is \u001b[32m" + player.getLevel() + "\u001b[0m...\n...and you have $\u001b[31m" + player.getMoney() + "\u001b[0m in your wallet.");
 			System.out.println();
-			System.out.println("Would you like to view your inventory? ");
-			//ask y/n q for whether to view or not and then respond accordingly
-			//phase 2
-			//phase 3
+			
+			//view inventory?
+			boolean viewInventory = prompt("Would you like to view your inventory? ", "y", "n");
+			if(viewInventory == true) {
+				System.out.println("Here it is:");
+				try {
+					System.out.println(player.inventoryToString());
+				} catch(NullPointerException e) {
+					System.out.println("Hmm, your inventory is empty right now.");
+				}
+			} else if(viewInventory == false){
+				System.out.println("Okay, let's keep going");
+			}
+				
+			//NEWLINE FOR READABILITY
+			System.out.println();
+			
+			//PHASE 2
+			
+			
+			
+			//PHASE 3
 			
 			//for testing purposes, stop the loop after one turn
 			continuingGame = false;
@@ -234,7 +204,7 @@ class Main {
 		
 		
 		//ENDGAME
-		System.out.println("Thank you for playing Jump The Volcano. Come again soon!");
+		System.out.println("Thank you for playing Jump The Volcano. Please play again soon!");
 		
 		//CLOSE SCANNER
 		scanner.close();

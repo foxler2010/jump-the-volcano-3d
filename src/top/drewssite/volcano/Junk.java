@@ -17,7 +17,7 @@ class Junk extends Item {
 	
 	//CONSTRUCTOR
 	Junk(String name, double price) {
-		super(name, itemType.JUNK);
+		super(name, itemType.JUNK, false);
 		this.price = price;
 	}
 

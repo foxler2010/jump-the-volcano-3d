@@ -5,6 +5,7 @@ abstract class Item {
 	//VARS
 	private String name;
 	private itemType type;
+	private boolean important;
 	
 	//GETTERS & SETTERS
 	String getName() {
@@ -23,7 +24,15 @@ abstract class Item {
 		this.type = type;
 	}
 	
-	Item(String name, itemType type) {
+	boolean isImportant() {
+		return important;
+	}
+	
+	void setImportancy(boolean important) {
+		this.important = important;
+	}
+	
+	Item(String name, itemType type, boolean important) {
 		this.name = name;
 		this.type = type;
 	}

@@ -6,8 +6,9 @@ abstract class Animal extends Item {
 
 	//VAR
 	private int strength;
+	private int health;
 	
-	//GETTER AND SETTER
+	//GETTERS AND SETTERS
 	int getStrength() {
 		return strength;
 	}
@@ -16,16 +17,25 @@ abstract class Animal extends Item {
 		this.strength = strength;
 	}
 	
+	int getHealth() {
+		return health;
+	}
+	
+	void setHealth(int health) {
+		this.health = health;
+	}
+	
 	//CONSTRUCTOR takes in name and price and sets the type to itemType.PET automatically
-	Animal(String name, itemType type, int strength) {
+	Animal(String name, itemType type, int strength, boolean important) {
 		//this line confused me as i did not understand the 'super' keyword very well,
 		//Eclipse added it automatically and I did not know why
 		
 		//It calls the 'Item' class constructor and gives it the name, price, and type parameters.
-		super(name, type);
+		super(name, type, important);
 		
 		//don't forget about the new animal-only stuff
 		this.strength = strength;
+		this.health = 100;
 	}
 	
 	abstract void attack(Animal target);

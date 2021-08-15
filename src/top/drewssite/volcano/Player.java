@@ -14,7 +14,7 @@ class Player extends Animal {
 	
 	//CONSTRUCTOR
 	Player(String name, int strength, int level, double money, ArrayList<Item> startingInventory) {
-		super(name, itemType.OTHER, strength);
+		super(name, itemType.OTHER, strength, false);
 		this.level = level;
 		this.money = money;
 		this.inventory = startingInventory;

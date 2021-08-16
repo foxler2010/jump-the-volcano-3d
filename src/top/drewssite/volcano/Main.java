@@ -54,9 +54,7 @@ class Main {
 	//MAKE SCANNER
 	static Scanner scanner = new Scanner(System.in);
 	
-	
-	
-	//SETUP METHOD (very long, but collapsible if you use a good IDE to view the file)
+	//SETUP METHOD
 	static void setup() {
 		//WELCOME THE PLAYER TO THE GAME
 		System.out.println("--------------------------------------------------------------------------");
@@ -65,53 +63,17 @@ class Main {
 		System.out.println();
 		
 		//SET STARTING LEVEL
-		System.out.print("Please enter in starting level here: ");
-		//because of the initialization here, if an exception occurs the default will be 0
-		setStartLevel(0);
-		//scan user input, output to var
-		//if exception, set it to the default (which is 0)
-		try {
-			setStartLevel(scanner.nextInt());
-		} catch(InputMismatchException e) {
-			//tell the user what happened and "catch" the value they typed into a variable
-			//this is required or else the next prompt would scan the invalid token.
-			//since this one scans it the next prompt doesn't end up with an exception.
-			System.out.println();
-			System.out.println("Either that's not an integer or you tried to be overpowered and gave yourself an experience level above \u001b[32m2^31-1\u001b[0m! Until I implement a better error handler it has been auto-set to \u001b[32m0\u001b[0m for you.");
-			@SuppressWarnings("unused")
-			String catcher = scanner.next();
-		}
-		//NEWLINE FOR BETTER READABILITY
-		System.out.println();
-		
-		
+		setStartLevel(intPrompt("Please enter in starting level here: "));
 		
 		//SET STARTING MONEY
 		System.out.println("Okay, now let's set your starting money.");
-		System.out.print("Input it here: ");
-		//because of the initialization here, if an exception occurs the default will be zero
-		try {
-			//scan what's typed in the console
-			//output to var
-			setStartMoney(scanner.nextDouble());
-		} catch(InputMismatchException e) {
-			//tell the user what happened and "catch" the value they typed into a variable
-			//this is required or else the next prompt would scan the invalid token.
-			//since this one scans it the next prompt doesn't end up with an exception.
-			System.out.println();
-			System.out.println("Either that's not a decimal or whole number, or you've gone above and beyond and typed in a number that's so big it couldn't be written in here even if I used scientififc notation! Until I implement a better error handler it has been auto-set to \u001b[31m0\u001b[0m for you.");
-			@SuppressWarnings("unused")
-			String catcher = scanner.next();
-		}
-		//NEWLINE FOR BETTER READABILITY
-		System.out.println();
+		setStartMoney(doublePrompt("Input it here: "));
 	}
 	
 	//PROMPT CODE
-	//FOR EASY PROMPTS
-	//this will display the first parameter, take a value, and compare it to the two second parameters.
-	//it returns true/false, respectively
-	static boolean prompt(String prompt, String isTrue, String isFalse) {
+	
+	//prompts the user to enter one of two options (ex. yes/no question)
+	static boolean yesNoPrompt(String prompt, String isTrue, String isFalse) {
 		boolean answer = true;
 		boolean responseIsValid = false;
 		while(responseIsValid == false) {
@@ -134,7 +96,41 @@ class Main {
 		
 	}
 	
+	//prompts the user to enter an integer
+	static int intPrompt(String prompt) {
+		int response = 0;
+		boolean responseIsValid = false;
+		while(responseIsValid == false) {
+			try {
+				System.out.print(prompt);
+				response = scanner.nextInt();
+				responseIsValid = true;
+				System.out.println();
+			} catch(InputMismatchException e) {
+				System.out.println("That answer is invalid. Please try again.");
+				responseIsValid = false;
+			}
+		}
+		return response;
+	}
 	
+	//prompts the user to enter a double
+	static double doublePrompt(String prompt) {
+		double response = 0;
+		boolean responseIsValid = false;
+		while(responseIsValid == false) {
+			try {
+				System.out.print(prompt);
+				response = scanner.nextDouble();
+				responseIsValid = true;
+				System.out.println();
+			} catch(InputMismatchException e) {
+				System.out.println("That answer is invalid. Please try again.");
+				responseIsValid = false;
+			}
+		}
+		return response;
+	}
 	
 	//MAIN METHOD
 	public static void main(String args[]) {
@@ -176,7 +172,7 @@ class Main {
 			System.out.println();
 			
 			//view inventory?
-			boolean viewInventory = prompt("Would you like to view your inventory? ", "y", "n");
+			boolean viewInventory = yesNoPrompt("Would you like to view your inventory? ", "y", "n");
 			if(viewInventory == true) {
 				System.out.println("Here it is:");
 				try {
@@ -185,7 +181,7 @@ class Main {
 					System.out.println("Hmm, your inventory is empty right now.");
 				}
 			} else if(viewInventory == false){
-				System.out.println("Okay, let's keep going");
+				System.out.println("Okay, let's keep going...");
 			}
 				
 			//NEWLINE FOR READABILITY

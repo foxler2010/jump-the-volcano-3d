@@ -68,6 +68,7 @@ class Main {
 		//SET STARTING MONEY
 		System.out.println("Okay, now let's set your starting money.");
 		setStartMoney(doublePrompt("Input it here: "));
+		
 	}
 	
 	//PROMPT CODE
@@ -107,8 +108,12 @@ class Main {
 				responseIsValid = true;
 				System.out.println();
 			} catch(InputMismatchException e) {
+				System.out.println();
 				System.out.println("That answer is invalid. Please try again.");
+				System.out.println();
 				responseIsValid = false;
+				@SuppressWarnings("unused")
+				String catcher = scanner.next();
 			}
 		}
 		return response;
@@ -125,8 +130,12 @@ class Main {
 				responseIsValid = true;
 				System.out.println();
 			} catch(InputMismatchException e) {
+				System.out.println();
 				System.out.println("That answer is invalid. Please try again.");
+				System.out.println();
 				responseIsValid = false;
+				@SuppressWarnings("unused")
+				String catcher = scanner.next();
 			}
 		}
 		return response;
@@ -140,6 +149,12 @@ class Main {
 		
 		//MAKE PLAYER
 		Player player = new Player("Player", 10, getStartLevel(), getStartMoney(), startingInventory);
+		
+		//MAKE OPTIONS
+		Option jumpTheVolcano = new Option("Jump The Volcano");
+		Option dumpsterDive = new Option("Dumpster dive");
+		Option petStore = new Option("Go to the Pet Store");
+		Option arena = new Option("Visit the Arena");
 		
 		//LET'S START THE GAME!
 		System.out.println("Great! Let's get started with the game.");
@@ -178,6 +193,7 @@ class Main {
 				try {
 					System.out.println(player.inventoryToString());
 				} catch(NullPointerException e) {
+					System.out.println();
 					System.out.println("Hmm, your inventory is empty right now.");
 				}
 			} else if(viewInventory == false){
@@ -188,13 +204,40 @@ class Main {
 			System.out.println();
 			
 			//PHASE 2
+			//all possible options here. currently they are manually activated but that will change
+			//first one is always true
+			ArrayList<Option> availableOptions = new ArrayList<Option>();
+			availableOptions.add(jumpTheVolcano);
+			availableOptions.add(dumpsterDive);
+			availableOptions.add(petStore);
+			availableOptions.add(arena);
+			
+			System.out.println("Here are your options for this turn:");
+			System.out.println();
+			
+			//print all options
+			for(int currentOption = 0; currentOption < availableOptions.size(); currentOption++) {
+				System.out.println("  " + (currentOption + 1) + ") " + availableOptions.get(currentOption).getOption());
+			}
+			
+			System.out.println();
+			int option = intPrompt("Please input the option you would like to carry out: ");
+			System.out.println(option);
+			System.out.println();
 			
 			
 			
 			//PHASE 3
 			
-			//for testing purposes, stop the loop after one turn
-			continuingGame = false;
+			//ENGAME PROMPT
+			//only occurs every 5 turns
+			//will be replaced with an option in phase two sometime later.
+			if(turns % 5 == 0) {
+				continuingGame = yesNoPrompt("Do you want to continue playing? ", "y", "n");
+			}
+			
+			//Increase turn counter by one at end of turn
+			turns++;
 		}
 		
 		

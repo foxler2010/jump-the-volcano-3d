@@ -18,4 +18,28 @@ class Data {
 	
 	Junk veryDietSoda = new Junk("Very Diet Soda", 5.0);
 	
+	//monsters!
+	Monster weed = new Monster("The Weed That Keeps Popping Up In Your Garden", 1);
+	
+	Monster slime = new Monster("Slime", 3);
+	
+	Monster jupiterThePlanet = new Monster("Jupiter, the planet", 1000);
+	
+	Monster zeus = new Monster("Zeus, God of Lightning", 9999);
+	
+	Monster lightbulb = new Monster("Lightbulb", 1);
+	
+	Monster sharpGlass = new Monster("Sharp Glass", 2);
+	
+	//pets!
+	Pet dog = new Pet("Dog", 10);
+	
+	Pet cat = new Pet("Cat", 10);
+	
+	Pet axolotl = new Pet("Axolotl", 20);
+	
+	Pet rhino = new Pet("Rhino", 150);
+	
+	Pet neilArmstrong = new Pet("Neil Armstrong", 30);
+	
 }

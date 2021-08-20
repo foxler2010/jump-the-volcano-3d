@@ -2,7 +2,7 @@ package top.drewssite.volcano;
 
 //friendly animal
 class Pet extends Animal {
-
+	
 	Pet(String name, int strength) {
 		//same as animal, but set type to itemType.PET instead
 		super(name, itemType.PET, strength, true);

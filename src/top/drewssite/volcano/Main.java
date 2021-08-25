@@ -25,7 +25,7 @@ class Main {
 	//VARS
 	private static int startLevel;
 	private static double startMoney;
-	private static ArrayList<Item> startingInventory;
+	private static ArrayList<Item> startingInventory = new ArrayList<Item>();
 	
 	//GETTERS AND SETTERS
 	static int getStartLevel() {
@@ -179,6 +179,7 @@ class Main {
 			boolean viewInventory = yesNoPrompt("Would you like to view your inventory? ", "y", "n");
 			if(viewInventory == true) {
 				System.out.println("Here it is:");
+				System.out.println();
 				System.out.println(player.inventoryToString());
 			} else if(viewInventory == false){
 				System.out.println("Okay, let's keep going...");

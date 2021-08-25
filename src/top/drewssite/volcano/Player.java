@@ -10,7 +10,7 @@ class Player extends Animal {
 	//VARS
 	private int level;
 	private double money;
-	private ArrayList<Item> inventory;
+	private ArrayList<Item> inventory = new ArrayList<Item>();
 	
 	//CONSTRUCTOR
 	Player(String name, int strength, int level, double money, ArrayList<Item> startingInventory) {
@@ -50,10 +50,14 @@ class Player extends Animal {
 		inventory.add(item);
 	}
 	
-	//remove item from inventory
+	//remove something from the inventory
 	//shifts everything down one index if the removed item is not the last index
 	void removeItem(Item item) {
 		inventory.remove(item);
+	}
+	
+	void removeItem(int index) {
+		inventory.remove(index);
 	}
 	
 	//check if the item is in the inventory

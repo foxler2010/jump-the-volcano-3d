@@ -4,12 +4,12 @@ public class Option {
 	
 	private String option;
 	
-	String getOption() {
+	String getName() {
 		return option;
 	}
 	
 	public Option(String option) {
 		this.option = option;
 	}
-
+	
 }

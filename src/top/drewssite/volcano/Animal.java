@@ -22,7 +22,12 @@ abstract class Animal extends Item {
 	}
 	
 	void setHealth(int health) {
-		this.health = health;
+		//big attacks don't give you negative health
+		if (health >= 0) {
+			this.health = health;
+		} else {
+			this.health = 0;
+		}
 	}
 	
 	//CONSTRUCTOR takes in name and price and sets the type to itemType.PET automatically

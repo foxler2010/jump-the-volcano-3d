@@ -177,13 +177,33 @@ class Main {
 			
 			//view inventory?
 			boolean viewInventory = yesNoPrompt("Would you like to view your inventory? ", "y", "n");
+			//depends on prompt
 			if(viewInventory == true) {
+				//before printing it
 				System.out.println("Here it is:");
 				System.out.println();
-				System.out.println(player.inventoryToString());
+				boolean inventoryPrinted = false;
+				int currentItem = 0;
+				try {
+					System.out.print(player.getItem(currentItem).getName() + ", ");
+				} catch (IndexOutOfBoundsException e) {
+					System.out.println("Your inventory is empty right now...");
+					inventoryPrinted = true;
+				}
+				
+				//loop thru all the items
+				while(inventoryPrinted == false) {
+					//try printing an item
+					try {
+						System.out.print(player.getItem(currentItem).getName() + ", ");
+					} catch (IndexOutOfBoundsException e) {
+						inventoryPrinted = false;
+					}
+					currentItem++;
+				}//end inventory while
 			} else if(viewInventory == false){
 				System.out.println("Okay, let's keep going...");
-			}
+			}//end inventory if
 				
 			//NEWLINE FOR READABILITY
 			System.out.println();

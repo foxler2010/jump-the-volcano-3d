@@ -180,27 +180,28 @@ class Main {
 			//depends on prompt
 			if(viewInventory == true) {
 				//before printing it
-				System.out.println("Here it is:");
-				System.out.println();
-				boolean inventoryPrinted = false;
-				int currentItem = 0;
-				try {
-					System.out.print(player.getItem(currentItem).getName() + ", ");
-				} catch (IndexOutOfBoundsException e) {
-					System.out.println("Your inventory is empty right now...");
-					inventoryPrinted = true;
+				int currentItem;
+				int size = player.sizeOfInventory();
+				//check for emptiness
+				if(size == 0) {
+					System.out.println("You inventory is currently empty.");
+				} else {
+					System.out.println("Here it is:");
+					System.out.println();
 				}
-				
-				//loop thru all the items
-				while(inventoryPrinted == false) {
+				//loop thru all the items but 1
+				for(currentItem = 0; currentItem < size - 1; currentItem++) {
 					//try printing an item
 					try {
 						System.out.print(player.getItem(currentItem).getName() + ", ");
 					} catch (IndexOutOfBoundsException e) {
-						inventoryPrinted = false;
+						
 					}
-					currentItem++;
-				}//end inventory while
+				}//end inventory for
+				//last item, no comma after it
+				System.out.print(player.getItem(currentItem).getName());
+				//newline for readability
+				System.out.println();
 			} else if(viewInventory == false){
 				System.out.println("Okay, let's keep going...");
 			}//end inventory if
@@ -364,8 +365,8 @@ class Main {
 					boolean inventoryEmpty = false;
 					while(inventoryEmpty == false) {
 						try {
-							player.removeItem(1);
-							player.getItem(1);
+							player.removeItem(0);
+							player.getItem(0);
 						} catch(IndexOutOfBoundsException e) {
 							inventoryEmpty = true;
 						} catch(NullPointerException e) {

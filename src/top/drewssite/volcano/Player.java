@@ -80,6 +80,10 @@ class Player extends Animal {
 		return inventory.toString();
 	}
 	
+	int sizeOfInventory() {
+		return inventory.size();
+	}
+	
 	//COMBAT
 	void attack(Animal target) {
 		//not done yet

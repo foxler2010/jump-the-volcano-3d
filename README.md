@@ -42,3 +42,7 @@ Unless it's a movie. I would like to be paid for that.
 # Note on latest commits
 
 They are committed by user "kubuntu", which is me but I am stuck in a live environment for complicated reasons and I can't use my regular username. I will probaly be able to fix this in the next commit. If not, please don't fret, "kubuntu" is certified by me to be me. You know this is true becuase I am using the web interface of GitHub to commit this so it is using my username.
+
+# test to see if i fixed it
+
+if it shows up with the right username, that's good!

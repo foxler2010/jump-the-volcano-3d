@@ -188,20 +188,16 @@ class Main {
 				} else {
 					System.out.println("Here it is:");
 					System.out.println();
-				}
-				//loop thru all the items but 1
-				for(currentItem = 0; currentItem < size - 1; currentItem++) {
-					//try printing an item
-					try {
+					//loop thru all the items but 1
+					for(currentItem = 0; currentItem < size - 1; currentItem++) {
+						//print an item's name, add comma after
 						System.out.print(player.getItem(currentItem).getName() + ", ");
-					} catch (IndexOutOfBoundsException e) {
-						
-					}
-				}//end inventory for
-				//last item, no comma after it
-				System.out.print(player.getItem(currentItem).getName());
-				//newline for readability
-				System.out.println();
+					}//end inventory for
+					//last item, no comma after it
+					System.out.print(player.getItem(currentItem).getName());
+					//newline for readability
+					System.out.println();
+				}//end inventory size if
 			} else if(viewInventory == false){
 				System.out.println("Okay, let's keep going...");
 			}//end inventory if

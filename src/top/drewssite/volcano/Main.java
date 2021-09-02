@@ -379,7 +379,6 @@ class Main {
 			if(continuingGame == true) {
 				//MARKS END OF TURN
 				//only shown if you didn't quit.
-				System.out.println();
 				System.out.println("--------------------------------------------------------------------------");
 				System.out.println();
 			}//end turnmarker if

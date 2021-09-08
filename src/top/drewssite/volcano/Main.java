@@ -325,7 +325,12 @@ class Main {
 				}
 			}//end jump the volcano if
 			
+			//you dive into the dumpster in search of random items people threw away
 			if(chosenOption == dumpsterDive) {
+				//choose random item from list of items that are in the dumpster
+				
+				
+				
 				System.out.println("test, money+1");
 				player.setMoney(player.getMoney() + 1);
 			}//end dumpster dive if

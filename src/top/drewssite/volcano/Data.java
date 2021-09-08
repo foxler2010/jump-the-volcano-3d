@@ -1,4 +1,5 @@
 package top.drewssite.volcano;
+import java.util.*;
 
 //initializes almost everything in the game
 //only a few exceptions (mostly in the beginning of the main method)
@@ -41,5 +42,10 @@ class Data {
 	public static Pet rhino = new Pet("Rhino", 150);
 	
 	public static Pet neilArmstrong = new Pet("Neil Armstrong", 30);
+	
+	//list of items you may find in a dumpster
+	public ArrayList<Item> insideDumpster = new ArrayList<Item>();
+	
+	insideDumpster.add(oldCanOfBeans);
 	
 }

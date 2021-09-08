@@ -315,7 +315,7 @@ class Main {
 			//if you try to jump the volcano
 			if(chosenOption == jumpTheVolcano) {
 				//gen random boolean to decide between whether you successfully jump the volcano or not.
-				if(random.nextBoolean() == true) {
+				if(random.nextInt(99) > 79) {
 					System.out.println("You jump over the volcano");
 				} else {
 					System.out.println("You fall into the volcano and die. Wah wah wahhhhh.");

@@ -46,6 +46,6 @@ class Data {
 	//list of items you may find in a dumpster
 	public ArrayList<Item> insideDumpster = new ArrayList<Item>();
 	
-	insideDumpster.add(oldCanOfBeans);
+	//insideDumpster.add(oldCanOfBeans);
 	
 }

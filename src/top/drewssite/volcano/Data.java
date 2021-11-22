@@ -13,6 +13,8 @@ class Data {
 	public static Junk moldySock = new Junk("Moldy Sock", .05);
 	
 	public static Junk brokenMagnet = new Junk("Broken Magnet", .10);
+
+	public static Junk poopSock = new Junk("Poop Sock", 0);
 	
 	//will be switched to type 'Food' once the type is implemented
 	public static Junk freshBudLight = new Junk("Fresh Bud Light", 10.0);

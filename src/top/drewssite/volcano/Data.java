@@ -6,15 +6,18 @@ import java.util.*;
 class Data {
 	
 	//let's start with some junk
-	static Junk oldCanOfBeans = new Junk("Old Can of Beans", .05);
+	public static Junk oldCanOfBeans = new Junk("Old Can of Beans", .05);
 	
-	static Junk dirtySodaBottle = new Junk("Dirty Soda Bottle", .05);
+	public static Junk dirtySodaBottle = new Junk("Dirty Soda Bottle", .05);
 	
 	public static Junk moldySock = new Junk("Moldy Sock", .05);
 	
 	public static Junk brokenMagnet = new Junk("Broken Magnet", .10);
 
 	public static Junk poopSock = new Junk("Poop Sock", 0);
+
+	//list of all junks
+	public static Junk[] junkItems = {oldCanOfBeans, dirtySodaBottle, moldySock, brokenMagnet, poopSock};
 	
 	//will be switched to type 'Food' once the type is implemented
 	public static Junk freshBudLight = new Junk("Fresh Bud Light", 10.0);

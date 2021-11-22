@@ -9,6 +9,7 @@ enum itemType {
 	PET, //added!
 	KIT,
 	WEAPON,
-	JUNK,
+	JUNK, //added
+	FOOD,
 	OTHER //added!
 }

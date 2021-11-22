@@ -328,11 +328,12 @@ class Main {
 			//you dive into the dumpster in search of random items people threw away
 			if(chosenOption == dumpsterDive) {
 				//choose random item from list of items that are in the dumpster
-				
-				
-				
-				System.out.println("test, money+1");
-				player.setMoney(player.getMoney() + 1);
+				Junk randomJunk = Data.junkItems[random.nextInt(Data.junkItems.length)];
+				//add it to player's inventory
+				player.addItem(randomJunk);
+				//tell player what they got
+				System.out.println("You got a " + randomJunk.getName());
+				System.out.println();
 			}//end dumpster dive if
 			
 			if(chosenOption == petStore) {

@@ -71,6 +71,29 @@ class Main {
 		return answer;
 		
 	}
+
+	//extension of yes/no prompt, allowing as many true and false answers as you want
+	static boolean yesNoPrompt(String prompt, String[] isTrue, String[] isFalse) {
+		boolean answer = true;
+		boolean responseIsValid = false;
+		while(responseIsValid == false) {
+			System.out.println(prompt);
+			String response = scanner.next();
+			System.out.println();
+			for(int i = 0; i < isTrue.length; i++) {
+				if (response.equals(isTrue[i])); {
+					answer = true;
+				} if (response.equals(isFalse[i])) {
+					answer = true;
+				} else {
+					System.out.println("That answer is invalid. Please try again.");
+					System.out.println();
+					responseIsValid = false;
+				}
+			}
+		}
+		return answer;
+	}
 	
 	//prompts the user to enter an integer
 	static int intPrompt(String prompt) {
@@ -137,7 +160,7 @@ class Main {
 		
 		//MAKE OPTIONS
 		String jumpTheVolcano = "Jump The Volcano";
-		String dumpsterDive = "Dumpster dive (money+1)";
+		String dumpsterDive = "Dumpster dive";
 		String petStore = "Go to the Pet Store (level+1)";
 		String arena = "Visit the Arena (inventory+1canOfBeans)";
 		String quit = "Exit the game";
@@ -157,10 +180,10 @@ class Main {
 		 * 
 		 * Structure of it:
 		 * 
-		 * 1. Report info to the player on their level, balance, and important inventory items (DONE!)	
-		 * 2. Prompt them on what they would like to do. This prompt has different choices every time (DONE!)
-		 * 3. Carry out the action. changing the player's instance vars along the way. This is the only step where the vars are changed.
-		 * 4. Repeat from step 1, starting a new turn
+		 * PHASE 1: Report info to the player on their level, balance, and important inventory items (DONE!)	
+		 * PHASE 2: Prompt them on what they would like to do. This prompt has different choices every time (DONE!)
+		 * PHASE 3: Carry out the action. changing the player's instance vars along the way. This is the only step where the vars are changed.
+		 * PHASE 4: Repeat from step 1, starting a new turn
 		 */
 		
 		//initialize boolean to track whether we are continuing the loop or not
@@ -231,11 +254,11 @@ class Main {
 			System.out.println("Here are your options for this turn:");
 			System.out.println();
 			
-			//this loop actually displays and assigns every available option to a new var which will be useful later.
+			//this loop actually displays and assigns every available option to a new(-ish) var which will be useful later.
 			for(int currentOption = 0; currentOption < availableOptions.size(); currentOption++) {
 				
 				//set whatever option is listed at this number as the option for this number
-				//a bit confusing but it is extremely important in order to call the right method when an
+				//a bit confusing but it is extremely important in order to run the right code when an
 				//option is chosen
 				switch(currentOption) {
 				

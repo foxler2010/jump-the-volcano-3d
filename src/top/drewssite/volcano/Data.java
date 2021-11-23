@@ -6,6 +6,7 @@ import java.util.*;
 class Data {
 	
 	//let's start with some junk
+	//typeIndex 0
 	public static Junk oldCanOfBeans = new Junk("Old Can of Beans", .05);
 	
 	public static Junk dirtySodaBottle = new Junk("Dirty Soda Bottle", .05);
@@ -19,12 +20,14 @@ class Data {
 	//list of all junks
 	public static Junk[] junkItems = {oldCanOfBeans, dirtySodaBottle, moldySock, brokenMagnet, poopSock};
 	
-	//will be switched to type 'Food' once the type is implemented
+	//will be switched to type 'Food' once the type is implemented]\
+	//to-be typeIndex 1
 	public static Junk freshBudLight = new Junk("Fresh Bud Light", 10.0);
 	
 	public static Junk veryDietSoda = new Junk("Very Diet Soda", 5.0);
 	
 	//monsters!
+	//typeIndex 2
 	public static Monster weed = new Monster("The Weed That Keeps Popping Up In Your Garden", 1);
 	
 	public static Monster slime = new Monster("Slime", 3);
@@ -38,6 +41,7 @@ class Data {
 	public static Monster sharpGlass = new Monster("Sharp Glass", 2);
 	
 	//pets!
+	//typeIndex 3
 	public static Pet dog = new Pet("Dog", 10);
 	
 	public static Pet cat = new Pet("Cat", 10);
@@ -47,9 +51,6 @@ class Data {
 	public static Pet rhino = new Pet("Rhino", 150);
 	
 	public static Pet neilArmstrong = new Pet("Neil Armstrong", 30);
-	
-	//list of items you may find in a dumpster
-	public ArrayList<Item> insideDumpster = new ArrayList<Item>();
 	
 	//insideDumpster.add(oldCanOfBeans);
 	

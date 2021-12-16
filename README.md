@@ -1,3 +1,5 @@
+Please check https://github.com/foxler2010/jump-the-volcano/commit/499a15971b4fc8a5afa59f3d62ddb60b7a32579d for the latest mega-update redoing the inventory system!!
+
 # Jump The Volcano
 
 A simple Java text adventure all about jumping over a volcano.

@@ -1,5 +1,4 @@
 package top.drewssite.volcano;
-import java.util.*;
 
 //initializes almost everything in the game
 //only a few exceptions (mostly in the beginning of the main method)

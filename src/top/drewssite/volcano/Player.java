@@ -10,10 +10,10 @@ class Player extends Animal {
 	//VARS
 	private int level;
 	private double money;
-	private ArrayList<ArrayList<ArrayList<Item>>> inventory = new ArrayList<ArrayList<ArrayList<Item>>>();
+	private ArrayList<Item> inventory = new ArrayList<Item>();
 	
 	//CONSTRUCTOR
-	Player(String name, int strength, int level, double money, ArrayList<ArrayList<ArrayList<Item>>> startingInventory) {
+	Player(String name, int strength, int level, double money, ArrayList<Item> startingInventory) {
 		super(name, itemType.OTHER, strength, false);
 		this.level = level;
 		this.money = money;
@@ -41,10 +41,7 @@ class Player extends Animal {
 	
 	//Returns an item in the inventory.
 	//Does NOT remove the item from the list.
-	Item getItem(int typeIndex, int itemIndex) {
-		if(typeIndex == 0) {
-			junk
-		}
+	Item getItem(int index) {
 		return inventory.get(index);
 	}
 	

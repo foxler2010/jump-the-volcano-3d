@@ -16,13 +16,6 @@
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
-        },
-        {
-            "type": "java",
-            "name": "Launch Main",
-            "request": "launch",
-            "mainClass": "top.drewssite.volcano.Main",
-            "projectName": "jump-the-volcano_52ce00ae"
         }
     ]
 }

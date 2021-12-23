@@ -12,11 +12,12 @@ import java.util.ArrayList;
 public class Inventory {
     
     //list of lists
-    private ArrayList<ArrayList<Item>> inventory = new ArrayList<ArrayList<Item>>();
+    private ArrayList<ArrayList<Item>> inventory;
 
-    //constructor doesn't do anything yet.
+    //used to not do anything. realized I was doing it wrong and made it do what it is supposed to do.
+    //view earlier commits to see what was going on under my nose.
     public Inventory() {
-        
+        inventory = new ArrayList<ArrayList<Item>>();
     }
 
     //add item to inventory
@@ -182,6 +183,22 @@ public class Inventory {
             return -1;
         }
 
+    }
+
+    public String toString() {
+        
+        //initialize string with first sub-list (so it doesn't have to be null)
+        String string = inventory.get(0).toString();
+
+        //loop thru all other sub-lists
+        for (int i = 1; i <= 6; i++) {
+            string = string + inventory.get(i).toString();
+        }
+
+        //return result
+        return string;
+
+        //I thought that would be harder to code... hopefully it works properly...
     }
 
 }

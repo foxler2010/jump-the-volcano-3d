@@ -201,4 +201,17 @@ public class Inventory {
         //I thought that would be harder to code... hopefully it works properly...
     }
 
+    //same as with toString but with integers. a lot easier to deal with if you ask me.
+    public int sizeOfInventory() {
+        
+        int size = inventory.get(0).size();
+
+        for (int i = 1; i <= 6; i++) {
+            size = size + inventory.get(i).size();
+        }
+
+        return size;
+
+    }
+
 }

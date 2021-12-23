@@ -16,13 +16,13 @@ public class Inventory {
 
     //used to not do anything. realized I was doing it wrong and made it do what it is supposed to do.
     //view earlier commits to see what was going on under my nose.
-    public Inventory() {
+    Inventory() {
         inventory = new ArrayList<ArrayList<Item>>();
     }
 
     //add item to inventory
     //depending on the type of item, it will go into a different list.
-    public void addItem(Item item) {
+    void addItem(Item item) {
         
         //use different lists based on type
         switch (item.getType()) {
@@ -50,7 +50,7 @@ public class Inventory {
     }
 
     //return the item at a specified type and index
-    public Item getItem(itemType type, int index) {
+    Item getItem(itemType type, int index) {
         
         //initialize as null, because it will throw an error if I don't
         Item requestedItem = null;
@@ -79,7 +79,7 @@ public class Inventory {
     }
 
     //remove and item from the list; based of of the type and index
-    public void removeItem(itemType type, int index) {
+    void removeItem(itemType type, int index) {
         
         //use different lists based on type
         switch (type) {
@@ -108,7 +108,7 @@ public class Inventory {
     }
 
     //remove an item from the list; based off of item name
-    public void removeItem(Item item) {
+    void removeItem(Item item) {
         
         //use different lists based on type
         switch (item.getType()) {
@@ -137,7 +137,7 @@ public class Inventory {
     }
 
     //see if an item is in the player's inventory
-    public boolean checkForItem(Item item) {
+    boolean checkForItem(Item item) {
 
         //initialize as false, because it will throw an error if I don't
         boolean itemIsPresent = false;
@@ -160,7 +160,7 @@ public class Inventory {
     //find the index of an item. the index is relative to the sub-list the item is inside of.
     //the type does not have to be given, because we can just look at the attributes of the item to find it.
     //returns -1 if the item is nonexistent.
-    public int indexOfItem(Item item) {
+    int indexOfItem(Item item) {
 
         //use different lists based on type
         switch (item.getType()) {
@@ -185,7 +185,8 @@ public class Inventory {
 
     }
 
-    public String toString() {
+    //has to be public as it inherits the Object class' version of it, which is public.
+    public String inventoryToString() {
         
         //initialize string with first sub-list (so it doesn't have to be null)
         String string = inventory.get(0).toString();
@@ -202,7 +203,7 @@ public class Inventory {
     }
 
     //same as with toString but with integers. a lot easier to deal with if you ask me.
-    public int sizeOfInventory() {
+    int sizeOfInventory() {
         
         int size = inventory.get(0).size();
 

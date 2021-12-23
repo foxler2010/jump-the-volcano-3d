@@ -199,9 +199,7 @@ class Main {
 			System.out.println();
 			
 			//view inventory?
-			boolean viewInventory = yesNoPrompt("Would you like to view your inventory? ", "y", "n");
-			//depends on prompt
-			if(viewInventory == true) {
+			if(yesNoPrompt("Would you like to view your inventory? ", "y", "n") == true) {
 				//before printing it
 				int currentItem;
 				int size = player.sizeOfInventory();
@@ -221,7 +219,7 @@ class Main {
 					//newline for readability
 					System.out.println();
 				}//end inventory size if
-			} else if(viewInventory == false){
+			} else {
 				System.out.println("Okay, let's keep going...");
 			}//end inventory if
 				

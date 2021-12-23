@@ -2,17 +2,16 @@ package top.drewssite.volcano;
 import java.util.ArrayList;
 
 //bit of a weird class. this is a rework of the inventory system. It used to be a big list, but I found that I could add many of the same items to it,
-//and they would all list out individually, like this: "Old Can of Beans, Old Can of Beans, Old Can of Beans, etc."
+//and when the inventory is displayed they would all list out individually, like this: "Old Can of Beans, Old Can of Beans, Old Can of Beans, etc."
 //So instead of that I wanted it to be like: "Old Can of Beans x23".
 //This system is going to sort the items into separate ArrayLists for each type.
 
-
-//currently not every type is implemented, so this is going to be a work-in-progress until I have added at least one item for every type.
+//currently not every type is implemented, so I can't test every type. That doesn't mean I need to test every type, though. So far I think I'm good.
 
 
 public class Inventory {
     
-    //big list
+    //list of lists
     private ArrayList<ArrayList<Item>> inventory = new ArrayList<ArrayList<Item>>();
 
     //constructor doesn't do anything yet.
@@ -152,59 +151,17 @@ public class Inventory {
 
         //for every sub-list, check for the item.
         //if true, return the result immediately so that the boolean won't get messed with by the other if statements.
-
-        //i realize now this could've been done with a for loop. i will implement it that way some other time.
-        if (inventory.get(0).contains(item)) {
-            itemIsPresent = true;
-            return itemIsPresent;
-        } else {
-            itemIsPresent = false;
+        for (int i = 0; i <=6; i++) {
+            if (inventory.get(0).contains(item)) {
+                itemIsPresent = true;
+                return itemIsPresent;
+            } else {
+                itemIsPresent = false;
+            }
         }
 
-        if (inventory.get(1).contains(item)) {
-            itemIsPresent = true;
-            return itemIsPresent;
-        } else {
-            itemIsPresent = false;
-        }
-
-        if (inventory.get(2).contains(item)) {
-            itemIsPresent = true;
-            return itemIsPresent;
-        } else {
-            itemIsPresent = false;
-        }
-
-        if (inventory.get(3).contains(item)) {
-            itemIsPresent = true;
-            return itemIsPresent;
-        } else {
-            itemIsPresent = false;
-        }
-
-        if (inventory.get(4).contains(item)) {
-            itemIsPresent = true;
-            return itemIsPresent;
-        } else {
-            itemIsPresent = false;
-        }
-
-        if (inventory.get(5).contains(item)) {
-            itemIsPresent = true;
-            return itemIsPresent;
-        } else {
-            itemIsPresent = false;
-        }
-
-        if (inventory.get(6).contains(item)) {
-            itemIsPresent = true;
-            return itemIsPresent;
-        } else {
-            itemIsPresent = false;
-        }
-
-        //so that it returns false when the item does not exist anywhere
         return itemIsPresent;
+
     }
 
 }

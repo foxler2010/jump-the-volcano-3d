@@ -164,6 +164,11 @@ class Main {
 		String petStore = "Go to the Pet Store (level+1)";
 		String arena = "Visit the Arena (inventory+1canOfBeans)";
 		String quit = "Exit the game";
+
+		//MAKE DEFAULT YES STRINGS
+		String[] defaultYesStrings = {"y", "yes", "Yes", "Sure thing", "Yeah", "Yup"};
+		//MAKE DEFAULT NO STRINGS
+		String[] defaultNoStrings = {"n", "no", "No", "No, thank you", "Nope"};
 		
 		//MAKE RANDOM
 		//random random random random random random random random random random
@@ -199,7 +204,7 @@ class Main {
 			System.out.println();
 			
 			//view inventory?
-			if(yesNoPrompt("Would you like to view your inventory? ", "y", "n") == true) {
+			if(yesNoPrompt("Would you like to view your inventory? ", defaultYesStrings, defaultNoStrings) == true) {
 				//before printing it
 				int currentItem;
 				int size = player.sizeOfInventory();
@@ -372,14 +377,14 @@ class Main {
 			}//end arena if
 			
 			if(chosenOption == quit) {
-				continuingGame = yesNoPrompt("Do you want to continue playing? ", "y", "n");
+				continuingGame = yesNoPrompt("Do you want to continue playing? ", defaultYesStrings, defaultNoStrings);
 			}//end quit if
 			
 			//HEALTHCHECK
 			if(player.getHealth() == 0) {
 				System.out.println("It seems you have died. Agoostafus, the angel of ressurection,\nhas offered to ressurect you, but you must lose all your earthly\npossesions and start life from the beggining again.");
 				System.out.println();
-				continuingGame = yesNoPrompt("Do you accept Agoostafus' offer? ", "y", "n");
+				continuingGame = yesNoPrompt("Do you accept Agoostafus' offer? ", defaultYesStrings, defaultNoStrings);
 				if(continuingGame == true) {
 					System.out.println("Okay, please standby. You will be ressurected shortly.");
 					player.setMoney(0);

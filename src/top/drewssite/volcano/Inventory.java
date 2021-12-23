@@ -23,11 +23,8 @@ public class Inventory {
     //depending on the type of item, it will go into a different list.
     public void addItem(Item item) {
         
-        //find out item type
-        itemType type = item.getType();
-        
         //use different lists based on type
-        switch (type) {
+        switch (item.getType()) {
             case JUNK:
             inventory.get(0).add(item);
             break;
@@ -60,29 +57,24 @@ public class Inventory {
         //use different lists based on type
         switch (type) {
             case JUNK:
-            requestedItem = inventory.get(0).get(index);
-            break;
+            return requestedItem = inventory.get(0).get(index);
             case FOOD:
-            requestedItem = inventory.get(1).get(index);
-            break;
+            return requestedItem = inventory.get(1).get(index);
             case WEAPON:
-            requestedItem = inventory.get(2).get(index);
-            break;
+            return requestedItem = inventory.get(2).get(index);
             case PET:
-            requestedItem = inventory.get(3).get(index);
-            break;
+            return requestedItem = inventory.get(3).get(index);
             case KIT:
-            requestedItem = inventory.get(4).get(index);
-            break;
+            return requestedItem = inventory.get(4).get(index);
             case MONSTER:
-            requestedItem = inventory.get(5).get(index);
-            break;
+            return requestedItem = inventory.get(5).get(index);
             case OTHER:
-            requestedItem = inventory.get(6).get(index);
+            return requestedItem = inventory.get(6).get(index);
+            //because it thinks there are more enum states
+            default:
+            return requestedItem;
         }
 
-        //return resulting item
-        return requestedItem;
     }
 
     //remove and item from the list; based of of the type and index
@@ -114,11 +106,11 @@ public class Inventory {
 
     }
 
-    //remove and item from the list; based of of the type and item name
-    public void removeItem(itemType type, Item item) {
+    //remove an item from the list; based off of item name
+    public void removeItem(Item item) {
         
         //use different lists based on type
-        switch (type) {
+        switch (item.getType()) {
             case JUNK:
             inventory.get(0).remove(item);
             break;
@@ -161,6 +153,34 @@ public class Inventory {
         }
 
         return itemIsPresent;
+
+    }
+
+    //find the index of an item. the index is relative to the sub-list the item is inside of.
+    //the type does not have to be given, because we can just look at the attributes of the item to find it.
+    //returns -1 if the item is nonexistent.
+    public int indexOfItem(Item item) {
+
+        //use different lists based on type
+        switch (item.getType()) {
+            case JUNK:
+            return inventory.get(0).indexOf(item);
+            case FOOD:
+            return inventory.get(1).indexOf(item);
+            case WEAPON:
+            return inventory.get(2).indexOf(item);
+            case PET:
+            return inventory.get(3).indexOf(item);
+            case KIT:
+            return inventory.get(4).indexOf(item);
+            case MONSTER:
+            return inventory.get(5).indexOf(item);
+            case OTHER:
+            return inventory.get(6).indexOf(item);
+            //because it thinks there are more enum states
+            default:
+            return -1;
+        }
 
     }
 

@@ -186,20 +186,106 @@ public class Inventory {
     }
 
     //has to be public as it inherits the Object class' version of it, which is public.
-    public String inventoryToString() {
+    //this is guaranteed to work and show all the info, but it might be a bit hard to interpret
+    public String toString() {
         
-        //initialize string with first sub-list (so it doesn't have to be null)
-        String string = inventory.get(0).toString();
+        //initialize string
+        String string = "[";
 
-        //loop thru all other sub-lists
-        for (int i = 1; i <= 6; i++) {
-            string = string + inventory.get(i).toString();
+        //loop thru all sub-lists - 1
+        for (int i = 0; i <= 5; i++) {
+            //loop thru every item in sub-list
+            for (int j = 0; j < inventory.get(i).size(); j++) {
+                //string = [item name, item name, item name, etc.]
+                //the fancy name not the variable name...
+                string = string + inventory.get(i).get(j).getName() + ", ";
+            }
         }
+
+        //last sub-list, minus the last item
+        for (int i = 0; i < inventory.get(6).size() - 1; i++) {
+            //same as above
+            string = string + inventory.get(6).get(i).getName() + ", ";
+        }
+
+        //last item, this must be separate so that it can omit the comma and space at the end
+        string = string + inventory.get(6).get(inventory.size() - 1).getName();
+
+        //add closing bracket
+        string = string + "]";
 
         //return result
         return string;
 
-        //I thought that would be harder to code... hopefully it works properly...
+        //I thought that would be easier to code... hopefully it works properly...
+    }
+
+    //could not work because it is very complicated and I might've made a mistake programming it,
+    //but the info is a LOT easier to understand when outputted correctly.
+    public String fancyToString() {
+
+
+        //INITIALIZE VARS
+
+
+        //the item being counted
+        //used to create finalItem
+        Item currentItem = null;
+
+        //the amount of the item that has been counted so far
+        //used to create finalItem
+        int amountOfCurrentItem;
+
+        //string representing all the info on the item (ex. Old Can of Beans x23)
+        //multiple of these are used to create currentList
+        String finalItem = null;
+
+        //string representing all the info on all the items in that sub-list (ex. Old Can of Beans x23, Poop Sock x5)
+        //this is what is added to finalString
+        String currentList = null;
+
+        //the final output
+        //returned at the end of the function
+        String finalString = null;
+
+
+        //MAIN FUNCTION LOOP
+
+
+        //FOR EVERY SUB-LIST:
+        for (int i = 0; i <= 6; i++) {
+
+            //FOR EVERY ITEM IN SUB-LIST:
+            for (int j = 0; j < inventory.get(i).size(); j++) {
+
+                //assign currentItem to the item we are looping thru right now 
+                currentItem = inventory.get(i).get(j);
+
+                //right now the prgm knows there is at least 1 of the currentItem,
+                //so make amountOfCurrentItem equal to 1
+                amountOfCurrentItem = 1;
+
+                //COUNTING LOOP
+                //loop thru every item in sub-list (again)
+                //(the first one has already been counted so it is skipped)
+                for (int k = 1; k < inventory.get(i).size(); k++) {
+
+                    //if the item we are looking at is the same as currentItem then add 1 to amountOfCurrentItems
+                    if (inventory.get(i).get(k) == currentItem) {
+                        amountOfCurrentItem++;
+                    }
+                    //if it is not the same then skip it for now
+
+                }
+
+                
+
+            }
+
+        }
+
+        //return result
+        return finalString;
     }
 
     //same as with toString but with integers. a lot easier to deal with if you ask me.

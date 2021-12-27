@@ -177,7 +177,7 @@ class Main {
 		//LET'S START THE GAME!
 		System.out.println("Great! Let's get started with the game.");
 		System.out.println();
-		System.out.println("-------tensio-------------------------------------------------------------------");
+		System.out.println("--------------------------------------------------------------------------");
 		System.out.println();
 		
 		/*

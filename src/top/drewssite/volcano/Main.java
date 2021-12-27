@@ -204,7 +204,7 @@ class Main {
 			System.out.println();
 			
 			//view inventory?
-			if(yesNoPrompt("Would you like to view your inventory? [y/n] ", "y", "n") == true) {
+			if(yesNoPrompt("Would you like to view your inventory (OLD V1)? [y/n] ", "y", "n") == true) {
 				//before printing it
 				int currentItem;
 				int size = player.sizeOfInventory();
@@ -227,7 +227,33 @@ class Main {
 			} else {
 				System.out.println("Okay, let's keep going...");
 			}//end inventory if
-				
+			
+			//new inventory shenanigans
+			if(yesNoPrompt("Would you like to view your inventory? [y/n] ", "y", "n") == true) {
+
+				//check for emptiness
+				if(player.sizeOfInventoryV2() == 0) {
+
+					System.out.println("You inventory is currently empty.");
+
+				} else {
+
+					System.out.println("Here it is:");
+					System.out.println();
+
+					System.out.print(player.inventoryFancyToString()); //workhorse command, does majority of the work
+
+					//newline for readability
+					System.out.println();
+
+				}//end sizechecking if
+
+			} else {
+
+				System.out.println("Okay, let's keep going...");
+
+			}//end inventory shenanigans
+
 			//NEWLINE FOR READABILITY
 			System.out.println();
 			
@@ -356,7 +382,7 @@ class Main {
 				//choose random item from list of items that are in the dumpster
 				Junk randomJunk = Data.junkItems[random.nextInt(Data.junkItems.length)];
 				//add it to player's inventory
-				player.addItem(randomJunk);
+				player.addItemV2(randomJunk);
 				//tell player what they got
 				System.out.println("You got a " + randomJunk.getName());
 				System.out.println();
@@ -370,7 +396,7 @@ class Main {
 			if(chosenOption == arena) {
 				System.out.println("test, inventory+oldCanOfBeans");
 				try {
-					player.addItem(Data.oldCanOfBeans);
+					player.addItemV2(Data.oldCanOfBeans);
 				} catch(NullPointerException e) {
 					
 				}

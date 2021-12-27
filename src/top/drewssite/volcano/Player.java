@@ -11,6 +11,7 @@ class Player extends Animal {
 	private int level;
 	private double money;
 	private ArrayList<Item> inventory = new ArrayList<Item>();
+	private Inventory inventory2 = new Inventory();
 	
 	//CONSTRUCTOR
 	Player(String name, int strength, int level, double money, ArrayList<Item> startingInventory) {
@@ -18,6 +19,10 @@ class Player extends Animal {
 		this.level = level;
 		this.money = money;
 		this.inventory = startingInventory;
+
+		for (int i = 0; i < startingInventory.size(); i++) {
+			inventory2.addItem(startingInventory.get(i));
+		}
 	}
 	
 	//GETTERS AND SETTERS
@@ -44,10 +49,18 @@ class Player extends Animal {
 	Item getItem(int index) {
 		return inventory.get(index);
 	}
+
+	Item getItemV2(itemType type, int index) {
+		return inventory2.getItem(type, index);
+	}
 	
 	//add an item to the inventory
 	void addItem(Item item) {
 		inventory.add(item);
+	}
+
+	void addItemV2(Item item) {
+		inventory2.addItem(item);
 	}
 	
 	//remove something from the inventory
@@ -55,9 +68,17 @@ class Player extends Animal {
 	void removeItem(Item item) {
 		inventory.remove(item);
 	}
+
+	void removeItemV2(Item item) {
+		inventory2.removeItem(item);
+	}
 	
 	void removeItem(int index) {
 		inventory.remove(index);
+	}
+
+	void removeItemV2(itemType type, int index) {
+		inventory2.removeItem(type, index);
 	}
 	
 	//check if the item is in the inventory
@@ -66,6 +87,10 @@ class Player extends Animal {
 	boolean checkForItem(Item item) {
 		return inventory.contains(item);
 	}
+
+	boolean checkForItemV2(Item item) {
+		return inventory2.checkForItem(item);
+	}
 	
 	//return the index of the inventory item specified
 	//if item does not exist, return -1
@@ -73,15 +98,31 @@ class Player extends Animal {
 	int indexOfItem(Item item) {
 		return inventory.indexOf(item);
 	}
+
+	int indexOfItemV2(Item item) {
+		return inventory2.indexOfItem(item);
+	}
 	
 	//makes a string with the names of all items in the list
 	//this string uses the variable name, not the item's "game name" as specified in the item.name variable
 	String inventoryToString() {
 		return inventory.toString();
 	}
+
+	String inventoryToStringV2() {
+		return inventory2.toString();
+	}
+
+	String inventoryFancyToString() {
+		return inventory2.fancyToString();
+	}
 	
 	int sizeOfInventory() {
 		return inventory.size();
+	}
+
+	int sizeOfInventoryV2() {
+		return inventory2.sizeOfInventory();
 	}
 	
 	//COMBAT

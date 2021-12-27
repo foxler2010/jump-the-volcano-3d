@@ -229,20 +229,16 @@ public class Inventory {
 
 
         //the item being counted
-        //used to create finalItem
-        Item currentItem = null;
+        //used to create currentList
+        Item currentItem;
 
         //the amount of the item that has been counted so far
-        //used to create finalItem
+        //used to create currentList
         int amountOfCurrentItem;
-
-        //string representing all the info on the item (ex. Old Can of Beans x23)
-        //multiple of these are used to create currentList
-        String finalItem = null;
 
         //string representing all the info on all the items in that sub-list (ex. Old Can of Beans x23, Poop Sock x5)
         //this is what is added to finalString
-        String currentList = null;
+        String currentList;
 
         //the final output
         //returned at the end of the function
@@ -252,11 +248,11 @@ public class Inventory {
         //MAIN FUNCTION LOOP
 
 
-        //FOR EVERY SUB-LIST:
-        for (int i = 0; i <= 6; i++) {
+        //FOR EVERY SUB-LIST (EXCEPT 6):
+        for (int i = 0; i <= 5; i++) {
 
-            //FOR EVERY ITEM IN SUB-LIST:
-            for (int j = 0; j < inventory.get(i).size(); j++) {
+            //LOOP THRU ALL ITEMS IN SUB-LIST:
+            for (int j = 1; j < inventory.get(i).size(); j++) {
 
                 //assign currentItem to the item we are looping thru right now 
                 currentItem = inventory.get(i).get(j);
@@ -278,11 +274,101 @@ public class Inventory {
 
                 }
 
-                
+                //add the processed info to a string representing the sub-list
+                currentList = currentItem.getName() + " x" + amountOfCurrentItem + ", ";
 
             }
 
+            //do last item separately,
+            //so that currentList is formatted the right way
+            //assign currentItem to the last item
+            currentItem = inventory.get(i).get(inventory.get(i).size() - 1);
+
+            //right now the prgm knows there is at least 1 of the currentItem,
+            //so make amountOfCurrentItem equal to 1
+            amountOfCurrentItem  = 1;
+
+            //COUNTING LOOP
+            //loop thru every item in sub-list
+            //(the first one has already been counted so it is skipped)
+            for (int k = 1; k < inventory.get(i).size(); k++) {
+
+                //if the item we are looking at is the same as currentItem then add 1 to amountOfCurrentItems
+                if (inventory.get(i).get(k) == currentItem) {
+                    amountOfCurrentItem++;
+                }
+                //if it is not the same then skip it for now
+
+            }
+            
+            //add the processed info to a string representing the sub-list
+            //comma at end is ommitted; that's the whole reason for separating the last item.
+            currentList = currentItem.getName() + " x" + amountOfCurrentItem;
+
+            //ADD THE SUB-LIST TO THE FINAL STRING
+            finalString = finalString + currentList + ", ";
+
         }
+
+        //DO LAST SUB-LIST SEPARATELY
+        //you guessed it, we gotta remove the comma
+
+        //LOOP THRU ALL ITEMS IN SUB-LIST:
+        for (int j = 1; j < inventory.get(6).size(); j++) {
+
+            //assign currentItem to the item we are looping thru right now 
+            currentItem = inventory.get(6).get(j);
+
+            //right now the prgm knows there is at least 1 of the currentItem,
+            //so make amountOfCurrentItem equal to 1
+            amountOfCurrentItem = 1;
+
+            //COUNTING LOOP
+            //loop thru every item in sub-list (again)
+            //(the first one has already been counted so it is skipped)
+            for (int k = 1; k < inventory.get(6).size(); k++) {
+
+                //if the item we are looking at is the same as currentItem then add 1 to amountOfCurrentItems
+                if (inventory.get(6).get(k) == currentItem) {
+                    amountOfCurrentItem++;
+                }
+                //if it is not the same then skip it for now
+
+            }
+
+            //add the processed info to a string representing the sub-list
+            currentList = currentItem.getName() + " x" + amountOfCurrentItem + ", ";
+
+        }
+
+        //do last item separately,
+        //so that currentList is formatted the right way
+        //assign currentItem to the last item
+        currentItem = inventory.get(6).get(inventory.get(6).size() - 1);
+
+        //right now the prgm knows there is at least 1 of the currentItem,
+        //so make amountOfCurrentItem equal to 1
+        amountOfCurrentItem  = 1;
+
+        //COUNTING LOOP
+        //loop thru every item in sub-list
+        //(the first one has already been counted so it is skipped)
+        for (int k = 1; k < inventory.get(6).size(); k++) {
+
+            //if the item we are looking at is the same as currentItem then add 1 to amountOfCurrentItems
+            if (inventory.get(6).get(k) == currentItem) {
+                amountOfCurrentItem++;
+            }
+            //if it is not the same then skip it for now
+
+        }
+        
+        //add the processed info to a string representing the sub-list
+        //comma at end is ommitted; that's the whole reason for separating the last item.
+        currentList = currentItem.getName() + " x" + amountOfCurrentItem;
+
+        //ADD THE SUB-LIST TO THE FINAL STRING
+        finalString = finalString + currentList;
 
         //return result
         return finalString;

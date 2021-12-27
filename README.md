@@ -1,10 +1,3 @@
-**IMPORTANT NOTE: I am pausing development soon to focus on family during the holidays. The current commit is not able to run the game properly, it will crash on the "view inventory" prompt.**
-
-**IN ORDER TO HAVE A GOOD EXPERIENCE, please somehow get ahold of the commit twice before the latest one. It should be named: "minor error fixed".
-This is pretty easy if you have git installed. Just switch to that commit after cloning the repo.**
-
-**In VSCode you would go to the "Source Control" tab on the left and open up the commits submenu. Find the commit you want to use, and right-click on it. Then in the right-click dialog that pops up, select "Switch to Commit". Then you can run the code however you like, and it will be stable and functioning correctly**
-
 # Jump The Volcano
 
 A simple Java text adventure all about jumping over a volcano.

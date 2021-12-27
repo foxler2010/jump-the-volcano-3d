@@ -228,6 +228,9 @@ class Main {
 				System.out.println("Okay, let's keep going...");
 			}//end inventory if
 			
+			//NEWLINE FOR READABILITY
+			System.out.println();
+
 			//new inventory shenanigans
 			if(yesNoPrompt("Would you like to view your inventory? [y/n] ", "y", "n") == true) {
 

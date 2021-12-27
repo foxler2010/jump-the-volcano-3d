@@ -80,7 +80,7 @@ class Main {
 			System.out.println(prompt);
 			String response = scanner.next();
 			System.out.println();
-			for(int i = 0; i < isTrue.length; i++) {
+			for(int i = 0; i < isTrue.length - 1; i++) {
 				if (response.equals(isTrue[i])); {
 					answer = true;
 				} if (response.equals(isFalse[i])) {
@@ -177,7 +177,7 @@ class Main {
 		//LET'S START THE GAME!
 		System.out.println("Great! Let's get started with the game.");
 		System.out.println();
-		System.out.println("--------------------------------------------------------------------------");
+		System.out.println("-------tensio-------------------------------------------------------------------");
 		System.out.println();
 		
 		/*
@@ -204,7 +204,7 @@ class Main {
 			System.out.println();
 			
 			//view inventory?
-			if(yesNoPrompt("Would you like to view your inventory? ", defaultYesStrings, defaultNoStrings) == true) {
+			if(yesNoPrompt("Would you like to view your inventory? [y/n] ", "y", "n") == true) {
 				//before printing it
 				int currentItem;
 				int size = player.sizeOfInventory();
@@ -377,14 +377,14 @@ class Main {
 			}//end arena if
 			
 			if(chosenOption == quit) {
-				continuingGame = yesNoPrompt("Do you want to continue playing? ", defaultYesStrings, defaultNoStrings);
+				continuingGame = yesNoPrompt("Do you want to continue playing? [y/n] ", "y", "n");
 			}//end quit if
 			
 			//HEALTHCHECK
 			if(player.getHealth() == 0) {
 				System.out.println("It seems you have died. Agoostafus, the angel of ressurection,\nhas offered to ressurect you, but you must lose all your earthly\npossesions and start life from the beggining again.");
 				System.out.println();
-				continuingGame = yesNoPrompt("Do you accept Agoostafus' offer? ", defaultYesStrings, defaultNoStrings);
+				continuingGame = yesNoPrompt("Do you accept Agoostafus' offer? [y/n] ", "y", "n");
 				if(continuingGame == true) {
 					System.out.println("Okay, please standby. You will be ressurected shortly.");
 					player.setMoney(0);

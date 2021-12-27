@@ -17,7 +17,15 @@ public class Inventory {
     //used to not do anything. realized I was doing it wrong and made it do what it is supposed to do.
     //view earlier commits to see what was going on under my nose.
     Inventory() {
+        //initialize big list
         inventory = new ArrayList<ArrayList<Item>>();
+        //initialize little sub-lists inside of big list
+        inventory.add(new ArrayList<Item>());
+        inventory.add(new ArrayList<Item>());
+        inventory.add(new ArrayList<Item>());
+        inventory.add(new ArrayList<Item>());
+        inventory.add(new ArrayList<Item>());
+        inventory.add(new ArrayList<Item>());
     }
 
     //add item to inventory
@@ -282,11 +290,15 @@ public class Inventory {
             //do last item separately,
             //so that currentList is formatted the right way
             //assign currentItem to the last item
-            currentItem = inventory.get(i).get(inventory.get(i).size() - 1);
-
-            //right now the prgm knows there is at least 1 of the currentItem,
-            //so make amountOfCurrentItem equal to 1
-            amountOfCurrentItem  = 1;
+            //if the list is empty then set amountOfCurrentItem to 0
+            //and make currentItem null so it gets initialized somewhere
+            try {
+                currentItem = inventory.get(i).get(inventory.get(i).size() - 1);
+                amountOfCurrentItem = 1;
+            } catch (IndexOutOfBoundsException e) {
+                currentItem = null;
+                amountOfCurrentItem = 0;
+            }
 
             //COUNTING LOOP
             //loop thru every item in sub-list
@@ -303,16 +315,28 @@ public class Inventory {
             
             //add the processed info to a string representing the sub-list
             //comma at end is ommitted; that's the whole reason for separating the last item.
-            currentList = currentItem.getName() + " x" + amountOfCurrentItem;
+            //if list is empty, the null avalanche turns currentList null too
+            try {
+                currentList = currentItem.getName() + " x" + amountOfCurrentItem;
+            } catch (NullPointerException e) {
+                currentList = null;
+            }
 
             //ADD THE SUB-LIST TO THE FINAL STRING
-            finalString = finalString + currentList + ", ";
+            //this trycatch is the end of the null avalanche
+            //finalString will just ignore the list if it is null
+            //that will eliminate the nulling of everything
+            try {
+                finalString = finalString + currentList + ", ";
+            } catch (NullPointerException e) 
+                //do nothing, finalString is as final as it an get
+            }
 
         }
 
         //DO LAST SUB-LIST SEPARATELY
         //you guessed it, we gotta remove the comma
-
+        
         //LOOP THRU ALL ITEMS IN SUB-LIST:
         for (int j = 1; j < inventory.get(6).size(); j++) {
 
@@ -379,7 +403,7 @@ public class Inventory {
         
         int size = inventory.get(0).size();
 
-        for (int i = 1; i <= 6; i++) {
+        for (int i = 1; i < 6; i++) {
             size = size + inventory.get(i).size();
         }
 

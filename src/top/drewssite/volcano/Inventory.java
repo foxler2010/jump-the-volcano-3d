@@ -328,7 +328,7 @@ public class Inventory {
             //that will eliminate the nulling of everything
             try {
                 finalString = finalString + currentList + ", ";
-            } catch (NullPointerException e) 
+            } catch (NullPointerException e) {
                 //do nothing, finalString is as final as it an get
             }
 

@@ -228,8 +228,8 @@ public class Inventory {
         //I thought that would be easier to code... hopefully it works properly...
     }
 
-    //could not work because it is very complicated and I might've made a mistake programming it,
-    //but the info is a LOT easier to understand when outputted correctly.
+    //does not work because it is very complicated and I made some mistakes programming it,
+    //but the info will be a LOT easier to understand when it works.
     public String fancyToString() {
 
 
@@ -338,10 +338,10 @@ public class Inventory {
         //you guessed it, we gotta remove the comma
         
         //LOOP THRU ALL ITEMS IN SUB-LIST:
-        for (int j = 1; j < inventory.get(6).size(); j++) {
+        for (int j = 1; j < inventory.get(5).size(); j++) {
 
             //assign currentItem to the item we are looping thru right now 
-            currentItem = inventory.get(6).get(j);
+            currentItem = inventory.get(5).get(j);
 
             //right now the prgm knows there is at least 1 of the currentItem,
             //so make amountOfCurrentItem equal to 1
@@ -350,10 +350,10 @@ public class Inventory {
             //COUNTING LOOP
             //loop thru every item in sub-list (again)
             //(the first one has already been counted so it is skipped)
-            for (int k = 1; k < inventory.get(6).size(); k++) {
+            for (int k = 1; k < inventory.get(5).size(); k++) {
 
                 //if the item we are looking at is the same as currentItem then add 1 to amountOfCurrentItems
-                if (inventory.get(6).get(k) == currentItem) {
+                if (inventory.get(5).get(k) == currentItem) {
                     amountOfCurrentItem++;
                 }
                 //if it is not the same then skip it for now
@@ -361,41 +361,62 @@ public class Inventory {
             }
 
             //add the processed info to a string representing the sub-list
-            currentList = currentItem.getName() + " x" + amountOfCurrentItem + ", ";
+            currentList = currentItem.getName() + " x" + amountOfCurrentItem;
 
         }
 
         //do last item separately,
         //so that currentList is formatted the right way
-        //assign currentItem to the last item
-        currentItem = inventory.get(6).get(inventory.get(6).size() - 1);
+        //first, set currentItem to last item in the last list,
+        //and use this statement to see if the list is empty or not.
+        boolean isEmpty = false;
+        try {
+            //this throws IndexOutOfBoundException if the list is empty
+            currentItem = inventory.get(5).get(inventory.get(5).size() - 1);
+        } catch (IndexOutOfBoundsException e) {
+            //set isEmpty to false if we get an exception
+            isEmpty = true;
+            //set currentItem to null so the code in the if statement doesn't get confused
+            currentItem = null;
+        }
 
-        //right now the prgm knows there is at least 1 of the currentItem,
-        //so make amountOfCurrentItem equal to 1
-        amountOfCurrentItem  = 1;
+        //the last item is only processed if it exists
+        //if the list is empty this block of code is not run
+        if (isEmpty == false) {
+            
+            //used to be in an above statement, but it was moved down here because sometimes the last item doesn't exist, so a comma is not needed.
+            currentList = null;
+            currentList = currentList + ", ";
 
-        //COUNTING LOOP
-        //loop thru every item in sub-list
-        //(the first one has already been counted so it is skipped)
-        for (int k = 1; k < inventory.get(6).size(); k++) {
+            //right now the prgm knows there is at least 1 of the currentItem,
+            //so make amountOfCurrentItem equal to 1
+            amountOfCurrentItem  = 1;
 
-            //if the item we are looking at is the same as currentItem then add 1 to amountOfCurrentItems
-            if (inventory.get(6).get(k) == currentItem) {
-                amountOfCurrentItem++;
+            //COUNTING LOOP
+            //loop thru every item in sub-list
+            //(the first one has already been counted so it is skipped)
+            for (int k = 1; k < inventory.get(5).size(); k++) {
+
+                //if the item we are looking at is the same as currentItem then add 1 to amountOfCurrentItems
+                if (inventory.get(5).get(k) == currentItem) {
+                    amountOfCurrentItem++;
+                }
+                //if it is not the same then skip it for now
+
             }
-            //if it is not the same then skip it for now
-
+        
+            //add the processed info to a string representing the sub-list
+            //comma at end is ommitted; that's the whole reason for separating the last item.
+            currentList = currentItem.getName() + " x" + amountOfCurrentItem;
         }
         
-        //add the processed info to a string representing the sub-list
-        //comma at end is ommitted; that's the whole reason for separating the last item.
-        currentList = currentItem.getName() + " x" + amountOfCurrentItem;
-
         //ADD THE SUB-LIST TO THE FINAL STRING
+        currentList = null;
         finalString = finalString + currentList;
 
         //return result
         return finalString;
+
     }
 
     //same as with toString but with integers. a lot easier to deal with if you ask me.

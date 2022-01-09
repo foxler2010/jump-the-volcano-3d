@@ -26,7 +26,7 @@ zero libraries (for portability and to help me learn the basics). And that's how
 
 First off, I can't give a lot of support if you are on Windows. I use Linux, and you should too, but I can live with it if you decide to continue using Windows for now. That being said, if you have problems that seem to pertain to the OS, you're going to have to debug them yourself. Feel free to make a patch to fix it and please send it to me so I can make a pull request of it. Just know that I won't do anything about your problem unless you  do the majority of the work to help me find the solution.
 
-Also, on Mac, I cannot give a ton of support, but I might have some suggestions to help. But that's only because Mac is based off of Unix, and I like Unix. I really don't know much else about it so don't expect much from me. Like with Windows, feel free to make a patch and send it me, just don't expect any official compatibility updates from me.
+Also, on Mac, I cannot give a ton of support, but I might have some suggestions to help. But that's only because Mac is based off of Unix, and I'm good at Unix. I really don't know much else about it so don't expect much from me. Like with Windows, feel free to make a patch and send it me, just don't expect any official compatibility updates from me.
 
 Now, if it is not an OS problem, be sure you ran the command correctly. My setup for VS Code gives me a folder structure of this: /root-of-project/bin/top/drewssite/volcano/Main.class.
 I navigate to the /bin/ folder (after compiling) in the CLI and run the command "java top.drewssite.volcano.Main". This is the

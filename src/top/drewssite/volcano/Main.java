@@ -164,11 +164,6 @@ class Main {
 		String petStore = "Go to the Pet Store (level+1)";
 		String arena = "Visit the Arena (inventory+1canOfBeans)";
 		String quit = "Exit the game";
-
-		//MAKE DEFAULT YES STRINGS
-		String[] defaultYesStrings = {"y", "yes", "Yes", "Sure thing", "Yeah", "Yup"};
-		//MAKE DEFAULT NO STRINGS
-		String[] defaultNoStrings = {"n", "no", "No", "No, thank you", "Nope"};
 		
 		//MAKE RANDOM
 		//random random random random random random random random random random

@@ -198,7 +198,7 @@ public class Inventory {
     public String toString() {
         
         //init vars
-        String finalString = null;
+        String finalString = "";
 
         //STRUCTURE:
         //loop thru the sub-lists {
@@ -216,26 +216,18 @@ public class Inventory {
                 //each iteration is a different item
 
                 //fetch the item we are working with, and add its "fancy name" to finalString
-                finalString = inventory.get(i).get(j).getName();
+                finalString = finalString + inventory.get(i).get(j).getName();
 
                 //add a comma and space, so the next item isn't "hugging" the first
                 finalString = finalString + ", ";
+
             }
 
         }
 
-        //last sub-list
-        //this is an item loop, not the sub-list loop
-        for (int i = 0; i < inventory.get(6).size() - 1; i++) {
-            //            ^
-            //        IMPORTANT!
-            finalString = inventory.get(6).get(i).getName();
-            finalString = finalString + ", ";
-        }
-
-        //last item
-        //no comma
-        finalString = finalString + inventory.get(6).get(inventory.get(6).size() - 1).getName();
+        //remove comma + space at the end
+        //this singular line took about ~1 month of effort to get right
+        finalString = finalString.substring(0, finalString.length() - 2);
 
         return finalString;
 

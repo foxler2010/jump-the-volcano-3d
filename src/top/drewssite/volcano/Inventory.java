@@ -197,7 +197,7 @@ public class Inventory {
     //new version in progress
     public String toString() {
         
-        //init vars
+        //initialize the finalString variable
         String finalString = "";
 
         //STRUCTURE:
@@ -236,7 +236,59 @@ public class Inventory {
     //new version in progress
     public String fancyToString() {
 
-        return "wip";
+        //initialize the finalString variable
+        String finalString = "";
+
+        //loop thru sub-lists
+        for (int i = 0; i < inventory.size(); i++) {
+
+            //initialize alreadyCounted variable
+            ArrayList<Item> alreadyCounted = new ArrayList<Item>();
+
+            //loop thru items in sub-lists
+            for (int j = 0; j < inventory.get(i).size(); j++) {
+
+                //only run the code if the item could not be found in this list
+                if (alreadyCounted.indexOf(inventory.get(i).get(j)) == -1) {
+                    
+                    //initialize the amountOfItem variable
+                    int amountOfItem = 0;
+
+                    //count how many instances of the item are in the sub-list
+                    //this includes the one we are looping through
+                    for (int k = 0; k < inventory.get(i).size(); k++) {
+
+                        //check if the item with index k is the same as the item we are counting
+                        if (inventory.get(i).get(k) == inventory.get(i).get(j)) {
+                            amountOfItem++;
+                        }
+
+                    }
+
+                    //compile the info we've gathered into a string and add it to finalString
+                    //if amountOfItem = 1, exclude the "x1" that would normally be included.
+                    if (amountOfItem == 1) {
+                        finalString = finalString + inventory.get(i).get(j).getName() + ", ";
+                    } else {
+                        finalString = finalString + inventory.get(i).get(j).getName() + " x" + amountOfItem + ", ";
+                    }
+                
+                    //add the item to the alreadyCounted list, to make sure we don't count the item again
+                    alreadyCounted.add(inventory.get(i).get(j));
+
+                }
+                
+            }
+                
+        }
+
+        //remove the comma + space at the end of finalString (since there is no item after it; correct grammar y'know)
+        //this singular line took about ~1 month of effort to get right
+        //copied from above non-fancy method
+        finalString = finalString.substring(0, finalString.length() - 2);
+
+        //return final result
+        return finalString;
         
     }
 

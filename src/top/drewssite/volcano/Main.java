@@ -239,7 +239,7 @@ class Main {
 					System.out.println("Here it is:");
 					System.out.println();
 
-					System.out.print(player.inventoryToStringV2()); //workhorse command, does majority of the work
+					System.out.print(player.inventoryFancyToString()); //workhorse command, does majority of the work
 
 					//newline for readability
 					System.out.println();

@@ -207,7 +207,7 @@ public class Inventory {
             //}
         //}
 
-        for (int i = 0; i < inventory.size(); i++) {
+        for (int i = 0; i < 6; i++) {
 
             //each iteration is a different sub-list
 
@@ -223,6 +223,19 @@ public class Inventory {
             }
 
         }
+
+        //last sub-list
+        //this is an item loop, not the sub-list loop
+        for (int i = 0; i < inventory.get(6).size() - 1; i++) {
+            //            ^
+            //        IMPORTANT!
+            finalString = inventory.get(6).get(i).getName();
+            finalString = finalString + ", ";
+        }
+
+        //last item
+        //no comma
+        finalString = finalString + inventory.get(6).get(inventory.get(6).size() - 1).getName();
 
         return finalString;
 

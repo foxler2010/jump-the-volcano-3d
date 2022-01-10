@@ -26,6 +26,7 @@ public class Inventory {
         inventory.add(new ArrayList<Item>());
         inventory.add(new ArrayList<Item>());
         inventory.add(new ArrayList<Item>());
+        inventory.add(new ArrayList<Item>());
     }
 
     //add item to inventory
@@ -196,7 +197,34 @@ public class Inventory {
     //new version in progress
     public String toString() {
         
-        return "wip";
+        //init vars
+        String finalString = null;
+
+        //STRUCTURE:
+        //loop thru the sub-lists {
+            //loop thru each item {
+                //add item to finalString
+            //}
+        //}
+
+        for (int i = 0; i < inventory.size(); i++) {
+
+            //each iteration is a different sub-list
+
+            for (int j = 0; j < inventory.get(i).size(); j++) {
+                
+                //each iteration is a different item
+
+                //fetch the item we are working with, and add its "fancy name" to finalString
+                finalString = inventory.get(i).get(j).getName();
+
+                //add a comma and space, so the next item isn't "hugging" the first
+                finalString = finalString + ", ";
+            }
+
+        }
+
+        return finalString;
 
     }
 

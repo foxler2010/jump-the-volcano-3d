@@ -1,10 +1,22 @@
 package top.drewssite.volcano;
 import java.util.ArrayList;
 
-//It's YOU!
-//This class is special as technically it is an "Item", yet it can hold other Items,
-//it has a level, money, and among other things you can control it directly.
-//The class is mainly used to store the player's attributes while giving it Animal properties like the ability to attack
+/**
+ *	It's YOU!
+ *	This class is special as technically it is an "Item", yet it can hold other Items,
+ *	it has a level, money, and among other things you can control it directly.
+ *	The class is mainly used to store the player's attributes while giving it Animal properties like the ability to attack
+
+	@author foxler2010
+	@see Animal
+	@see Item
+	@since	v1.0
+	@param	name	The "fancy" name of the Player object. Doesn't do anything currently.
+	@param	strength	The strength of the player in combat. Does not currently do anything.
+	@param	level	The initial experience level of the player. In a regular game this is 0.
+	@param	money	The inital amount of money the player has. This is 0 in a regular game.
+	@param	startingInventory	This is what the player's inventory will contain when they start the game.
+ */
 class Player extends Animal {
 	
 	//VARS

@@ -16,7 +16,7 @@ class Data {
 	public static Junk poopSock = new Junk("Poop Sock", 0);
 
 	//list of all junks
-	public static Junk[] junkItems = {oldCanOfBeans, dirtySodaBottle, moldySock, brokenMagnet, poopSock};
+	public static final Junk[] junkItems = {oldCanOfBeans, dirtySodaBottle, moldySock, brokenMagnet, poopSock};
 	
 	//will be switched to type 'Food' once the type is implemented]\
 	public static Junk freshBudLight = new Junk("Fresh Bud Light", 10.0);

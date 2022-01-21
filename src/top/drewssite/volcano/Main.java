@@ -199,7 +199,7 @@ class Main {
 			System.out.println();
 			
 			//view inventory?
-			if(yesNoPrompt("Would you like to view your inventory (OLD V1)? [y/n] ", "y", "n") == true) {
+			if(yesNoPrompt("Would you like to view your inventory (OLD V1)? [y/n] ", "y", "n")) {
 				//before printing it
 				int currentItem;
 				int size = player.sizeOfInventory();

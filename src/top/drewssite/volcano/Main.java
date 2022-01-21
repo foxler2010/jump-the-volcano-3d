@@ -22,30 +22,9 @@ import java.util.*;
 
 class Main {
 	
-	//VARS
-	private static int startLevel;
-	private static double startMoney;
-	private static ArrayList<Item> startingInventory = new ArrayList<Item>();
-	
-	//GETTERS AND SETTERS
-	static int getStartLevel() {
-		return startLevel;
-	}
-	
-	static double getStartMoney() {
-		return startMoney;
-	}
-	
-	static void setStartLevel(int newStartLevel) {
-		startLevel = newStartLevel;
-	}
-	
-	static void setStartMoney(double newStartMoney) {
-		startMoney = newStartMoney;
-	}
-	
 	//MAKE SCANNER
 	static Scanner scanner = new Scanner(System.in);
+	
 	
 	//PROMPT CODE
 	//prompts the user to enter one of two options (ex. yes/no question)
@@ -140,23 +119,17 @@ class Main {
 	}
 	
 	//MAIN METHOD
+	//where all of the things happen
 	public static void main(String args[]) {
 		
 		//WELCOME THE PLAYER TO THE GAME
 		System.out.println("--------------------------------------------------------------------------");
-		System.out.println("Welcome to Jump The Volcano! Please enter in your starting level and money to begin.");
-		System.out.println("The reccomended values for level and money are 0 and 0, respectively, as a traditional game means you start with no money or experience.");
+		System.out.println("Welcome to Jump The Volcano!");
+		System.out.println("");
 		System.out.println();
 		
-		//SET STARTING LEVEL
-		setStartLevel(intPrompt("Please enter in starting level here: "));
-		
-		//SET STARTING MONEY
-		System.out.println("Okay, now let's set your starting money.");
-		setStartMoney(doublePrompt("Input it here: "));
-		
 		//MAKE PLAYER
-		Player player = new Player("Player", 10, getStartLevel(), getStartMoney(), startingInventory);
+		Player player = new Player("Player", 10, 0, 0, Data.startingInventory);
 		
 		//MAKE OPTIONS
 		String jumpTheVolcano = "Jump The Volcano";
@@ -176,7 +149,7 @@ class Main {
 		System.out.println();
 		
 		/*
-		 * MAIN LOOP WILL BE HERE
+		 * MAIN LOOP STARTS HERE
 		 * 
 		 * Structure of it:
 		 * 
@@ -199,38 +172,10 @@ class Main {
 			System.out.println();
 			
 			//view inventory?
-			if(yesNoPrompt("Would you like to view your inventory (OLD V1)? [y/n] ", "y", "n") == true) {
-				//before printing it
-				int currentItem;
-				int size = player.sizeOfInventory();
-				//check for emptiness
-				if(size == 0) {
-					System.out.println("You inventory is currently empty.");
-				} else {
-					System.out.println("Here it is:");
-					System.out.println();
-					//loop thru all the items but 1
-					for(currentItem = 0; currentItem < size - 1; currentItem++) {
-						//print an item's name, add comma after
-						System.out.print(player.getItem(currentItem).getName() + ", ");
-					}//end inventory for
-					//last item, no comma after it
-					System.out.print(player.getItem(currentItem).getName());
-					//newline for readability
-					System.out.println();
-				}//end inventory size if
-			} else {
-				System.out.println("Okay, let's keep going...");
-			}//end inventory if
-			
-			//NEWLINE FOR READABILITY
-			System.out.println();
-
-			//new inventory shenanigans
 			if(yesNoPrompt("Would you like to view your inventory? [y/n] ", "y", "n") == true) {
 
 				//check for emptiness
-				if(player.sizeOfInventoryV2() == 0) {
+				if(player.sizeOfInventory() == 0) {
 
 					System.out.println("You inventory is currently empty.");
 
@@ -365,7 +310,7 @@ class Main {
 			//if you try to jump the volcano
 			if(chosenOption == jumpTheVolcano) {
 				//gen random boolean to decide between whether you successfully jump the volcano or not.
-				if(random.nextInt(99) > 79) {
+				if(random.nextInt(101) > 79) {
 					System.out.println("You jump over the volcano");
 				} else {
 					System.out.println("You fall into the volcano and die. Wah wah wahhhhh.");
@@ -380,7 +325,7 @@ class Main {
 				//choose random item from list of items that are in the dumpster
 				Junk randomJunk = Data.junkItems[random.nextInt(Data.junkItems.length)];
 				//add it to player's inventory
-				player.addItemV2(randomJunk);
+				player.addItem(randomJunk);
 				//tell player what they got
 				System.out.println("You got a " + randomJunk.getName());
 				System.out.println();
@@ -394,7 +339,7 @@ class Main {
 			if(chosenOption == arena) {
 				System.out.println("test, inventory+oldCanOfBeans");
 				try {
-					player.addItemV2(Data.oldCanOfBeans);
+					player.addItem(Data.oldCanOfBeans);
 				} catch(NullPointerException e) {
 					
 				}
@@ -414,17 +359,7 @@ class Main {
 					player.setMoney(0);
 					player.setLevel(0);
 					player.setHealth(100);
-					boolean inventoryEmpty = false;
-					while(inventoryEmpty == false) {
-						try {
-							player.removeItem(0);
-							player.getItem(0);
-						} catch(IndexOutOfBoundsException e) {
-							inventoryEmpty = true;
-						} catch(NullPointerException e) {
-							inventoryEmpty = true;
-						}//end inventory try-catch
-					}//end inventory while
+					//clear inventory
 				} else {
 					System.out.println("Too bad. I thought it was a good deal, but I guess it is your call...");
 					System.out.println("Have fun dying.");

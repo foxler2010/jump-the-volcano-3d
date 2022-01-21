@@ -4,8 +4,18 @@ package top.drewssite.volcano;
 //only a few exceptions (mostly in the beginning of the main method)
 class Data {
 	
-	//let's start with some junk
-	//typeIndex 0
+	//First off, data that could be considered "settings", as you can use it to tweak your game a bit.
+	
+	//Adding items to this list puts them into the player's inventory as soon as they start the game.
+	//Useful for modders.
+	public static Inventory startingInventory = new Inventory();
+	
+	//add items to startingInventory here.
+	static {
+		//startingInventory.addItem(Data.oldCanOfBeans);
+	}
+
+	//index 0 in Inventory
 	public static Junk oldCanOfBeans = new Junk("Old Can of Beans", .05);
 	
 	public static Junk dirtySodaBottle = new Junk("Dirty Soda Bottle", .05);
@@ -20,13 +30,13 @@ class Data {
 	public static Junk[] junkItems = {oldCanOfBeans, dirtySodaBottle, moldySock, brokenMagnet, poopSock};
 	
 	//will be switched to type 'Food' once the type is implemented]\
-	//to-be typeIndex 1
+	//to-be index 1 in Inventory
 	public static Junk freshBudLight = new Junk("Fresh Bud Light", 10.0);
 	
 	public static Junk veryDietSoda = new Junk("Very Diet Soda", 5.0);
 	
 	//monsters!
-	//typeIndex 2
+	//index 2 in Inventory
 	public static Monster weed = new Monster("The Weed That Keeps Popping Up In Your Garden", 1);
 	
 	public static Monster slime = new Monster("Slime", 3);
@@ -40,7 +50,7 @@ class Data {
 	public static Monster sharpGlass = new Monster("Sharp Glass", 2);
 	
 	//pets!
-	//typeIndex 3
+	//index 3 in Inventory
 	public static Pet dog = new Pet("Dog", 10);
 	
 	public static Pet cat = new Pet("Cat", 10);

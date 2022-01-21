@@ -1,5 +1,4 @@
 package top.drewssite.volcano;
-import java.util.ArrayList;
 
 //It's YOU!
 //This class is special as technically it is an "Item", yet it can hold other Items,
@@ -10,19 +9,14 @@ class Player extends Animal {
 	//VARS
 	private int level;
 	private double money;
-	private ArrayList<Item> inventory = new ArrayList<Item>();
-	private Inventory inventory2 = new Inventory();
+	private Inventory inventory = new Inventory();
 	
 	//CONSTRUCTOR
-	Player(String name, int strength, int level, double money, ArrayList<Item> startingInventory) {
+	Player(String name, int strength, int level, double money, Inventory startingInventory) {
 		super(name, itemType.OTHER, strength, false);
 		this.level = level;
 		this.money = money;
 		this.inventory = startingInventory;
-
-		for (int i = 0; i < startingInventory.size(); i++) {
-			inventory2.addItem(startingInventory.get(i));
-		}
 	}
 	
 	//GETTERS AND SETTERS
@@ -46,83 +40,53 @@ class Player extends Animal {
 	
 	//Returns an item in the inventory.
 	//Does NOT remove the item from the list.
-	Item getItem(int index) {
-		return inventory.get(index);
-	}
-
-	Item getItemV2(itemType type, int index) {
-		return inventory2.getItem(type, index);
+	Item getItem(itemType type, int index) {
+		return inventory.getItem(type, index);
 	}
 	
 	//add an item to the inventory
 	void addItem(Item item) {
-		inventory.add(item);
-	}
-
-	void addItemV2(Item item) {
-		inventory2.addItem(item);
+		inventory.addItem(item);
 	}
 	
 	//remove something from the inventory
-	//shifts everything down one index if the removed item is not the last index
+	//shifts everything in the sub-list down one index if the removed item is not the last index
 	void removeItem(Item item) {
-		inventory.remove(item);
+		inventory.removeItem(item);
 	}
 
-	void removeItemV2(Item item) {
-		inventory2.removeItem(item);
-	}
-	
-	void removeItem(int index) {
-		inventory.remove(index);
-	}
-
-	void removeItemV2(itemType type, int index) {
-		inventory2.removeItem(type, index);
+	void removeItem(itemType type, int index) {
+		inventory.removeItem(type, index);
 	}
 	
 	//check if the item is in the inventory
 	//returns either true or false
 	//does not specify the amount of items (if there are multiple copies)
 	boolean checkForItem(Item item) {
-		return inventory.contains(item);
-	}
-
-	boolean checkForItemV2(Item item) {
-		return inventory2.checkForItem(item);
+		return inventory.checkForItem(item);
 	}
 	
 	//return the index of the inventory item specified
 	//if item does not exist, return -1
 	//if there are multiple copies of the item in the inventory, return the one with the lowest index
 	int indexOfItem(Item item) {
-		return inventory.indexOf(item);
-	}
-
-	int indexOfItemV2(Item item) {
-		return inventory2.indexOfItem(item);
+		return inventory.indexOfItem(item);
 	}
 	
-	//makes a string with the names of all items in the list
-	//this string uses the variable name, not the item's "game name" as specified in the item.name variable
+	//makes a string with the names of all items in the inventory
 	String inventoryToString() {
 		return inventory.toString();
 	}
 
-	String inventoryToStringV2() {
-		return inventory2.toString();
-	}
-
+	//same as above method, but the String lists two items as "itemName x2", instead of "itemName, itemName, etc."
+	//almost always more useful
 	String inventoryFancyToString() {
-		return inventory2.fancyToString();
-	}
-	
-	int sizeOfInventory() {
-		return inventory.size();
+		return inventory.fancyToString();
 	}
 
-	int sizeOfInventoryV2() {
-		return inventory2.sizeOfInventory();
+	//returns the number of items in the inventory
+	int sizeOfInventory() {
+		return inventory.sizeOfInventory();
 	}
 	
 	//COMBAT

@@ -1,25 +1,20 @@
 package top.drewssite.volcano;
 import java.util.ArrayList;
 
-//bit of a weird class. this is a rework of the inventory system. It used to be a big list, but I found that I could add many of the same items to it,
-//and when the inventory is displayed they would all list out individually, like this: "Old Can of Beans, Old Can of Beans, Old Can of Beans, etc."
-//So instead of that I wanted it to be like: "Old Can of Beans x23".
-//This system is going to sort the items into separate ArrayLists for each type.
-
-//currently not every type is implemented, so I can't test every type. That doesn't mean I need to test every type, though. So far I think I'm good.
-
+//Unlike a traditional ArrayList, this one sorts everything into sub-lists.
+//The class is more of a wrapper than an object, as it only contains 1 internal variable,
+//but it does all the sorting and things automatically, pretty much pretending to be a regualar list.
 
 public class Inventory {
     
     //list of lists
     private ArrayList<ArrayList<Item>> inventory;
 
-    //used to not do anything. realized I was doing it wrong and made it do what it is supposed to do.
-    //view earlier commits to see what was going on under my nose.
+    //fills up the newly created ArrayList<ArrayList<Item>> with 7 sub-lists corresponding to the 7 types of items
     Inventory() {
         //initialize big list
         inventory = new ArrayList<ArrayList<Item>>();
-        //initialize little sub-lists inside of big list
+        //initialize the sub-lists inside of big list
         inventory.add(new ArrayList<Item>());
         inventory.add(new ArrayList<Item>());
         inventory.add(new ArrayList<Item>());

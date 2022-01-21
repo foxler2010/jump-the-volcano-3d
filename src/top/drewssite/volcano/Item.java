@@ -35,6 +35,7 @@ abstract class Item {
 	Item(String name, itemType type, boolean important) {
 		this.name = name;
 		this.type = type;
+		this.important = important;
 	}
 	
 }

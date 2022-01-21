@@ -27,10 +27,10 @@ class Data {
 	public static Junk poopSock = new Junk("Poop Sock", 0);
 
 	//list of all junks
-	public static Junk[] junkItems = {oldCanOfBeans, dirtySodaBottle, moldySock, brokenMagnet, poopSock};
+	public static final Junk[] junkItems = {oldCanOfBeans, dirtySodaBottle, moldySock, brokenMagnet, poopSock};
 	
-	//will be switched to type 'Food' once the type is implemented]\
-	//to-be index 1 in Inventory
+	//will be switched to type 'Food' once the type is implemented
+	//to-be index 1 in Inventory (sublist already dedicated)
 	public static Junk freshBudLight = new Junk("Fresh Bud Light", 10.0);
 	
 	public static Junk veryDietSoda = new Junk("Very Diet Soda", 5.0);
@@ -60,6 +60,8 @@ class Data {
 	public static Pet rhino = new Pet("Rhino", 150);
 	
 	public static Pet neilArmstrong = new Pet("Neil Armstrong", 30);
+
+	public static Pet gordonRamseyPlushToy = new Pet("Gordon Ramsey Plush Toy", 0);
 	
 	//insideDumpster.add(oldCanOfBeans);
 	

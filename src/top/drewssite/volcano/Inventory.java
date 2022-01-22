@@ -1,16 +1,26 @@
 package top.drewssite.volcano;
 import java.util.ArrayList;
 
-//Unlike a traditional ArrayList, this one sorts everything into sub-lists.
-//The class is more of a wrapper than an object, as it only contains 1 internal variable,
-//but it does all the sorting and things automatically, pretty much pretending to be a regualar list.
-
-public class Inventory {
+/**
+ * Unlike a traditional ArrayList, this one sorts everything into sub-lists.
+ * The class is more of a wrapper than an object, as it only contains 1 internal variable,
+ * but it does all the sorting and things automatically, pretty much pretending to be a regular list.
+ * @author foxler2010
+ * @since v1.0
+ * @see Player
+ */
+class Inventory {
     
     //list of lists
     private ArrayList<ArrayList<Item>> inventory;
 
-    //fills up the newly created ArrayList<ArrayList<Item>> with 7 sub-lists corresponding to the 7 types of items
+    /**
+     * The constructor for the Inventory class.
+     * Initializes an ArrayList<ArrayList<Item>> and fills it with 7 sublists corresponding to the 7 itemTypes.
+     * @author foxler2010
+     * @see Inventory
+     * @since v1.0
+     */
     Inventory() {
         //initialize big list
         inventory = new ArrayList<ArrayList<Item>>();
@@ -24,8 +34,13 @@ public class Inventory {
         inventory.add(new ArrayList<Item>());
     }
 
-    //add item to inventory
-    //depending on the type of item, it will go into a different list.
+    /**
+     * Add an item to the inventory. It will be automaticaly sorted into a siblist based on its type.
+     * @param item The item to add to the inventory
+     * @author foxler2010
+     * @since v1.0
+     * @see Inventory
+     */
     void addItem(Item item) {
         
         //use different lists based on type
@@ -53,7 +68,15 @@ public class Inventory {
         }
     }
 
-    //return the item at a specified type and index
+    /**
+     * Return the item atthe specified type enum and sublist index.
+     * @param type an itemType enum detailing the type of the item to be removed.
+     * @param index The index of the item to be removed
+     * @return The item at the specified index in the sublist corresponding to the given type.
+     * @author foxler2010
+     * @see Inventory
+     * @since v1.0
+     */
     Item getItem(itemType type, int index) {
         
         //initialize as null, because it will throw an error if I don't
@@ -79,10 +102,16 @@ public class Inventory {
             default:
             return requestedItem;
         }
-
     }
 
-    //remove and item from the list; based of of the type and index
+    /**
+     * Remove an item from the inventory based on the item's itemType enum and its index in the sublist
+     * @param type
+     * @param index
+     * @author foxler2010
+     * @since v1.00
+     * @see Inventory
+     */
     void removeItem(itemType type, int index) {
         
         //use different lists based on type
@@ -108,10 +137,51 @@ public class Inventory {
             case OTHER:
             inventory.get(6).remove(index);
         }
-
     }
 
-    //remove an item from the list; based off of item name
+    /**
+     * Remove an item from the inventory based of of the sublist index and the item index.
+     * @param typeIndex
+     * @param index
+     * @author foxler2010
+     * @since v1.0
+     * @see Inventory
+     */
+    void removeItem(int typeIndex, int index) {
+        
+        //use different lists based on type
+        switch (typeIndex) {
+            case 0:
+            inventory.get(0).remove(index);
+            break;
+            case 1:
+            inventory.get(1).remove(index);
+            break;
+            case 2:
+            inventory.get(2).remove(index);
+            break;
+            case 3:
+            inventory.get(3).remove(index);
+            break;
+            case 4:
+            inventory.get(4).remove(index);
+            break;
+            case 5:
+            inventory.get(5).remove(index);
+            break;
+            case 6:
+            inventory.get(6).remove(index);
+        }
+    }
+
+    /**
+     * Removes an item from the inventory based on item name.
+     * If multiple of the same instance are present, only one will be removed.
+     * @author foxler2010
+     * @param item The item to be removed
+     * @since v1.0
+     * @see Inventory
+     */
     void removeItem(Item item) {
         
         //use different lists based on type
@@ -137,10 +207,16 @@ public class Inventory {
             case OTHER:
             inventory.get(6).remove(item);
         }
-
     }
 
-    //see if an item is in the player's inventory
+    /**
+     * Returns true if an item is present in the inventory, false if the item is not present.
+     * @author foxler2010
+     * @since v1.0
+     * @return Boolean detailing whether an item is in the inventory or not.
+     * @see Inventory
+     * @param item The item to check for.
+     */
     boolean checkForItem(Item item) {
 
         //initialize as false, because it will throw an error if I don't
@@ -158,12 +234,18 @@ public class Inventory {
         }
 
         return itemIsPresent;
-
     }
 
-    //find the index of an item. the index is relative to the sub-list the item is inside of.
-    //the type does not have to be given, because we can just look at the attributes of the item to find it.
-    //returns -1 if the item is nonexistent.
+    /**
+     * Find the index of an item. The index is relative to the sub-list the item is inside of.
+     * The type does not have to be given, because the method just looks at the attributes of the item to find it.
+     * Returns -1 if the item is nonexistent.
+     * @author foxler2010
+     * @see Inventory
+     * @since v1.0
+     * @param item The item to find the index of.
+     * @return The index of the given item.
+     */
     int indexOfItem(Item item) {
 
         //use different lists based on type
@@ -186,10 +268,17 @@ public class Inventory {
             default:
             return -1;
         }
-
     }
 
-    //new version in progress
+    /**
+     * Return a String containing a comma separated list of all the items in the inventory, using the items' fancy names.
+     * The output of this method is the same format as the old inventory system, and if you have a lot of items, the list can be very long.
+     * It is reccomended to use fancyToString() instead of this method.
+     * @author foxler2010
+     * @see Inventory
+     * @since v1.0
+     * @return A list of everything in the inventory.
+     */
     public String toString() {
         
         //initialize the finalString variable
@@ -228,8 +317,16 @@ public class Inventory {
 
     }
 
-    //new version in progress
-    public String fancyToString() {
+    /**
+     * Return a String containing a comma separated list of all the items in the inventory, using the items' fancy names.
+     * Multiple items of the same instance are grouped so that they show like this: "Old Can Of Beans x10".
+     * This is the method currently used to display the inventory every turn.
+     * @author foxler2010
+     * @see Inventory
+     * @since v1.0
+     * @return A list of everything in the inventory, with items of the same instance grouped together.
+     */
+    String fancyToString() {
 
         //initialize the finalString variable
         String finalString = "";
@@ -287,17 +384,32 @@ public class Inventory {
         
     }
 
-    //same as with toString but with integers. a lot easier to deal with if you ask me.
+    /**
+     * Returns the amount of items in the inventory.
+     * Not to be confused with sizeOfSubList(), which returns the amount of items in a given sublist.
+     * @author foxler2010
+     * @see Inventory
+     * @return The amount of items in the inventory.
+     * @since v1.0
+     */
     int sizeOfInventory() {
-        
         int size = inventory.get(0).size();
-
         for (int i = 1; i < 6; i++) {
             size = size + inventory.get(i).size();
         }
-
         return size;
+    }
 
+    /**
+     * Returns the amount of items in a given sublist. Not to be confused with sizeOfInventory().
+     * @author foxler2010
+     * @param subListIndex The index of the sublist you want the size of.
+     * @return The size of the sublist with the index 'subListIndex'.
+     * @since v1.0
+     * @see Inventory
+     */
+    int sizeOfSubList(int subListIndex) {
+        return inventory.get(subListIndex).size();
     }
 
 }

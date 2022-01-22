@@ -1,7 +1,7 @@
 package top.drewssite.volcano;
 
 //initializes almost everything in the game
-//only a few exceptions (mostly in the beginning of the main method)
+//only a few exceptions
 class Data {
 	
 	//First off, data that could be considered "settings", as you can use it to tweak your game a bit.

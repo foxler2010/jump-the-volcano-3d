@@ -23,12 +23,12 @@ import java.util.*;
 class Main {
 	
 	//MAKE SCANNER
-	static Scanner scanner = new Scanner(System.in);
+	private static Scanner scanner = new Scanner(System.in);
 	
 	
 	//PROMPT CODE
 	//prompts the user to enter one of two options (ex. yes/no question)
-	static boolean yesNoPrompt(String prompt, String isTrue, String isFalse) {
+	private static boolean yesNoPrompt(String prompt, String isTrue, String isFalse) {
 		boolean answer = true;
 		boolean responseIsValid = false;
 		while(responseIsValid == false) {
@@ -52,7 +52,7 @@ class Main {
 	}
 
 	//extension of yes/no prompt, allowing as many true and false answers as you want
-	static boolean yesNoPrompt(String prompt, String[] isTrue, String[] isFalse) {
+	private static boolean yesNoPrompt(String prompt, String[] isTrue, String[] isFalse) {
 		boolean answer = true;
 		boolean responseIsValid = false;
 		while(responseIsValid == false) {
@@ -75,7 +75,7 @@ class Main {
 	}
 	
 	//prompts the user to enter an integer
-	static int intPrompt(String prompt) {
+	private static int intPrompt(String prompt) {
 		int response = 0;
 		boolean responseIsValid = false;
 		while(responseIsValid == false) {
@@ -97,7 +97,7 @@ class Main {
 	}
 	
 	//prompts the user to enter a double
-	static double doublePrompt(String prompt) {
+	private static double doublePrompt(String prompt) {
 		double response = 0;
 		boolean responseIsValid = false;
 		while(responseIsValid == false) {
@@ -125,7 +125,6 @@ class Main {
 		//WELCOME THE PLAYER TO THE GAME
 		System.out.println("--------------------------------------------------------------------------");
 		System.out.println("Welcome to Jump The Volcano!");
-		System.out.println("");
 		System.out.println();
 		
 		//MAKE PLAYER
@@ -139,14 +138,18 @@ class Main {
 		String quit = "Exit the game";
 		
 		//MAKE RANDOM
-		//random random random random random random random random random random
 		Random random = new Random();
 		
 		//LET'S START THE GAME!
-		System.out.println("Great! Let's get started with the game.");
+		System.out.println("Your level is \u001b[32m" + player.getLevel() + "\u001b[0m and you have $\u001b[31m" + player.getMoney() + "\u001b[0m in your wallet.");
 		System.out.println();
+		System.out.println("Let's get started with the game!");
 		System.out.println("--------------------------------------------------------------------------");
 		System.out.println();
+
+		//SET firstTurn TO TRUE
+		//the next loop will be the first turn of the game, so this must be true.
+		boolean firstTurn = true;
 		
 		/*
 		 * MAIN LOOP STARTS HERE
@@ -168,7 +171,12 @@ class Main {
 			//PHASE 1
 			//reported no matter what
 			System.out.println("Turn: \u001b[33m" + turns + "\u001b[0m");
-			System.out.println("Your level is \u001b[32m" + player.getLevel() + "\u001b[0m...\n...and you have $\u001b[31m" + player.getMoney() + "\u001b[0m in your wallet.");
+
+			//only displayed on turn >2
+			if (!firstTurn) {
+				System.out.println("Your level is \u001b[32m" + player.getLevel() + "\u001b[0m...\n...and you have $\u001b[31m" + player.getMoney() + "\u001b[0m in your wallet.");
+			}
+
 			System.out.println();
 			
 			//view inventory?
@@ -313,7 +321,7 @@ class Main {
 				if(random.nextInt(101) > 79) {
 					System.out.println("You jump over the volcano");
 				} else {
-					System.out.println("You fall into the volcano and die. Wah wah wahhhhh.");
+					System.out.println("You fall into the volcano and die. *in the distance trombone sounds* Wah wah wahhhhh.");
 					System.out.println();
 					//oh no you have to restart
 					player.setHealth(0);
@@ -356,20 +364,28 @@ class Main {
 				continuingGame = yesNoPrompt("Do you accept Agoostafus' offer? [y/n] ", "y", "n");
 				if(continuingGame == true) {
 					System.out.println("Okay, please standby. You will be ressurected shortly.");
+					System.out.println();
 					player.setMoney(0);
 					player.setLevel(0);
 					player.setHealth(100);
 					//clear inventory
+					for (int i = 0; i <= 6; i++) {
+						for (int j = 0; j < player.sizeOfSubList(i); j++) {
+							player.removeItem(i, j);
+						}
+					}
 				} else {
 					System.out.println("Too bad. I thought it was a good deal, but I guess it is your call...");
 					System.out.println("Have fun dying.");
+					System.out.println();
+					System.out.println("--------------------------------------------------------------------------");
 					System.out.println();
 				}//end resurrection if-else
 			}//end healthcheck
 			
 			if(continuingGame == true) {
 				//MARKS END OF TURN
-				//only shown if you didn't quit.
+				//only shown if you didn't quit or if you die.
 				System.out.println("--------------------------------------------------------------------------");
 				System.out.println();
 			}//end turnmarker if

@@ -1,22 +1,22 @@
 package top.drewssite.volcano;
 
-class Junk extends Item {
+public class Junk extends Item {
 	
 	//VAR
 	private double price;
 	
 	
 	//GETTER AND SETTER
-	double getPrice() {
+	public double getPrice() {
 		return price;
 	}
 	
-	void setPrice(double price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	
 	//CONSTRUCTOR
-	Junk(String name, double price) {
+	public Junk(String name, double price) {
 		super(name, itemType.JUNK, false);
 		this.price = price;
 	}

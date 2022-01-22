@@ -270,6 +270,7 @@ class Inventory {
         }
     }
 
+    //The below method needs to be public because it is inherited from the public toString() method in java.lang.Object.
     /**
      * Return a String containing a comma separated list of all the items in the inventory, using the items' fancy names.
      * The output of this method is the same format as the old inventory system, and if you have a lot of items, the list can be very long.

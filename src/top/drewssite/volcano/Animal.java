@@ -2,26 +2,26 @@ package top.drewssite.volcano;
 
 //it's an item that is alive
 //it also has some extra alive-stuff-only attributes (health, strength, etc)
-abstract class Animal extends Item {
+public abstract class Animal extends Item {
 
 	//VAR
 	private int strength;
 	private int health;
 	
 	//GETTERS AND SETTERS
-	int getStrength() {
+	public int getStrength() {
 		return strength;
 	}
 	
-	void setStrength(int strength) {
+	public void setStrength(int strength) {
 		this.strength = strength;
 	}
 	
-	int getHealth() {
+	public int getHealth() {
 		return health;
 	}
 	
-	void setHealth(int health) {
+	public void setHealth(int health) {
 		//big attacks don't give you negative health
 		if (health >= 0) {
 			this.health = health;
@@ -31,7 +31,7 @@ abstract class Animal extends Item {
 	}
 	
 	//CONSTRUCTOR takes in name, price, and type
-	Animal(String name, itemType type, int strength, boolean important) {
+	public Animal(String name, itemType type, int strength, boolean important) {
 		
 		super(name, type, important);
 		
@@ -40,6 +40,6 @@ abstract class Animal extends Item {
 		this.health = 100;
 	}
 	
-	abstract void attack(Animal target);
+	public abstract void attack(Animal target);
 	
 }

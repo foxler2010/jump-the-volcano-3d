@@ -1,6 +1,6 @@
 package top.drewssite.volcano;
 
-abstract class Item {
+public abstract class Item {
 	
 	//VARS
 	private String name;
@@ -8,31 +8,31 @@ abstract class Item {
 	private boolean important;
 	
 	//GETTERS & SETTERS
-	String getName() {
+	public String getName() {
 		return name;
 	}
 	
-	itemType getType() {
+	public itemType getType() {
 		return type;
 	}
 	
-	void setName(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 	
-	void setType(itemType type) {
+	public void setType(itemType type) {
 		this.type = type;
 	}
 	
-	boolean isImportant() {
+	public boolean isImportant() {
 		return important;
 	}
 	
-	void setImportancy(boolean important) {
+	public void setImportancy(boolean important) {
 		this.important = important;
 	}
 	
-	Item(String name, itemType type, boolean important) {
+	public Item(String name, itemType type, boolean important) {
 		this.name = name;
 		this.type = type;
 		this.important = important;

@@ -167,7 +167,7 @@ class Main {
 		boolean continuingGame = true;
 		int turns = 0;
 		//the loop begins
-		while (continuingGame == true) {
+		while (continuingGame) {
 			//PHASE 1
 			//reported no matter what
 			System.out.println("Turn: \u001b[33m" + turns + "\u001b[0m");
@@ -180,7 +180,7 @@ class Main {
 			System.out.println();
 			
 			//view inventory?
-			if(yesNoPrompt("Would you like to view your inventory? [y/n] ", "y", "n") == true) {
+			if(yesNoPrompt("Would you like to view your inventory? [y/n] ", "y", "n")) {
 
 				//check for emptiness
 				if(player.sizeOfInventory() == 0) {
@@ -362,7 +362,7 @@ class Main {
 				System.out.println("It seems you have died. Agoostafus, the angel of ressurection,\nhas offered to ressurect you, but you must lose all your earthly\npossesions and start life from the beggining again.");
 				System.out.println();
 				continuingGame = yesNoPrompt("Do you accept Agoostafus' offer? [y/n] ", "y", "n");
-				if(continuingGame == true) {
+				if(continuingGame) {
 					System.out.println("Okay, please standby. You will be ressurected shortly.");
 					System.out.println();
 					player.setMoney(0);
@@ -383,7 +383,7 @@ class Main {
 				}//end resurrection if-else
 			}//end healthcheck
 			
-			if(continuingGame == true) {
+			if(continuingGame) {
 				//MARKS END OF TURN
 				//only shown if you didn't quit or if you die.
 				System.out.println("--------------------------------------------------------------------------");

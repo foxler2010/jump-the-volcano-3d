@@ -20,106 +20,22 @@
 package top.drewssite.volcano;
 import java.util.*;
 
+/**
+ * This is where the main method is located. When the program starts, the methods in here are executed.
+ * @author foxler2010
+ * @since v1.0
+ * @see Utility
+ * @see Data
+ */
 class Main {
 	
-	//MAKE SCANNER
-	private static Scanner scanner = new Scanner(System.in);
+	//Useful stuff
+	private static Utility utilities = new Utility();
 	
-	
-	//PROMPT CODE
-	//prompts the user to enter one of two options (ex. yes/no question)
-	private static boolean yesNoPrompt(String prompt, String isTrue, String isFalse) {
-		boolean answer = true;
-		boolean responseIsValid = false;
-		while(responseIsValid == false) {
-			System.out.print(prompt);
-			String response = scanner.next();
-			System.out.println();
-			if(response.equals(isTrue)) {
-				answer = true;
-				responseIsValid = true;
-			} else if(response.equals(isFalse)) {
-				answer = false;
-				responseIsValid = true;
-			} else {
-				System.out.println("That answer is invalid. Please try again.");
-				System.out.println();
-				responseIsValid = false;
-			}
-		}
-		return answer;
-		
-	}
-
-	//extension of yes/no prompt, allowing as many true and false answers as you want
-	private static boolean yesNoPrompt(String prompt, String[] isTrue, String[] isFalse) {
-		boolean answer = true;
-		boolean responseIsValid = false;
-		while(responseIsValid == false) {
-			System.out.println(prompt);
-			String response = scanner.next();
-			System.out.println();
-			for(int i = 0; i < isTrue.length - 1; i++) {
-				if (response.equals(isTrue[i])); {
-					answer = true;
-				} if (response.equals(isFalse[i])) {
-					answer = true;
-				} else {
-					System.out.println("That answer is invalid. Please try again.");
-					System.out.println();
-					responseIsValid = false;
-				}
-			}
-		}
-		return answer;
-	}
-	
-	//prompts the user to enter an integer
-	private static int intPrompt(String prompt) {
-		int response = 0;
-		boolean responseIsValid = false;
-		while(responseIsValid == false) {
-			try {
-				System.out.print(prompt);
-				response = scanner.nextInt();
-				responseIsValid = true;
-				System.out.println();
-			} catch(InputMismatchException e) {
-				System.out.println();
-				System.out.println("That answer is invalid. Please try again.");
-				System.out.println();
-				responseIsValid = false;
-				@SuppressWarnings("unused")
-				String catcher = scanner.next();
-			}
-		}
-		return response;
-	}
-	
-	//prompts the user to enter a double
-	private static double doublePrompt(String prompt) {
-		double response = 0;
-		boolean responseIsValid = false;
-		while(responseIsValid == false) {
-			try {
-				System.out.print(prompt);
-				response = scanner.nextDouble();
-				responseIsValid = true;
-				System.out.println();
-			} catch(InputMismatchException e) {
-				System.out.println();
-				System.out.println("That answer is invalid. Please try again.");
-				System.out.println();
-				responseIsValid = false;
-				@SuppressWarnings("unused")
-				String catcher = scanner.next();
-			}
-		}
-		return response;
-	}
-	
-	//MAIN METHOD
-	//where all of the things happen
+	/**
+	 * This is the main method. When the program is executed, this is the method that is called
+	 * @param args Arguments from the shell. Currently not used for anything, but that could change.
+	 */
 	public static void main(String args[]) {
 		
 		//WELCOME THE PLAYER TO THE GAME
@@ -180,7 +96,7 @@ class Main {
 			System.out.println();
 			
 			//view inventory?
-			if(yesNoPrompt("Would you like to view your inventory? [y/n] ", "y", "n")) {
+			if(utilities.yesNoPrompt("Would you like to view your inventory? [y/n] ", "y", "n")) {
 
 				//check for emptiness
 				if(player.sizeOfInventory() == 0) {
@@ -269,7 +185,7 @@ class Main {
 				
 				//prompts the user to choose an option
 				//arguably the most important line in the game
-				int option = intPrompt("Please input the option you would like to carry out: ");
+				int option = utilities.intPrompt("Please input the option you would like to carry out: ");
 				
 				//the following switch converts a # to a String
 				//It uses the 'option1', 'option2', etc vars because they are guaranteed to match the # chosen.
@@ -354,14 +270,14 @@ class Main {
 			}//end arena if
 			
 			if(chosenOption == quit) {
-				continuingGame = yesNoPrompt("Do you want to continue playing? [y/n] ", "y", "n");
+				continuingGame = utilities.yesNoPrompt("Do you want to continue playing? [y/n] ", "y", "n");
 			}//end quit if
 			
 			//HEALTHCHECK
 			if(player.getHealth() == 0) {
 				System.out.println("It seems you have died. Agoostafus, the angel of ressurection,\nhas offered to ressurect you, but you must lose all your earthly\npossesions and start life from the beggining again.");
 				System.out.println();
-				continuingGame = yesNoPrompt("Do you accept Agoostafus' offer? [y/n] ", "y", "n");
+				continuingGame = utilities.yesNoPrompt("Do you accept Agoostafus' offer? [y/n] ", "y", "n");
 				if(continuingGame) {
 					System.out.println("Okay, please standby. You will be ressurected shortly.");
 					System.out.println();
@@ -401,7 +317,7 @@ class Main {
 		System.out.println("Thank you for playing Jump The Volcano. Please play again soon!");
 		
 		//CLOSE SCANNER
-		scanner.close();
+		utilities.getScanner().close();
 		
 	}//end main method
 }//end main class

@@ -29,7 +29,7 @@ class Player extends Animal {
 	 * @param startingInventory	This is what the player's inventory will contain when they start the game.
 	 */
 	public Player(String name, int strength, int level, double money, Inventory startingInventory) {
-		super(name, itemType.OTHER, strength, false);
+		super(name, ItemType.OTHER, strength, false);
 		this.level = level;
 		this.money = money;
 		this.inventory = startingInventory;
@@ -56,7 +56,7 @@ class Player extends Animal {
 	
 	//Returns an item in the inventory.
 	//Does NOT remove the item from the list.
-	public Item getItem(itemType type, int index) {
+	public Item getItem(ItemType type, int index) {
 		return inventory.getItem(type, index);
 	}
 	
@@ -71,7 +71,7 @@ class Player extends Animal {
 		inventory.removeItem(item);
 	}
 
-	public void removeItem(itemType type, int index) {
+	public void removeItem(ItemType type, int index) {
 		inventory.removeItem(type, index);
 	}
 

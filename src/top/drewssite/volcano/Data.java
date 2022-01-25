@@ -1,68 +1,240 @@
 package top.drewssite.volcano;
 
-//initializes almost everything in the game
-//only a few exceptions
+import java.util.InputMismatchException;
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ * This is where all the static stuff is declared and initialized.
+ * To access something in here, use the dot operator, like so: "Data.oldCanOfBeans".
+ * @author foxler2010
+ * @since v1.0
+ * @see Main
+ */
 class Data {
 	
-	//First off, data that could be considered "settings", as you can use it to tweak your game a bit.
-	
-	//Adding items to this list puts them into the player's inventory as soon as they start the game.
-	//Useful for modders.
-	public static Inventory startingInventory = new Inventory();
-	
-	//add items to startingInventory here.
-	static {
-		//startingInventory.addItem(Data.oldCanOfBeans);
+	/**
+	 * This is the scanner that gets input from the player.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	public static final Scanner scanner = new Scanner(System.in);
+
+	/**
+	 * This is the pseudo-random number generator that is used by a number of methods in the codebase
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	public static final Random random = new Random();
+
+	/**
+	 * This method prompts the user to enter one of two options (ex. yes/no question),
+	 * and returns a boolean that is either true or flase depending on the user input.
+	 * @param prompt The prompt the player is given
+	 * @param isTrue The string the player must enter for the boolean to be true
+	 * @param isFalse The string the player must enter for the boolean to be false
+	 * @return A boolean detailing whether the player responded yes or no
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	public static final boolean yesNoPrompt(String prompt, String isTrue, String isFalse) {
+		boolean answer = true;
+		boolean responseIsValid = false;
+		while(responseIsValid == false) {
+			System.out.print(prompt);
+			String response = Data.scanner.next();
+			System.out.println();
+			if(response.equals(isTrue)) {
+				answer = true;
+				responseIsValid = true;
+			} else if(response.equals(isFalse)) {
+				answer = false;
+				responseIsValid = true;
+			} else {
+				System.out.println("That answer is invalid. Please try again.");
+				System.out.println();
+				responseIsValid = false;
+			}
+		}
+		return answer;
+		
 	}
 
-	//index 0 in Inventory
-	public static Junk oldCanOfBeans = new Junk("Old Can of Beans", .05);
+	/**
+	 * This method is an extension of yes/no prompt, allowing as many true and false answers as you want.
+	 * @param prompt The prompt the player is given.
+	 * @param isTrue The strings the player must enter for the boolean to be true.
+	 * @param isFalse The strings the player must enter for the boolean to be false.
+	 * @return A boolean detailing whether the player responded yes or no.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	public static final boolean yesNoPrompt(String prompt, String[] isTrue, String[] isFalse) {
+		boolean answer = true;
+		boolean responseIsValid = false;
+		while(responseIsValid == false) {
+			System.out.println(prompt);
+			String response = Data.scanner.next();
+			System.out.println();
+			for(int i = 0; i < isTrue.length - 1; i++) {
+				if (response.equals(isTrue[i])); {
+					answer = true;
+				} if (response.equals(isFalse[i])) {
+					answer = true;
+				} else {
+					System.out.println("That answer is invalid. Please try again.");
+					System.out.println();
+					responseIsValid = false;
+				}
+			}
+		}
+		return answer;
+	}
 	
-	public static Junk dirtySodaBottle = new Junk("Dirty Soda Bottle", .05);
+	/**
+	 * This method prompts the user to enter an integer.
+	 * @param prompt The prompt the player is given.
+	 * @return The integer the player entered.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	public static final int intPrompt(String prompt) {
+		int response = 0;
+		boolean responseIsValid = false;
+		while(responseIsValid == false) {
+			try {
+				System.out.print(prompt);
+				response = Data.scanner.nextInt();
+				responseIsValid = true;
+				System.out.println();
+			} catch(InputMismatchException e) {
+				System.out.println();
+				System.out.println("That answer is invalid. Please try again.");
+				System.out.println();
+				responseIsValid = false;
+				@SuppressWarnings("unused")
+				String catcher = Data.scanner.next();
+			}
+		}
+		return response;
+	}
 	
-	public static Junk moldySock = new Junk("Moldy Sock", .05);
+	/**
+	 * This method prompts the user to enter a double.
+	 * @param prompt The prompt the player is given.
+	 * @return The double the player entered.
+	 * @author foxler2010
+	 * @see Data
+	 * @since v1.0
+	 */
+	public static final double doublePrompt(String prompt) {
+		double response = 0;
+		boolean responseIsValid = false;
+		while(responseIsValid == false) {
+			try {
+				System.out.print(prompt);
+				response = Data.scanner.nextDouble();
+				responseIsValid = true;
+				System.out.println();
+			} catch(InputMismatchException e) {
+				System.out.println();
+				System.out.println("That answer is invalid. Please try again.");
+				System.out.println();
+				responseIsValid = false;
+				@SuppressWarnings("unused")
+				String catcher = Data.scanner.next();
+			}
+		}
+		return response;
+	}
 	
-	public static Junk brokenMagnet = new Junk("Broken Magnet", .10);
+	/**
+	 * Adding items to this list puts them into the player's inventory as soon as they start the game.
+	 * Useful for modders.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Inventory
+	 * @see Player
+	 * @see Data
+	 */
+	public static Inventory startingInventory = new Inventory();
+	
+	/*
+	 * Here is where you would add items into startingInventory.
+	 */
+	static {
+		/*
+		 * Here is an example statement adding an item to startingInventory:
+		 * 
+		 * startingInventory.addItem(Data.oldCanOfBeans);
+		 * 
+		 */
+	}
 
-	public static Junk poopSock = new Junk("Poop Sock", 0);
+	/**
+	 * This is the player object, where all the player data is stored.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
+	public static Player player = new Player("Player", 10, 0, 0, Data.startingInventory);
+
+	public static boolean continuingGame = true;
+
+	//index 0 in Inventory
+	public static final Junk oldCanOfBeans = new Junk("Old Can of Beans", .05);
+	
+	public static final Junk dirtySodaBottle = new Junk("Dirty Soda Bottle", .05);
+	
+	public static final Junk moldySock = new Junk("Moldy Sock", .05);
+	
+	public static final Junk brokenMagnet = new Junk("Broken Magnet", .10);
+
+	public static final Junk poopSock = new Junk("Poop Sock", 0);
 
 	//list of all junks
+	//items in this list are considered "inside the dumpster"
+	//you must add your item here for it to have a chance of coming out of the dumpster
 	public static final Junk[] junkItems = {oldCanOfBeans, dirtySodaBottle, moldySock, brokenMagnet, poopSock};
 	
 	//will be switched to type 'Food' once the type is implemented
 	//to-be index 1 in Inventory (sublist already dedicated)
-	public static Junk freshBudLight = new Junk("Fresh Bud Light", 10.0);
+	public static final Junk freshBudLight = new Junk("Fresh Bud Light", 10.0);
 	
-	public static Junk veryDietSoda = new Junk("Very Diet Soda", 5.0);
+	public static final Junk veryDietSoda = new Junk("Very Diet Soda", 5.0);
 	
 	//monsters!
 	//index 2 in Inventory
-	public static Monster weed = new Monster("The Weed That Keeps Popping Up In Your Garden", 1);
+	public static final Monster weed = new Monster("The Weed That Keeps Popping Up In Your Garden", 1);
 	
-	public static Monster slime = new Monster("Slime", 3);
+	public static final Monster slime = new Monster("Slime", 3);
 	
-	public static Monster jupiterThePlanet = new Monster("Jupiter, the planet", 1000);
+	public static final Monster jupiterThePlanet = new Monster("Jupiter, the planet", 1000);
 	
-	public static Monster zeus = new Monster("Zeus, God of Lightning", 9999);
+	public static final Monster zeus = new Monster("Zeus, God of Lightning", 9999);
 	
-	public static Monster lightbulb = new Monster("Lightbulb", 1);
+	public static final Monster lightbulb = new Monster("Lightbulb", 1);
 	
-	public static Monster sharpGlass = new Monster("Sharp Glass", 2);
+	public static final Monster sharpGlass = new Monster("Sharp Glass", 2);
 	
 	//pets!
 	//index 3 in Inventory
-	public static Pet dog = new Pet("Dog", 10);
+	public static final Pet dog = new Pet("Dog", 10);
 	
-	public static Pet cat = new Pet("Cat", 10);
+	public static final Pet cat = new Pet("Cat", 10);
 	
-	public static Pet axolotl = new Pet("Axolotl", 20);
+	public static final Pet axolotl = new Pet("Axolotl", 20);
 	
-	public static Pet rhino = new Pet("Rhino", 150);
+	public static final Pet rhino = new Pet("Rhino", 150);
 	
-	public static Pet neilArmstrong = new Pet("Neil Armstrong", 30);
+	public static final Pet neilArmstrong = new Pet("Neil Armstrong", 30);
 
-	public static Pet gordonRamseyPlushToy = new Pet("Gordon Ramsey Plush Toy", 0);
-	
-	//insideDumpster.add(oldCanOfBeans);
+	public static final Pet gordonRamseyPlushToy = new Pet("Gordon Ramsey Plush Toy", 0);
 	
 }

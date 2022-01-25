@@ -31,7 +31,7 @@ public abstract class Animal extends Item {
 	}
 	
 	//CONSTRUCTOR takes in name, price, and type
-	public Animal(String name, itemType type, int strength, boolean important) {
+	public Animal(String name, ItemType type, int strength, boolean important) {
 		
 		super(name, type, important);
 		

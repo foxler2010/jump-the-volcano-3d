@@ -18,19 +18,17 @@
  */
 
 package top.drewssite.volcano;
-import java.util.*;
+
+import java.util.ArrayList;
 
 /**
  * This is where the main method is located. When the program starts, the methods in here are executed.
  * @author foxler2010
  * @since v1.0
- * @see Utility
+ * @see Data
  * @see Data
  */
 class Main {
-	
-	//Useful stuff
-	private static Utility utilities = new Utility();
 	
 	/**
 	 * This is the main method. When the program is executed, this is the method that is called
@@ -43,21 +41,8 @@ class Main {
 		System.out.println("Welcome to Jump The Volcano!");
 		System.out.println();
 		
-		//MAKE PLAYER
-		Player player = new Player("Player", 10, 0, 0, Data.startingInventory);
-		
-		//MAKE OPTIONS
-		String jumpTheVolcano = "Jump The Volcano";
-		String dumpsterDive = "Dumpster dive";
-		String petStore = "Go to the Pet Store (level+1)";
-		String arena = "Visit the Arena (inventory+1canOfBeans)";
-		String quit = "Exit the game";
-		
-		//MAKE RANDOM
-		Random random = new Random();
-		
 		//LET'S START THE GAME!
-		System.out.println("Your level is \u001b[32m" + player.getLevel() + "\u001b[0m and you have $\u001b[31m" + player.getMoney() + "\u001b[0m in your wallet.");
+		System.out.println("Your level is \u001b[32m" + Data.player.getLevel() + "\u001b[0m and you have $\u001b[31m" + Data.player.getMoney() + "\u001b[0m in your wallet.");
 		System.out.println();
 		System.out.println("Let's get started with the game!");
 		System.out.println("--------------------------------------------------------------------------");
@@ -65,7 +50,6 @@ class Main {
 
 		//SET firstTurn TO TRUE
 		//the next loop will be the first turn of the game, so this must be true.
-		boolean firstTurn = true;
 		
 		/*
 		 * MAIN LOOP STARTS HERE
@@ -80,26 +64,21 @@ class Main {
 		
 		//initialize boolean to track whether we are continuing the loop or not
 		//also make a turn counter because it's useful
-		boolean continuingGame = true;
 		int turns = 0;
+
 		//the loop begins
-		while (continuingGame) {
+		while (Data.continuingGame) {
 			//PHASE 1
 			//reported no matter what
 			System.out.println("Turn: \u001b[33m" + turns + "\u001b[0m");
-
-			//only displayed on turn >2
-			if (!firstTurn) {
-				System.out.println("Your level is \u001b[32m" + player.getLevel() + "\u001b[0m...\n...and you have $\u001b[31m" + player.getMoney() + "\u001b[0m in your wallet.");
-			}
-
+			System.out.println("Your level is \u001b[32m" + Data.player.getLevel() + "\u001b[0m...\n...and you have $\u001b[31m" + Data.player.getMoney() + "\u001b[0m in your wallet.");
 			System.out.println();
 			
 			//view inventory?
-			if(utilities.yesNoPrompt("Would you like to view your inventory? [y/n] ", "y", "n")) {
+			if(Data.yesNoPrompt("Would you like to view your inventory? [y/n] ", "y", "n")) {
 
 				//check for emptiness
-				if(player.sizeOfInventory() == 0) {
+				if(Data.player.sizeOfInventory() == 0) {
 
 					System.out.println("You inventory is currently empty.");
 
@@ -108,186 +87,142 @@ class Main {
 					System.out.println("Here it is:");
 					System.out.println();
 
-					System.out.print(player.inventoryFancyToString()); //workhorse command, does majority of the work
+					System.out.print(Data.player.inventoryFancyToString()); //workhorse command, does majority of the work
 
 					//newline for readability
 					System.out.println();
 
-				}//end sizechecking if
+				}
 
 			} else {
 
 				System.out.println("Okay, let's keep going...");
 
-			}//end inventory shenanigans
+			}
 
 			//NEWLINE FOR READABILITY
 			System.out.println();
 			
 			//PHASE 2
-			//all possible options here. currently they are manually activated but that is going to change.
-			//to activate an option simply add it to the 'availableOptions' list
+			//display options
+
+			//yup new dynamic system coming soon...
+			//even more dynamic than this system
+			ArrayList<Option> availableOptions = new ArrayList<Option>();
+
+			//you can always jump the volcano
+			availableOptions.add(Option.JUMP_THE_VOLCANO);
+
+			//you can't dumpster dive if you have 10 or more items in your inventory.
+			if (Data.player.sizeOfInventory() < 10) {
+				availableOptions.add(Option.DUMPSTER_DIVE);
+			}
+
+			//you can only visit the pet store once you have $500
+			//the first time you see the pet store option it will say "(NEW!)" in front.
+			if (Data.player.getMoney() == 500) {
+				availableOptions.add(Option.PET_STORE_NEW);
+			}
+
+			//you can only visit the pet store if you have $500 or more
+			if (Data.player.getMoney() >= 500) {
+				availableOptions.add(Option.PET_STORE);
+			}
+
+			//you can only visit the arena once you have reached turn 50
+			//the first time you see the arena option it will say "(NEW!)" in front.
+			if (turns == 50) {
+				availableOptions.add(Option.ARENA_NEW);
+			}
+
+			//use the regular option name after turn 50
+			if (turns > 50) {
+				availableOptions.add(Option.ARENA);
+			}
+
+			//you can always quit the game.
+			availableOptions.add(Option.QUIT);
 			
-			//the 'jumpTheVolcano' option is ALWAYS active so the line adding it to the list will always be here.
-			//the others will be active depending on some algorithms that are yet to be coded.
-			ArrayList<String> availableOptions = new ArrayList<String>();
-			availableOptions.add(jumpTheVolcano);
-			availableOptions.add(dumpsterDive);
-			availableOptions.add(petStore);
-			availableOptions.add(arena);
-			availableOptions.add(quit);
-			
-			//I have to declare and initialize these outside of the phase 2 loop.
-			//I initialized them with 'jumpTheVolcano' because it is the one option that will always be displayed.
-			//There is no way they could possibly exit the phase 2 loop without being assigned to a new option
-			//so it is okay to choose any option here
-			String option1 = jumpTheVolcano;
-			String option2 = jumpTheVolcano;
-			String option3 = jumpTheVolcano;
-			String option4 = jumpTheVolcano;
-			String option5 = jumpTheVolcano;
+			ArrayList<Option> optionsInOrder = new ArrayList<Option>();
 			
 			System.out.println("Here are your options for this turn:");
 			System.out.println();
 			
-			//this loop actually displays and assigns every available option to a new(-ish) var which will be useful later.
-			for(int currentOption = 0; currentOption < availableOptions.size(); currentOption++) {
-				
-				//set whatever option is listed at this number as the option for this number
-				//a bit confusing but it is extremely important in order to run the right code when an
-				//option is chosen
-				switch(currentOption) {
-				
-				case 0: option1 = availableOptions.get(currentOption);
-						break;
-				case 1: option2 = availableOptions.get(currentOption);
-						break;
-				case 2: option3 = availableOptions.get(currentOption);
-						break;
-				case 3: option4 = availableOptions.get(currentOption);
-						break;
-				case 4: option5 = availableOptions.get(currentOption);
-				}//end switch
+			//this loop displays the options and adds them to an ordered list
+			for (int i = 0; i < availableOptions.size(); i++) {
 				
 				//print the option to the screen. and do some cool maths so the numbers are always in ascending order :)
-				System.out.println("  " + (currentOption + 1) + ") " + availableOptions.get(currentOption));
+				System.out.println("  " + (i + 1) + ") " + availableOptions.get(i).getName());
 				
-				}//end phase2 loop
+				//add the option to this list. It must be in order.
+				optionsInOrder.add(availableOptions.get(i));
+				
+			}
 			
 			//newline for readability
 			System.out.println();
-			//initialize this var with 'jumpTheVolcano' because that's what I've been using for all
-			//option-related initializations
-			String chosenOption = jumpTheVolcano;
-			//assign 'choosenOption' to the correct value based on the users choice.
+			
+			//PHASE 3
+			//choose options and change player stats
+
 			boolean responseIsValid = false;
+
 			while(responseIsValid == false) {
 				
 				//prompts the user to choose an option
-				//arguably the most important line in the game
-				int option = utilities.intPrompt("Please input the option you would like to carry out: ");
+				//arguably the most important line of user input in the game
+				int option = Data.intPrompt("Please input the option you would like to carry out: ");
 				
-				//the following switch converts a # to a String
-				//It uses the 'option1', 'option2', etc vars because they are guaranteed to match the # chosen.
-				//the actual Strings declared at the beginning of the main method are not assigned a #.
-				//the 'option1' vars are "hard-coded" with a number,
-				//so when the actual options are displayed on-screen they
-				//are assigned a number by being given an 'alias' of sorts through the 'option1' vars.
-				//then when the user chooses an option, a new String var is created to signify the users choice ('chosenOption')
-				//in String form instead of int form (option). So overall this a just a bunch of code that just moves vars
-				//and their values all over the place
-				
-				//I hope that was a good enough explanation of phase 2, now on with the code
-				
-				switch(option) {
-				
-				case 1: chosenOption = option1;
-						responseIsValid = true;
-						break;
-				case 2: chosenOption = option2;
-						responseIsValid = true;
-						break;
-				case 3: chosenOption = option3;
-						responseIsValid = true;
-						break;
-				case 4: chosenOption = option4;
-						responseIsValid = true;
-						break;
-				case 5: chosenOption = option5;
-						responseIsValid = true;
-						break;
-				default: System.out.println("That answer is invalid. Please try again.");
-						 System.out.println();
-				
-				}//end switch
-			}//end while
-			
-			//and finally, after all that jazz...
-			System.out.println("You choose " + chosenOption);
-			System.out.println();
-			//we can use the chosen value to do stuff
-			
-			
-			//PHASE 3
-			//contains code for what to do no matter what option is chosen.
-			
-			//if you try to jump the volcano
-			if(chosenOption == jumpTheVolcano) {
-				//gen random boolean to decide between whether you successfully jump the volcano or not.
-				if(random.nextInt(101) > 79) {
-					System.out.println("You jump over the volcano");
-				} else {
-					System.out.println("You fall into the volcano and die. *in the distance trombone sounds* Wah wah wahhhhh.");
-					System.out.println();
-					//oh no you have to restart
-					player.setHealth(0);
-				}
-			}//end jump the volcano if
-			
-			//you dive into the dumpster in search of random items people threw away
-			if(chosenOption == dumpsterDive) {
-				//choose random item from list of items that are in the dumpster
-				Junk randomJunk = Data.junkItems[random.nextInt(Data.junkItems.length)];
-				//add it to player's inventory
-				player.addItem(randomJunk);
-				//tell player what they got
-				System.out.println("You got a " + randomJunk.getName());
-				System.out.println();
-			}//end dumpster dive if
-			
-			if(chosenOption == petStore) {
-				System.out.println("test, level+1");
-				player.setLevel(player.getLevel() + 1);
-			}//end pet store if
-			
-			if(chosenOption == arena) {
-				System.out.println("test, inventory+oldCanOfBeans");
-				try {
-					player.addItem(Data.oldCanOfBeans);
-				} catch(NullPointerException e) {
+				//if user input is an index in the list
+				//loop thru and find out which index the user input is
+				if (option <= optionsInOrder.size() && option > 0) {
 					
+					for (int i = 0; i < optionsInOrder.size(); i++) {
+						
+						if (option == i + 1) { // +1 is because user input will be 1 greater than the index
+							
+							//lets player know what they chose
+							System.out.println("You choose " + optionsInOrder.get(i).getName());
+							System.out.println();
+
+							//executes the option's opCode() method
+							//this is the ONLY time player stats EVER change!!!
+							optionsInOrder.get(i).opCode();
+
+							//ends the while loop
+							responseIsValid = true;
+
+						}
+
+					}
+
+				} else { //if user input is out of bounds
+					
+					System.out.println("That answer is invalid. Please try again.");
+					System.out.println();
+
+					//makes loop run again
+					responseIsValid= false;
+
 				}
-			}//end arena if
-			
-			if(chosenOption == quit) {
-				continuingGame = utilities.yesNoPrompt("Do you want to continue playing? [y/n] ", "y", "n");
-			}//end quit if
+
+			}
 			
 			//HEALTHCHECK
-			if(player.getHealth() == 0) {
+			if(Data.player.getHealth() == 0) {
 				System.out.println("It seems you have died. Agoostafus, the angel of ressurection,\nhas offered to ressurect you, but you must lose all your earthly\npossesions and start life from the beggining again.");
 				System.out.println();
-				continuingGame = utilities.yesNoPrompt("Do you accept Agoostafus' offer? [y/n] ", "y", "n");
-				if(continuingGame) {
+				Data.continuingGame = Data.yesNoPrompt("Do you accept Agoostafus' offer? [y/n] ", "y", "n");
+				if(Data.continuingGame) {
 					System.out.println("Okay, please standby. You will be ressurected shortly.");
 					System.out.println();
-					player.setMoney(0);
-					player.setLevel(0);
-					player.setHealth(100);
+					Data.player.setMoney(0);
+					Data.player.setLevel(0);
+					Data.player.setHealth(100);
 					//clear inventory
 					for (int i = 0; i <= 6; i++) {
-						for (int j = 0; j < player.sizeOfSubList(i); j++) {
-							player.removeItem(i, j);
+						for (int j = 0; j < Data.player.sizeOfSubList(i); j++) {
+							Data.player.removeItem(i, j);
 						}
 					}
 				} else {
@@ -299,7 +234,7 @@ class Main {
 				}//end resurrection if-else
 			}//end healthcheck
 			
-			if(continuingGame) {
+			if(Data.continuingGame) {
 				//MARKS END OF TURN
 				//only shown if you didn't quit or if you die.
 				System.out.println("--------------------------------------------------------------------------");
@@ -309,15 +244,13 @@ class Main {
 			//Increase turn counter by one at end of turn
 			turns++;
 			
-		}//end main loop
-		
-		
+		}//end main loop	
 		
 		//ENDGAME
 		System.out.println("Thank you for playing Jump The Volcano. Please play again soon!");
-		
+
 		//CLOSE SCANNER
-		utilities.getScanner().close();
+		Data.scanner.close();
 		
 	}//end main method
 }//end main class

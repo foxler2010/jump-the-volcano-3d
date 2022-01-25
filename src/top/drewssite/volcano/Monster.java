@@ -5,7 +5,7 @@ class Monster extends Animal {
 
 	public Monster(String name, int strength) {
 		//same as animal, but set type to itemType.MONSTER instead
-		super(name, itemType.MONSTER, strength, false);
+		super(name, ItemType.MONSTER, strength, false);
 		
 		//no extras to add :)
 	}

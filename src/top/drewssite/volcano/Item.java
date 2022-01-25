@@ -4,7 +4,7 @@ public abstract class Item {
 	
 	//VARS
 	private String name;
-	private itemType type;
+	private ItemType type;
 	private boolean important;
 	
 	//GETTERS & SETTERS
@@ -12,7 +12,7 @@ public abstract class Item {
 		return name;
 	}
 	
-	public itemType getType() {
+	public ItemType getType() {
 		return type;
 	}
 	
@@ -20,7 +20,7 @@ public abstract class Item {
 		this.name = name;
 	}
 	
-	public void setType(itemType type) {
+	public void setType(ItemType type) {
 		this.type = type;
 	}
 	
@@ -32,7 +32,7 @@ public abstract class Item {
 		this.important = important;
 	}
 	
-	public Item(String name, itemType type, boolean important) {
+	public Item(String name, ItemType type, boolean important) {
 		this.name = name;
 		this.type = type;
 		this.important = important;

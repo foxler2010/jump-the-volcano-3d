@@ -77,7 +77,7 @@ class Inventory {
      * @see Inventory
      * @since v1.0
      */
-    Item getItem(itemType type, int index) {
+    Item getItem(ItemType type, int index) {
         
         //initialize as null, because it will throw an error if I don't
         Item requestedItem = null;
@@ -112,7 +112,7 @@ class Inventory {
      * @since v1.00
      * @see Inventory
      */
-    void removeItem(itemType type, int index) {
+    void removeItem(ItemType type, int index) {
         
         //use different lists based on type
         switch (type) {

@@ -187,6 +187,48 @@ class Data {
 
 	public static boolean continuingGame = true;
 
+	//option code to go here
+
+	/**
+	 * Number of times the player has chosen the Jump the Volcano option
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	public static int numOfVolcanoVisits = 0;
+
+	/**
+	 * Number of times the player has chosen the Dumpster Dive option
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	public static int numOfDumpsterVisits = 0;
+
+	/**
+	 * Number of times the player has chosen the Shop option
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	public static int numOfShopVisits = 0;
+
+	/**
+	 * Number of times the player has chosen the Pet Store option
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	public static int numOfPetStoreVisits = 0;
+
+	/**
+	 * Number of times the player has chosen the Arena option
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	public static int numOfArenaVisits = 0;
+
 	//index 0 in Inventory
 	public static final Junk oldCanOfBeans = new Junk("Old Can of Beans", .05);
 	
@@ -205,9 +247,9 @@ class Data {
 	
 	//will be switched to type 'Food' once the type is implemented
 	//to-be index 1 in Inventory (sublist already dedicated)
-	public static final Junk freshBudLight = new Junk("Fresh Bud Light", 10.0);
+	public static final Food freshBudLight = new Food("Fresh Bud Light", 10.0, 10);
 	
-	public static final Junk veryDietSoda = new Junk("Very Diet Soda", 5.0);
+	public static final Food veryDietSoda = new Food("Very Diet Soda", 5.0, 2);
 	
 	//monsters!
 	//index 2 in Inventory

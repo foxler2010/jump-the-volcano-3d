@@ -120,7 +120,7 @@ class Main {
 
 			//you can only visit the pet store once you have $500
 			//the first time you see the pet store option it will say "(NEW!)" in front.
-			if (Data.player.getMoney() == 500) {
+			if (Data.player.getMoney() >= 500 && Data.numOfPetStoreVisits == 0) {
 				availableOptions.add(Option.PET_STORE_NEW);
 			}
 

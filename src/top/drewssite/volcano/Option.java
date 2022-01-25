@@ -39,6 +39,9 @@ public enum Option {
         @Override
         public void opCode() {
 
+            //inrcease # of visits by 1
+            Data.numOfVolcanoVisits++;
+
             //gen random boolean to decide between whether you successfully jump the volcano or not.
             //10% chance of success per attempt
 			if(Data.random.nextInt(100) > 89) { //success: # between 90 and 99, 10 numbers out of 100 possible = 10%
@@ -73,6 +76,9 @@ public enum Option {
         @Override
         public void opCode() {
 
+            //inrcease # of visits by 1
+            Data.numOfDumpsterVisits++;
+
             //choose random item from list of items that are in the dumpster
 		    Junk randomJunk = Data.junkItems[Data.random.nextInt(Data.junkItems.length)];
 
@@ -87,11 +93,25 @@ public enum Option {
 
     },
 
+    SHOP("Go to the Shop") {
+
+        @Override
+        public void opCode() {
+            
+            //inrcease # of visits by 1
+            Data.numOfShopVisits++;
+
+        }
+    },
+
     PET_STORE("Go to the Pet Store") {
 
         @Override
         public void opCode() {
-            //code here
+            
+            //inrcease # of visits by 1
+            Data.numOfPetStoreVisits++;
+
         }
         
     },
@@ -100,7 +120,10 @@ public enum Option {
 
         @Override
         public void opCode() {
-            //code here
+            
+            //inrcease # of visits by 1
+            Data.numOfPetStoreVisits++;
+
         }
         
     },
@@ -109,7 +132,10 @@ public enum Option {
 
         @Override
         public void opCode() {
-            //code here
+            
+            //inrcease # of visits by 1
+            Data.numOfArenaVisits++;
+
         }
         
     },
@@ -118,7 +144,10 @@ public enum Option {
 
         @Override
         public void opCode() {
-            //code here
+            
+            //inrcease # of visits by 1
+            Data.numOfArenaVisits++;
+            
         }
         
     },
@@ -129,7 +158,7 @@ public enum Option {
         public void opCode() {
             
             Data.continuingGame = Data.yesNoPrompt("Do you want to continue playing? [y/n] ", "y", "n");
-
+            
         }
         
     };

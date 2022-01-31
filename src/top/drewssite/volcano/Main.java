@@ -210,21 +210,28 @@ class Main {
 			
 			//HEALTHCHECK
 			if(Data.player.getHealth() == 0) {
-				System.out.println("It seems you have died. Agoostafus, the angel of ressurection,\nhas offered to ressurect you, but you must lose all your earthly\npossesions and start life from the beggining again.");
+				System.out.println("Your health is at 0. It seems you have died. You start contemplating your life choices, when\na powerful, heavenly goose flies toward you crashing into the *insert random physical object* next to you. The goose has offered to ressurect you,\nbut you must lose all your earthly possesions and start life from the beggining again.");
 				System.out.println();
-				Data.continuingGame = Data.yesNoPrompt("Do you accept Agoostafus' offer? [y/n] ", "y", "n");
+				Data.continuingGame = Data.yesNoPrompt("Do you accept the goose's offer? [y/n] ", "y", "n");
 				if(Data.continuingGame) {
 					System.out.println("Okay, please standby. You will be ressurected shortly.");
 					System.out.println();
 					Data.player.setMoney(0);
 					Data.player.setLevel(0);
 					Data.player.setHealth(100);
+
 					//clear inventory
-					for (int i = 0; i <= 6; i++) {
+					//does NOT restore starting inventory. maybe that will be toggleable in the future
+					for (int i = 0; i < 7; i++) {
+
 						for (int j = 0; j < Data.player.sizeOfSubList(i); j++) {
+
 							Data.player.removeItem(i, j);
+
 						}
+
 					}
+
 				} else {
 					System.out.println("Too bad. I thought it was a good deal, but I guess it is your call...");
 					System.out.println("Have fun dying.");

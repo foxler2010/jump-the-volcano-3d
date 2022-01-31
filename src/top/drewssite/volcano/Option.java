@@ -60,6 +60,11 @@ public enum Option {
 
         }
 
+        @Override
+        public boolean isAvailable() {
+            return true;
+        }
+
     },
 
     /**
@@ -89,6 +94,15 @@ public enum Option {
 		    System.out.println("You got a " + randomJunk.getName());
 		    System.out.println();
 
+        }
+
+        @Override
+        public boolean isAvailable() {
+            if (Data.player.sizeOfInventory() < 10) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
     },
@@ -179,6 +193,12 @@ public enum Option {
     
     public void opCode() {
         System.out.println("This option does not have any code yet.");
+    }
+
+    public boolean isAvailable() {
+        System.out.println("WARNING: The option '" + this.getName() + "' does not have any availability code yet, availability defaulting to true.");
+        System.out.println("If you would like to supress this message, add an empty isAvailable() method to the '" + this.getName() + "' option.");
+        return true;
     }
 
 }

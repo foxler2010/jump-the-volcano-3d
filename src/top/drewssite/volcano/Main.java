@@ -64,13 +64,13 @@ class Main {
 		
 		//initialize boolean to track whether we are continuing the loop or not
 		//also make a turn counter because it's useful
-		int turns = 0;
+		Data.turns = 0;
 
 		//the loop begins
 		while (Data.continuingGame) {
 			//PHASE 1
 			//reported no matter what
-			System.out.println("Turn: \u001b[33m" + turns + "\u001b[0m");
+			System.out.println("Turn: \u001b[33m" + Data.turns + "\u001b[0m");
 			System.out.println("Your level is \u001b[32m" + Data.player.getLevel() + "\u001b[0m...\n...and you have $\u001b[31m" + Data.player.getMoney() + "\u001b[0m in your wallet.");
 			System.out.println();
 			
@@ -109,6 +109,7 @@ class Main {
 			//yup new dynamic system coming soon...
 			//even more dynamic than this system
 			ArrayList<Option> availableOptions = new ArrayList<Option>();
+			ArrayList<Option> availableOptions2 = new ArrayList<Option>();
 
 			//you can always jump the volcano
 			availableOptions.add(Option.JUMP_THE_VOLCANO);
@@ -120,42 +121,50 @@ class Main {
 
 			//you can only visit the pet store once you have $500
 			//the first time you see the pet store option it will say "(NEW!)" in front.
-			if (Data.player.getMoney() >= 500 && Data.numOfPetStoreVisits == 0) {
+			if (Data.player.getMoney() >= 500 && Data.player.getNumOfPetStoreVisits() == 0) {
 				availableOptions.add(Option.PET_STORE_NEW);
 			}
 
 			//you can only visit the pet store if you have $500 or more
-			if (Data.player.getMoney() >= 500) {
+			if (Data.player.getMoney() >= 500 && Data.player.getNumOfPetStoreVisits() > 0) {
 				availableOptions.add(Option.PET_STORE);
 			}
 
 			//you can only visit the arena once you have reached turn 50
 			//the first time you see the arena option it will say "(NEW!)" in front.
-			if (turns == 50) {
+			if (Data.turns == 50) {
 				availableOptions.add(Option.ARENA_NEW);
 			}
 
 			//use the regular option name after turn 50
-			if (turns > 50) {
+			if (Data.turns > 50) {
 				availableOptions.add(Option.ARENA);
 			}
 
 			//you can always quit the game.
 			availableOptions.add(Option.QUIT);
-			
-			ArrayList<Option> optionsInOrder = new ArrayList<Option>();
+
+			//new system for determining availability
+			//loop thru every option that exists
+			for (int i = 0; i < Option.values().length; i++) { //uses Option.values(), which returns an Option[] containing all values in Option.
+
+				//if the option we are looping through is currently available to the player, add it to the list.
+				if (Option.values()[i].isAvailable()) {
+
+					availableOptions2.add(Option.values()[i]);
+
+				}
+
+			}
 			
 			System.out.println("Here are your options for this turn:");
 			System.out.println();
 			
-			//this loop displays the options and adds them to an ordered list
+			//this loop displays the options
 			for (int i = 0; i < availableOptions.size(); i++) {
 				
-				//print the option to the screen. and do some cool maths so the numbers are always in ascending order :)
+				//print the option to the screen. and do some cool maths so the numbers are always starting at 1 :)
 				System.out.println("  " + (i + 1) + ") " + availableOptions.get(i).getName());
-				
-				//add the option to this list. It must be in order.
-				optionsInOrder.add(availableOptions.get(i));
 				
 			}
 			
@@ -170,24 +179,24 @@ class Main {
 			while(responseIsValid == false) {
 				
 				//prompts the user to choose an option
-				//arguably the most important line of user input in the game
+				//this is where the user puts in what they want to do every turn
 				int option = Data.intPrompt("Please input the option you would like to carry out: ");
 				
 				//if user input is an index in the list
 				//loop thru and find out which index the user input is
-				if (option <= optionsInOrder.size() && option > 0) {
+				if (option <= availableOptions2.size() && option > 0) {
 					
-					for (int i = 0; i < optionsInOrder.size(); i++) {
+					for (int i = 0; i < availableOptions2.size(); i++) {
 						
 						if (option == i + 1) { // +1 is because user input will be 1 greater than the index
 							
 							//lets player know what they chose
-							System.out.println("You choose " + optionsInOrder.get(i).getName());
+							System.out.println("You chose " + availableOptions2.get(i).getName());
 							System.out.println();
 
 							//executes the option's opCode() method
 							//this is the ONLY time player stats EVER change!!!
-							optionsInOrder.get(i).opCode();
+							availableOptions2.get(i).opCode();
 
 							//ends the while loop
 							responseIsValid = true;
@@ -210,7 +219,7 @@ class Main {
 			
 			//HEALTHCHECK
 			if(Data.player.getHealth() == 0) {
-				System.out.println("Your health is at 0. It seems you have died. You start contemplating your life choices, when\na powerful, heavenly goose flies toward you crashing into the *insert random physical object* next to you. The goose has offered to ressurect you,\nbut you must lose all your earthly possesions and start life from the beggining again.");
+				System.out.println("Your health is at 0. It seems you have died. You start contemplating your life choices, when\na powerful, heavenly goose flies toward you crashing into the *insert random physical object* next to you. The goose has offered to ressurect you,\nbut you must lose all your earthly posessions and start life from the beggining again.");
 				System.out.println();
 				Data.continuingGame = Data.yesNoPrompt("Do you accept the goose's offer? [y/n] ", "y", "n");
 				if(Data.continuingGame) {
@@ -249,7 +258,7 @@ class Main {
 			}//end turnmarker if
 			
 			//Increase turn counter by one at end of turn
-			turns++;
+			Data.turns++;
 			
 		}//end main loop	
 		

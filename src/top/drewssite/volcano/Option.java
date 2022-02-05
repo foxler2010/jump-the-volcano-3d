@@ -39,8 +39,8 @@ public enum Option {
         @Override
         public void opCode() {
 
-            //inrcease # of visits by 1
-            Data.numOfVolcanoVisits++;
+            //increase # of visits by 1
+            Data.player.setNumOfVolcanoVisits(Data.player.getNumOfVolcanoVisits() + 1);
 
             //gen random boolean to decide between whether you successfully jump the volcano or not.
             //10% chance of success per attempt
@@ -81,8 +81,8 @@ public enum Option {
         @Override
         public void opCode() {
 
-            //inrcease # of visits by 1
-            Data.numOfDumpsterVisits++;
+            //increase # of visits by 1
+            Data.player.setNumOfDumpsterVisits(Data.player.getNumOfDumpsterVisits() + 1);
 
             //choose random item from list of items that are in the dumpster
 		    Junk randomJunk = Data.junkItems[Data.random.nextInt(Data.junkItems.length)];
@@ -108,13 +108,42 @@ public enum Option {
     },
 
     SHOP("Go to the Shop") {
+        
+        @Override
+        public void opCode() {
+            
+            //increase # of visits by 1
+            Data.player.setNumOfShopVisits(Data.player.getNumOfShopVisits() + 1);
+            
+        }
+        
+        @Override
+        public boolean isAvailable() {
+            if (Data.player.sizeOfInventory() >= 5 || Data.player.getMoney() >= 1 || Data.player.getLevel() >= 10 && Data.player.getNumOfShopVisits() > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    },
+    
+    SHOP_NEW("(NEW!) Go to the Shop") {
 
         @Override
         public void opCode() {
             
-            //inrcease # of visits by 1
-            Data.numOfShopVisits++;
+            //increase # of visits by 1
+            Data.player.setNumOfShopVisits(Data.player.getNumOfShopVisits() + 1);
 
+        }
+
+        @Override
+        public boolean isAvailable() {
+            if (Data.player.sizeOfInventory() >= 5 || Data.player.getMoney() >= 1 || Data.player.getLevel() >= 10 && Data.player.getNumOfShopVisits() == 0) {
+                return true;
+            } else {
+                return false;
+            }
         }
     },
 
@@ -123,9 +152,18 @@ public enum Option {
         @Override
         public void opCode() {
             
-            //inrcease # of visits by 1
-            Data.numOfPetStoreVisits++;
+            //increase # of visits by 1
+            Data.player.setNumOfPetStoreVisits(Data.player.getNumOfPetStoreVisits() + 1);
 
+        }
+
+        @Override
+        public boolean isAvailable() {
+            if (Data.player.getMoney() >= 500 && Data.player.getNumOfPetStoreVisits() > 0) {
+                return true;
+            } else {
+                return false;
+            }
         }
         
     },
@@ -135,9 +173,18 @@ public enum Option {
         @Override
         public void opCode() {
             
-            //inrcease # of visits by 1
-            Data.numOfPetStoreVisits++;
+            //increase # of visits by 1
+            Data.player.setNumOfPetStoreVisits(Data.player.getNumOfPetStoreVisits() + 1);
 
+        }
+
+        @Override
+        public boolean isAvailable() {
+            if (Data.player.getMoney() >= 500 && Data.player.getNumOfPetStoreVisits() == 0) {
+                return true;
+            } else {
+                return false;
+            }
         }
         
     },
@@ -147,9 +194,18 @@ public enum Option {
         @Override
         public void opCode() {
             
-            //inrcease # of visits by 1
-            Data.numOfArenaVisits++;
+            //increase # of visits by 1
+            Data.player.setNumOfArenaVisits(Data.player.getNumOfArenaVisits() + 1);
 
+        }
+
+        @Override
+        public boolean isAvailable() {
+            if (Data.turns > 0) {
+                return true;
+            } else {
+                return false;
+            }
         }
         
     },
@@ -159,9 +215,18 @@ public enum Option {
         @Override
         public void opCode() {
             
-            //inrcease # of visits by 1
-            Data.numOfArenaVisits++;
+            //increase # of visits by 1
+            Data.player.setNumOfArenaVisits(Data.player.getNumOfArenaVisits() + 1);
             
+        }
+
+        @Override
+        public boolean isAvailable() {
+            if (Data.turns == 0) {
+                return true;
+            } else {
+                return false;
+            }
         }
         
     },
@@ -173,6 +238,11 @@ public enum Option {
             
             Data.continuingGame = Data.yesNoPrompt("Do you want to continue playing? [y/n] ", "y", "n");
             
+        }
+
+        @Override
+        public boolean isAvailable() {
+            return true;
         }
         
     };
@@ -191,10 +261,33 @@ public enum Option {
         this.name = name;
     }
     
+    /**
+     * This method is unique to every value in the Option enum, and when executed runs the code for that Option.
+     * If the value in Option does not contain an opCode() method, a default message will be displayed.
+     * This default message will never be displayed in the base game, and well-put-together mods should contain an opCode()
+     * for every value in Option. If you (the player) are using mods, please consult with the mod's creator for support if you
+     * see the default message. It would also wise to examine the code inside the Option enum, as it contains some very important functions.
+     * Mod makers, please see the modding documentation at https://drewssite.top/jump-the-volcano/mods
+     * @author foxler2010
+     * @since v1.0
+     * @see Option
+     * @see Data
+     */
     public void opCode() {
-        System.out.println("This option does not have any code yet.");
+        System.out.println("WARNING: The option '" + this.getName() + "' option does not have any code yet.");
+        System.out.println("It is reccomended to not use this Option as it doesn't do anything. If this Option is intentionally empty, then");
+        System.out.println("add an empty opCode() method to this Option's enum value.");
     }
 
+    /**
+     * Returns true if the option should be displayed this turn, false otherwise.
+     * Modders should create one of these for every option, or else the warning in the super implmentation will be displayed,
+     * and the option will be displayed every turn.
+     * @author foxler2010
+     * @since v1.0
+     * @see Option
+     * @see Data
+     */
     public boolean isAvailable() {
         System.out.println("WARNING: The option '" + this.getName() + "' does not have any availability code yet, availability defaulting to true.");
         System.out.println("If you would like to supress this message, add an empty isAvailable() method to the '" + this.getName() + "' option.");

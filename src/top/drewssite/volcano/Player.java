@@ -12,10 +12,69 @@ package top.drewssite.volcano;
  */
 class Player extends Animal {
 	
-	//VARS
+	/**
+	 * The experience level of the player. Can be used for a variety of things.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 */
 	private int level;
+
+	/**
+	 * The amount of money the player has. Used to buy and sell things in the various shops.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 */
 	private double money;
+
+	/**
+	 * The Inventory object storing all the items in the player's possesion
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 */
 	private Inventory inventory = new Inventory();
+
+	/**
+	 * Number of times the player has chosen the Jump the Volcano option
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	private int numOfVolcanoVisits = 0;
+
+	/**
+	 * Number of times the player has chosen the Dumpster Dive option
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	private int numOfDumpsterVisits = 0;
+
+	/**
+	 * Number of times the player has chosen the Shop option
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	private int numOfShopVisits = 0;
+
+	/**
+	 * Number of times the player has chosen the Pet Store option
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	private int numOfPetStoreVisits = 0;
+
+	/**
+	 * Number of times the player has chosen the Arena option
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	private int numOfArenaVisits = 0;
 	
 	/**
 	 * The constructor for the Player class
@@ -50,6 +109,46 @@ class Player extends Animal {
 	
 	public void setMoney(double money) {
 		this.money = money;
+	}
+
+	public int getNumOfVolcanoVisits() {
+		return numOfVolcanoVisits;
+	}
+
+	public void setNumOfVolcanoVisits(int numOfVolcanoVisits) {
+		this.numOfVolcanoVisits = numOfVolcanoVisits;
+	}
+
+	public int getNumOfDumpsterVisits() {
+		return numOfDumpsterVisits;
+	}
+
+	public void setNumOfDumpsterVisits(int numOfDumpsterVisits) {
+		this.numOfDumpsterVisits = numOfDumpsterVisits;
+	}
+
+	public int getNumOfShopVisits() {
+		return numOfShopVisits;
+	}
+
+	public void setNumOfShopVisits(int numOfShopVisits) {
+		this.numOfShopVisits = numOfShopVisits;
+	}
+
+	public int getNumOfPetStoreVisits() {
+		return numOfPetStoreVisits;
+	}
+
+	public void setNumOfPetStoreVisits(int numOfPetStoreVisits) {
+		this.numOfPetStoreVisits = numOfPetStoreVisits;
+	}
+
+	public int getNumOfArenaVisits() {
+		return numOfArenaVisits;
+	}	
+
+	public void setNumOfArenaVisits(int numOfArenaVisits) {
+		this.numOfArenaVisits = numOfArenaVisits;
 	}
 	
 	//INVENTORY MANAGEMENT

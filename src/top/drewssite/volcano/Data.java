@@ -185,49 +185,24 @@ class Data {
 	 */
 	public static Player player = new Player("Player", 10, 0, 0, Data.startingInventory);
 
+	/**
+	 * The number of turns the player has taken. Does not reset after the player dies.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	public static int turns;
+
+	/**
+	 * When this is true, the main loop continues to run. If the player choosesthe "Quit" option and responds yes,
+	 * this boolean will be set to false.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
 	public static boolean continuingGame = true;
 
 	//option code to go here
-
-	/**
-	 * Number of times the player has chosen the Jump the Volcano option
-	 * @author foxler2010
-	 * @since v1.0
-	 * @see Data
-	 */
-	public static int numOfVolcanoVisits = 0;
-
-	/**
-	 * Number of times the player has chosen the Dumpster Dive option
-	 * @author foxler2010
-	 * @since v1.0
-	 * @see Data
-	 */
-	public static int numOfDumpsterVisits = 0;
-
-	/**
-	 * Number of times the player has chosen the Shop option
-	 * @author foxler2010
-	 * @since v1.0
-	 * @see Data
-	 */
-	public static int numOfShopVisits = 0;
-
-	/**
-	 * Number of times the player has chosen the Pet Store option
-	 * @author foxler2010
-	 * @since v1.0
-	 * @see Data
-	 */
-	public static int numOfPetStoreVisits = 0;
-
-	/**
-	 * Number of times the player has chosen the Arena option
-	 * @author foxler2010
-	 * @since v1.0
-	 * @see Data
-	 */
-	public static int numOfArenaVisits = 0;
 
 	//index 0 in Inventory
 	public static final Junk oldCanOfBeans = new Junk("Old Can of Beans", .05);

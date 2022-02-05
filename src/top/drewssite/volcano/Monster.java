@@ -10,8 +10,16 @@ class Monster extends Animal {
 		//no extras to add :)
 	}
 	
-	//would've made the target a Pet, but because of the abstract inheritance (i think that's what it is called)
-	//it has to be an Animal... so a monster can attack a monster if it wants
+	/**
+	 * Unfinished method that will be used for comat mechanics.
+	 * @author foxler2010
+	 * @param target The thing you want to attack
+	 * @since v1.0
+	 * @see Monster
+	 * @see Player
+	 * @see Pet
+	 * @see Animal
+	 */
 	public void attack(Animal target) {
 		//fighting mechanics are hard.. i'll do it later
 	}

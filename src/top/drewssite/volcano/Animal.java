@@ -40,6 +40,16 @@ public abstract class Animal extends Item {
 		this.health = 100;
 	}
 	
+	/**
+	 * Unfinished method that will be used for comat mechanics.
+	 * @author foxler2010
+	 * @param target The thing you want to attack
+	 * @since v1.0
+	 * @see Animal
+	 * @see Monster
+	 * @see Pet
+	 * @see Player
+	 */
 	public abstract void attack(Animal target);
 	
 }

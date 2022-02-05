@@ -95,124 +95,326 @@ class Player extends Animal {
 	}
 	
 	//GETTERS AND SETTERS
+	
+	/**
+	 * The getter for the level variable.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public int getLevel() {
 		return level;
 	}
 	
+	/**
+	 * The getter for the money variable.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public double getMoney() {
 	return money;
 	}
 	
+	/**
+	 * The setter for the level variable.
+	 * @author foxler2010
+	 * @param level The new value of the level variable
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public void setLevel(int level) {
 		this.level = level;
 	}
 	
+	/**
+	 * The setter for the money variable.
+	 * @author foxler2010
+	 * @param money The new value of the money variable
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public void setMoney(double money) {
 		this.money = money;
 	}
 
+	/**
+	 * The getter for the numOfVolcanoVisits variable.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public int getNumOfVolcanoVisits() {
 		return numOfVolcanoVisits;
 	}
 
+	/**
+	 * The setter for the numOfVolcanoVisits variable.
+	 * @author foxler2010
+	 * @param numOfVolcanoVisits The new value of the numOfVolcanoVisits variable
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public void setNumOfVolcanoVisits(int numOfVolcanoVisits) {
 		this.numOfVolcanoVisits = numOfVolcanoVisits;
 	}
 
+	/**
+	 * The getter for the numOfDumpsterVisits variable.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public int getNumOfDumpsterVisits() {
 		return numOfDumpsterVisits;
 	}
 
+	/**
+	 * The setter for the numOfDumpsterVisits variable.
+	 * @author foxler2010
+	 * @param numOfDumpsterVisits The new value of the numOfDumpsterVisits variable
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public void setNumOfDumpsterVisits(int numOfDumpsterVisits) {
 		this.numOfDumpsterVisits = numOfDumpsterVisits;
 	}
 
+	/**
+	 * The getter for the numOfShopVisits variable.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public int getNumOfShopVisits() {
 		return numOfShopVisits;
 	}
 
+	/**
+	 * The setter for the numOfShopVisits variable.
+	 * @author foxler2010
+	 * @param numOfShopVisits The new value of the numOfShopVisits variable
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public void setNumOfShopVisits(int numOfShopVisits) {
 		this.numOfShopVisits = numOfShopVisits;
 	}
 
+	/**
+	 * The getter for the numOfPetStoreVisits variable.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public int getNumOfPetStoreVisits() {
 		return numOfPetStoreVisits;
 	}
 
+	/**
+	 * The setter for the numOfPetStoreVisits variable.
+	 * @author foxler2010
+	 * @param numOfPetStoreVisits The new value of the numOfPetStoreVisits variable
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public void setNumOfPetStoreVisits(int numOfPetStoreVisits) {
 		this.numOfPetStoreVisits = numOfPetStoreVisits;
 	}
 
+	/**
+	 * The getter for the numOfArenavisits variable.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public int getNumOfArenaVisits() {
 		return numOfArenaVisits;
 	}	
 
+	/**
+	 * The setter for the numOfArenaVisits variable.
+	 * @author foxler2010
+	 * @param numOfArenaVisits The new value of the numOfArenaVisits variable
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public void setNumOfArenaVisits(int numOfArenaVisits) {
 		this.numOfArenaVisits = numOfArenaVisits;
 	}
 	
 	//INVENTORY MANAGEMENT
 	
-	//Returns an item in the inventory.
-	//Does NOT remove the item from the list.
+	/**
+	 * Returns an item in the inventory.
+	 * Does NOT remove the item from the list.
+	 * @author foxler2010
+	 * @param type The type of the item, in enum form.
+	 * @param index The index of the item within the sub-list.
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public Item getItem(ItemType type, int index) {
 		return inventory.getItem(type, index);
 	}
 	
-	//add an item to the inventory
+	/**
+	 * Adds an item to the inventory.
+	 * @author foxler2010
+	 * @param item The item to add to the inventory
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public void addItem(Item item) {
 		inventory.addItem(item);
 	}
 	
-	//remove something from the inventory
-	//shifts everything in the sub-list down one index if the removed item is not the last index
+	/**
+	 * Removes something from the inventory.
+	 * Shifts everything in the sub-list down one index if the removed item is not the last index.
+	 * @author foxler2010
+	 * @param item The item to remove from the inventory.
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public void removeItem(Item item) {
 		inventory.removeItem(item);
 	}
 
+	/**
+	 * Removes something from the inventory.
+	 * Shifts everything in the sub-list down one index if the removed item is not the last index.
+	 * @author foxler2010
+	 * @param type The type of the item to remove, in enum form
+	 * @param index the index of the item within the sub-list
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public void removeItem(ItemType type, int index) {
 		inventory.removeItem(type, index);
 	}
 
+	/**
+	 * Removes something from the inventory.
+	 * Shifts everything in the sub-list down one index if the removed item is not the last index.
+	 * @author foxler2010
+	 * @param typeIndex The index of the sublist containing the item to remove
+	 * @param index The index of the item within the sublist
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public void removeItem(int typeIndex, int index) {
 		inventory.removeItem(typeIndex, index);
 	}
 	
-	//check if the item is in the inventory
-	//returns either true or false
-	//does not specify the amount of items (if there are multiple copies)
+	/**
+	 * Check if the item is in the inventory.
+	 * Returns either true or false.
+	 * Does not specify the amount of items. (if there are multiple copies)
+	 * @author foxler2010
+	 * @param item The item to check for
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public boolean checkForItem(Item item) {
 		return inventory.checkForItem(item);
 	}
 	
-	//return the index of the inventory item specified
-	//if item does not exist, return -1
-	//if there are multiple copies of the item in the inventory, return the one with the lowest index
+	/**
+	 * Return the index of the inventory item specified.
+	 * If item does not exist, return -1.
+	 * If there are multiple copies of the item in the inventory, return the one with the lowest index.
+	 * @author foxler2010
+	 * @param item The item to find the index of
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public int indexOfItem(Item item) {
 		return inventory.indexOfItem(item);
 	}
 	
-	//makes a string with the names of all items in the inventory
+	/**
+	 * Makes a string with the names of all items in the inventory.
+	 * @author foxler2010
+	 * @return A String detailing the contents of the player's inventory.
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public String inventoryToString() {
 		return inventory.toString();
 	}
 
-	//same as above method, but the String lists two items as "itemName x2", instead of "itemName, itemName, etc."
-	//almost always more useful
+	/**
+	 * Same as inventoryToString() method, but the String lists two items as "itemName x2",
+	 * instead of "itemName, itemName, etc." Almost always more useful.
+	 * @author foxler2010
+	 * @return A String detailing the contents of the player's inventory.
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public String inventoryFancyToString() {
 		return inventory.fancyToString();
 	}
 
-	//returns the number of items in the inventory
+	/**
+	 * Returns the number of items in the inventory
+	 * @author foxler2010
+	 * @return The size of the player's inventory
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public int sizeOfInventory() {
 		return inventory.sizeOfInventory();
 	}
 
+	/**
+	 * returns the number of items in the specified sublist
+	 * @author foxler2010
+	 * @param subListIndex The index of the sublist to return the size of.
+	 * @return The size of the sublist
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
 	public int sizeOfSubList(int subListIndex) {
 		return inventory.sizeOfSubList(subListIndex);
 	}
 	
-	//COMBAT
+	/**
+	 * Unfinished method that will be used for comat mechanics.
+	 * @author foxler2010
+	 * @param target The thing you want to attack
+	 * @since v1.0
+	 * @see Player
+	 * @see Animal
+	 * @see Pet
+	 * @see Monster
+	 * @see Data
+	 */
 	public void attack(Animal target) {
 		//not done yet
 	}

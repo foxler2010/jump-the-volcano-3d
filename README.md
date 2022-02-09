@@ -43,4 +43,4 @@ Unless it's a movie. I would like to be paid for that.
 
 ## Now go play
 
-### No, seriously, please go play; I'm starving and need money from nonexistent ad-revenue to surive. Maybe someday I will add in some cool paid DLCs or whatever, for now it's free. Feel free to donate, though. I need mulah
+I'm not going to rant about this forever. Either play the game, help me code it, or get out of my face while I'm trying to focus

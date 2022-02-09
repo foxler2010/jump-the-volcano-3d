@@ -114,6 +114,8 @@ public enum Option {
             
             //increase # of visits by 1
             Data.player.setNumOfShopVisits(Data.player.getNumOfShopVisits() + 1);
+
+            System.out.println("You visit the shop and sell nothing because you are a hoarder.");
             
         }
         

@@ -205,7 +205,7 @@ public enum Option {
 
         @Override
         public boolean isAvailable() {
-            if (Data.turns > 0) {
+            if (Data.turns > 50) {
                 return true;
             } else {
                 return false;
@@ -226,7 +226,7 @@ public enum Option {
 
         @Override
         public boolean isAvailable() {
-            if (Data.turns == 0) {
+            if (Data.turns == 50) {
                 return true;
             } else {
                 return false;

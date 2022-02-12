@@ -106,57 +106,22 @@ class Main {
 			//PHASE 2
 			//display options
 
-			//yup new dynamic system coming soon...
-			//even more dynamic than this system
+			//determine availability of options
 			ArrayList<Option> availableOptions = new ArrayList<Option>();
-			ArrayList<Option> availableOptions2 = new ArrayList<Option>();
 
-			//you can always jump the volcano
-			availableOptions.add(Option.JUMP_THE_VOLCANO);
-
-			//you can't dumpster dive if you have 10 or more items in your inventory.
-			if (Data.player.sizeOfInventory() < 10) {
-				availableOptions.add(Option.DUMPSTER_DIVE);
-			}
-
-			//you can only visit the pet store once you have $500
-			//the first time you see the pet store option it will say "(NEW!)" in front.
-			if (Data.player.getMoney() >= 500 && Data.player.getNumOfPetStoreVisits() == 0) {
-				availableOptions.add(Option.PET_STORE_NEW);
-			}
-
-			//you can only visit the pet store if you have $500 or more
-			if (Data.player.getMoney() >= 500 && Data.player.getNumOfPetStoreVisits() > 0) {
-				availableOptions.add(Option.PET_STORE);
-			}
-
-			//you can only visit the arena once you have reached turn 50
-			//the first time you see the arena option it will say "(NEW!)" in front.
-			if (Data.turns == 50) {
-				availableOptions.add(Option.ARENA_NEW);
-			}
-
-			//use the regular option name after turn 50
-			if (Data.turns > 50) {
-				availableOptions.add(Option.ARENA);
-			}
-
-			//you can always quit the game.
-			availableOptions.add(Option.QUIT);
-
-			//new system for determining availability
 			//loop thru every option that exists
 			for (int i = 0; i < Option.values().length; i++) { //uses Option.values(), which returns an Option[] containing all values in Option.
 
 				//if the option we are looping through is currently available to the player, add it to the list.
 				if (Option.values()[i].isAvailable()) {
 
-					availableOptions2.add(Option.values()[i]);
+					availableOptions.add(Option.values()[i]);
 
 				}
 
 			}
 			
+			//display options to the player
 			System.out.println("Here are your options for this turn:");
 			System.out.println();
 			
@@ -184,19 +149,19 @@ class Main {
 				
 				//if user input is an index in the list
 				//loop thru and find out which index the user input is
-				if (option <= availableOptions2.size() && option > 0) {
+				if (option <= availableOptions.size() && option > 0) {
 					
-					for (int i = 0; i < availableOptions2.size(); i++) {
+					for (int i = 0; i < availableOptions.size(); i++) {
 						
 						if (option == i + 1) { // +1 is because user input will be 1 greater than the index
 							
 							//lets player know what they chose
-							System.out.println("You chose " + availableOptions2.get(i).getName());
+							System.out.println("You chose " + availableOptions.get(i).getName());
 							System.out.println();
 
 							//executes the option's opCode() method
 							//this is the ONLY time player stats EVER change!!!
-							availableOptions2.get(i).opCode();
+							availableOptions.get(i).opCode();
 
 							//ends the while loop
 							responseIsValid = true;

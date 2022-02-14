@@ -31,7 +31,8 @@ import java.util.ArrayList;
 class Main {
 	
 	/**
-	 * This is the main method. When the program is executed, this is the method that is called
+	 * This is the main method. When the program is executed, this is the method that is called.
+	 * 
 	 * @param args Arguments from the shell. Currently not used for anything, but that could change.
 	 */
 	public static void main(String args[]) {

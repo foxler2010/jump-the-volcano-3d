@@ -16,6 +16,8 @@ public class Food extends Junk {
      * @see Food
      */
     private int energy;
+    private final boolean cookable;
+    private boolean cooked;
 
     /**
      * Returns the amount of energy the food provides.
@@ -48,10 +50,25 @@ public class Food extends Junk {
      * @since v1.0
      * @see Food
      */
-    public Food(String name, double price, int energy) {
+    public Food(String name, double price, int energy, boolean cookable) {
 
         super(name, price);
         this.energy = energy;
+        this.cookable = cookable;
+        this.cooked = false;
+        
+    }
+
+    public Food(String name, double price, int energy, boolean cookable, boolean cooked) {
+
+        super(name, price);
+        this.energy = energy;
+        this.cookable = cookable;
+        if (!cookable) {
+            cooked = false;
+        } else {
+            this.cooked = false;
+        }
         
     }
 

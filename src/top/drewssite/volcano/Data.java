@@ -235,11 +235,17 @@ class Data {
 	//you must add your item here for it to have a chance of coming out of the dumpster
 	public static final Junk[] junkItems = {oldCanOfBeans, dirtySodaBottle, moldySock, brokenMagnet, poopSock};
 	
-	//will be switched to type 'Food' once the type is implemented
-	//to-be index 1 in Inventory (sublist already dedicated)
-	public static final Food freshBudLight = new Food("Fresh Bud Light", 10.0, 10);
+	//yummy things
+	//index 1 in inventory
+	public static final Food freshBudLight = new Food("Fresh Bud Light", 10.0, 10, false);
 	
-	public static final Food veryDietSoda = new Food("Very Diet Soda", 5.0, 2);
+	public static final Food veryDietSoda = new Food("Very Diet Soda", 5.0, 2, false);
+
+	public static final Food grannySmithApple = new Food("Granny Smith Apple", 1.0, 20, false);
+
+	public static final Food honeycrispApple = new Food("Honeycrisp Apple", 2.0, 25, false, false);
+
+	public static final Food sweetPotatoes = new Food("Sweet Potatoes", )
 	
 	//monsters!
 	//index 2 in Inventory

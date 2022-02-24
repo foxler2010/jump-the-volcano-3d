@@ -1,5 +1,6 @@
 package top.drewssite.volcano;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
@@ -201,6 +202,20 @@ class Data {
 	 * @see Data
 	 */
 	public static boolean continuingGame = true;
+
+	/**
+	 * Currently used by the "Fill Bottle" Option to check if the player is near a liquid
+	 * suitable to be put inside a bottle. Right now, it is always empty.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	public static ArrayList<Liquid> nearLiquid;
+
+	static {
+		//add liquids the player is by in the beggining of the game here.
+		//ex. if the player starts by a pond, water must be added to the list here.
+	}
 
 	//option code to go here
 

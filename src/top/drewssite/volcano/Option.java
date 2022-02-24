@@ -235,6 +235,15 @@ public enum Option {
         
     },
 
+    FILL_BOTTLE("Fill Bottle") {
+
+        @Override
+        public void opCode() {
+
+            //check if there is liquid
+        }
+    },
+
     QUIT("Exit the game") {
 
         @Override

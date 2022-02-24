@@ -245,7 +245,7 @@ class Data {
 
 	public static final Food honeycrispApple = new Food("Honeycrisp Apple", 2.0, 25, false, false);
 
-	public static final Food sweetPotatoes = new Food("Sweet Potatoes", )
+	public static final Food sweetPotatoes = new Food("Sweet Potatoes", );
 	
 	//monsters!
 	//index 2 in Inventory

@@ -49,7 +49,7 @@ public class Liquid extends Food {
      */
     public Liquid(String name, double price, int energy, boolean isBottleable) {
 
-        super(name, price, energy);
+        super(name, price, energy, false);
 
         this.isBottleable = isBottleable;
 

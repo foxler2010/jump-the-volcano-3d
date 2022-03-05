@@ -30,7 +30,7 @@ public class Liquid extends Food {
     }
 
     /**
-     * Returns the bottleability of the liquid.
+     * Sets the bottleability of the liquid.
      * @param isBottleable Whether the liquid is bottleable or not.
      * @author foxler2010
      * @since v1.0

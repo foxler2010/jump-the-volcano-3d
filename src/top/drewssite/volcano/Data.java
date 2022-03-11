@@ -210,25 +210,31 @@ class Data {
 	 * @since v1.0
 	 * @see Data
 	 */
-	public static ArrayList<Liquid> nearLiquid;
+	public static ArrayList<Liquid> nearLiquid = new ArrayList<Liquid>();
 
 	static {
 		//add liquids the player is by in the beggining of the game here.
 		//ex. if the player starts by a pond, water must be added to the list here.
+		nearLiquid.add(Data.water);
 	}
 
 	//option code to go here
 
+	//junk
 	//index 0 in Inventory
 	public static final Junk oldCanOfBeans = new Junk("Old Can of Beans", .05);
-	
-	public static final Junk dirtySodaBottle = new Junk("Dirty Soda Bottle", .05);
 	
 	public static final Junk moldySock = new Junk("Moldy Sock", .05);
 	
 	public static final Junk brokenMagnet = new Junk("Broken Magnet", .10);
-
+	
 	public static final Junk poopSock = new Junk("Poop Sock", 0);
+	
+	//bottles
+	//stored with the junk in inventory
+	public static final Bottle dirtySodaBottle = new Bottle("Dirty Soda Bottle", .05, 0, null);
+
+	public static final Bottle freshBudLight = new Bottle("Fresh Bud Light", 10, 10, Data.budLight);
 
 	//list of all junks
 	//items in this list are considered "inside the dumpster"
@@ -237,7 +243,6 @@ class Data {
 	
 	//yummy things
 	//index 1 in inventory
-	public static final Food freshBudLight = new Food("Fresh Bud Light", 10.0, 10, false);
 	
 	public static final Food veryDietSoda = new Food("Very Diet Soda", 5.0, 2, false);
 
@@ -274,5 +279,11 @@ class Data {
 	public static final Pet neilArmstrong = new Pet("Neil Armstrong", 30);
 
 	public static final Pet gordonRamseyPlushToy = new Pet("Gordon Ramsey Plush Toy", 0);
+
+	//liquids
+	//can't store in inventory without a Bottle, so there is no index number
+	public static final Liquid water = new Liquid("Water", 0, 0, 10, true);
+
+	public static final Liquid budLight = new Liquid("Bud Light", 10, 40, 3, true);
 	
 }

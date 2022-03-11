@@ -405,7 +405,7 @@ class Player extends Animal {
 	}
 	
 	/**
-	 * Unfinished method that will be used for comat mechanics.
+	 * Unfinished method that will be used for combat mechanics.
 	 * @author foxler2010
 	 * @param target The thing you want to attack
 	 * @since v1.0

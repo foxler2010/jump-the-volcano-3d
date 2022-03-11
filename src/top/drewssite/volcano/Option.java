@@ -240,7 +240,60 @@ public enum Option {
         @Override
         public void opCode() {
 
-            //check if there is liquid
+                if (Data.nearLiquid.size() > 1) {
+
+                    System.out.println("You are currently able to fill your bottle with " + Data.nearLiquid.size() + " liquids near you");
+                    System.out.println();
+                    System.out.println("Here they are:");
+    
+                    for (int i = 0; i < Data.nearLiquid.size(); i++) {
+    
+                        System.out.println((i + 1) + ") " + Data.nearLiquid.get(i).getName());                    
+    
+                    }
+
+                    int liquid = Data.intPrompt("Which liquid would you like to fill your bottle with? ");
+
+                }
+
+        }
+
+        @Override
+        public boolean isAvailable() {
+            
+            //create var
+            boolean bottleInInventory = false;
+            //loop thru junk sublist
+            for (int i = 0; i < Data.player.sizeOfSubList(0); i++) {
+
+                //if current item is a Bottle, bottleInInventory = true; otherwise do nothing
+                if (Data.player.getItem(ItemType.JUNK, i).getClass() == Bottle.class) {
+
+                    bottleInInventory = true;
+
+                }
+
+                //repeat loop until a Bottle is found (or not found)
+            }
+
+            //check if player is near a liquid AND if they have a Bottle in their inventory
+            //if they satisfy both conditions, return true
+            try {
+
+                if (Data.nearLiquid.get(0) != null && bottleInInventory) {
+    
+                    return true;
+    
+                }
+
+            } catch (IndexOutOfBoundsException e) {
+
+                return false;
+
+            }
+
+            return false; //if player is not near a liquid and in possesion of a Bottle
+
         }
     },
 
@@ -290,6 +343,7 @@ public enum Option {
         System.out.println("WARNING: The option '" + this.getName() + "' option does not have any code yet.");
         System.out.println("It is reccomended to not use this Option as it doesn't do anything. If this Option is intentionally empty, then");
         System.out.println("add an empty opCode() method to this Option's enum value.");
+        System.out.println();
     }
 
     /**
@@ -304,6 +358,7 @@ public enum Option {
     public boolean isAvailable() {
         System.out.println("WARNING: The option '" + this.getName() + "' does not have any availability code yet, availability defaulting to true.");
         System.out.println("If you would like to supress this message, add an empty isAvailable() method to the '" + this.getName() + "' option.");
+        System.out.println();
         return true;
     }
 

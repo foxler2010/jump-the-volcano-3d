@@ -143,6 +143,32 @@ class Player extends Animal {
 	}
 
 	/**
+	 * Sets the player's level to the current value + levelsToAdd
+	 * @param levelsToAdd The amount of levels to add to the current value
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 */
+	public void levelUp(int levelsToAdd) {
+
+		Data.player.setLevel(Data.player.getLevel() + levelsToAdd);
+
+	}
+
+	/**
+	 * Sets the player's balance to the current value + dollarsToAdd
+	 * @param dollarsToAdd The amount of money to add to the current value
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 */
+	public void moneyUp(int dollarsToAdd) {
+
+		Data.player.setLevel(Data.player.getLevel() + dollarsToAdd);
+
+	}
+
+	/**
 	 * The getter for the numOfVolcanoVisits variable.
 	 * @author foxler2010
 	 * @since v1.0
@@ -163,6 +189,19 @@ class Player extends Animal {
 	 */
 	public void setNumOfVolcanoVisits(int numOfVolcanoVisits) {
 		this.numOfVolcanoVisits = numOfVolcanoVisits;
+	}
+
+	/**
+	 * Sets the numOfVolcanoVisits variable to the current value + visitsToAdd
+	 * @param visitsToAdd The amount of levels to add to the current value
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 */
+	public void volcanoVisitsUp(int visitsToAdd) {
+
+		Data.player.setLevel(Data.player.getLevel() + visitsToAdd);
+
 	}
 
 	/**
@@ -189,6 +228,19 @@ class Player extends Animal {
 	}
 
 	/**
+	 * Sets the numOfDumpsterVisits variable to the current value + visitsToAdd
+	 * @param visitsToAdd The amount of levels to add to the current value
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 */
+	public void dumpsterVisitsUp(int visitsToAdd) {
+
+		Data.player.setLevel(Data.player.getLevel() + visitsToAdd);
+
+	}
+
+	/**
 	 * The getter for the numOfShopVisits variable.
 	 * @author foxler2010
 	 * @since v1.0
@@ -209,6 +261,19 @@ class Player extends Animal {
 	 */
 	public void setNumOfShopVisits(int numOfShopVisits) {
 		this.numOfShopVisits = numOfShopVisits;
+	}
+
+	/**
+	 * Sets the numOfShopVisits variable to the current value + visitsToAdd
+	 * @param visitsToAdd The amount of levels to add to the current value
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 */
+	public void shopVisitsUp(int visitsToAdd) {
+
+		Data.player.setLevel(Data.player.getLevel() + visitsToAdd);
+
 	}
 
 	/**
@@ -235,6 +300,19 @@ class Player extends Animal {
 	}
 
 	/**
+	 * Sets the numOfPetStoreVisits variable to the current value + visitsToAdd
+	 * @param visitsToAdd The amount of levels to add to the current value
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 */
+	public void petStoreVisitsUp(int visitsToAdd) {
+
+		Data.player.setLevel(Data.player.getLevel() + visitsToAdd);
+
+	}
+
+	/**
 	 * The getter for the numOfArenavisits variable.
 	 * @author foxler2010
 	 * @since v1.0
@@ -255,6 +333,19 @@ class Player extends Animal {
 	 */
 	public void setNumOfArenaVisits(int numOfArenaVisits) {
 		this.numOfArenaVisits = numOfArenaVisits;
+	}
+
+	/**
+	 * Sets the numOfArenaVisits variable to the current value + visitsToAdd
+	 * @param visitsToAdd The amount of levels to add to the current value
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 */
+	public void arenaVisitsUp(int visitsToAdd) {
+
+		Data.player.setLevel(Data.player.getLevel() + visitsToAdd);
+
 	}
 	
 	//INVENTORY MANAGEMENT

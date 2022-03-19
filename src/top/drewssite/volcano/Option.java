@@ -40,7 +40,7 @@ public enum Option {
         public void opCode() {
 
             //increase # of visits by 1
-            Data.player.setNumOfVolcanoVisits(Data.player.getNumOfVolcanoVisits() + 1);
+            Data.player.volcanoVisitsUp(1);
 
             //gen random boolean to decide between whether you successfully jump the volcano or not.
             //10% chance of success per attempt
@@ -101,7 +101,7 @@ public enum Option {
         public void opCode() {
 
             //increase # of visits by 1
-            Data.player.setNumOfDumpsterVisits(Data.player.getNumOfDumpsterVisits() + 1);
+            Data.player.dumpsterVisitsUp(1);
 
             //choose random item from list of items that are in the dumpster
 		    Junk randomJunk = Data.junkItems[Data.random.nextInt(Data.junkItems.length)];
@@ -132,7 +132,7 @@ public enum Option {
         public void opCode() {
             
             //increase # of visits by 1
-            Data.player.setNumOfShopVisits(Data.player.getNumOfShopVisits() + 1);
+            Data.player.shopVisitsUp(1);
 
             System.out.println("You visit the shop and sell nothing because you are a hoarder.");
             
@@ -154,7 +154,7 @@ public enum Option {
         public void opCode() {
             
             //increase # of visits by 1
-            Data.player.setNumOfShopVisits(Data.player.getNumOfShopVisits() + 1);
+            Data.player.shopVisitsUp(1);
 
             System.out.println("You visit the shop and sell nothing because you are a hoarder.");
 
@@ -176,7 +176,7 @@ public enum Option {
         public void opCode() {
             
             //increase # of visits by 1
-            Data.player.setNumOfPetStoreVisits(Data.player.getNumOfPetStoreVisits() + 1);
+            Data.player.petStoreVisitsUp(1);
 
         }
 
@@ -197,7 +197,7 @@ public enum Option {
         public void opCode() {
             
             //increase # of visits by 1
-            Data.player.setNumOfPetStoreVisits(Data.player.getNumOfPetStoreVisits() + 1);
+            Data.player.petStoreVisitsUp(1);
 
         }
 
@@ -218,7 +218,7 @@ public enum Option {
         public void opCode() {
             
             //increase # of visits by 1
-            Data.player.setNumOfArenaVisits(Data.player.getNumOfArenaVisits() + 1);
+            Data.player.arenaVisitsUp(1);
 
         }
 
@@ -239,7 +239,7 @@ public enum Option {
         public void opCode() {
             
             //increase # of visits by 1
-            Data.player.setNumOfArenaVisits(Data.player.getNumOfArenaVisits() + 1);
+            Data.player.arenaVisitsUp(1);
             
         }
 

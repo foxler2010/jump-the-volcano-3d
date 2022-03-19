@@ -121,7 +121,7 @@ public enum Option {
         
         @Override
         public boolean isAvailable() {
-            if (Data.player.sizeOfInventory() >= 5 && Data.player.getMoney() >= 1 && Data.player.getLevel() >= 10 && Data.player.getNumOfShopVisits() > 0) {
+            if ((Data.player.sizeOfInventory() >= 5 || Data.player.getMoney() >= 1) && Data.player.getNumOfShopVisits() > 0) {
                 return true;
             } else {
                 return false;
@@ -143,7 +143,7 @@ public enum Option {
 
         @Override
         public boolean isAvailable() {
-            if (Data.player.sizeOfInventory() >= 5 && Data.player.getMoney() >= 1 && Data.player.getLevel() >= 10 && Data.player.getNumOfShopVisits() == 0) {
+            if ((Data.player.sizeOfInventory() >= 5 || Data.player.getMoney() >= 1) && Data.player.getNumOfShopVisits() == 0) {
                 return true;
             } else {
                 return false;

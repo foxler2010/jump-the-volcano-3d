@@ -229,6 +229,9 @@ class Data {
 	public static final Junk brokenMagnet = new Junk("Broken Magnet", .10);
 	
 	public static final Junk poopSock = new Junk("Poop Sock", 0);
+
+	//will be changed to new class later on
+	public static final Junk coolTrophy = new Junk("Cool Trophy", 100);
 	
 	//bottles
 	//stored with the junk in inventory

@@ -44,9 +44,28 @@ public enum Option {
 
             //gen random boolean to decide between whether you successfully jump the volcano or not.
             //10% chance of success per attempt
-			if(Data.random.nextInt(100) > 89) { //success: # between 90 and 99, 10 numbers out of 100 possible = 10%
+			if(Data.random.nextInt(100) >= 90) { //success: # between 0 and 99, 10/100 return true = 10%
 
 				System.out.println("You jump over the volcano");
+                Data.player.setLevel(Data.player.getLevel() + 100);
+
+                if (Data.random.nextInt(100) >= 70) { //30% chance within the 10% chance
+
+                    System.out.println("Everybody is really impressed with your volcano-jumping skills");
+                    System.out.println("They give you $1000 and a cool trophy as a prize for jumping the volcano.");
+                    Data.player.setMoney(Data.player.getMoney() + 1000);
+                    Data.player.addItem(Data.coolTrophy);
+                    for (int i = 0; i < Data.player.sizeOfSubList(0); i++) {
+
+                        if (Data.player.getItem(ItemType.JUNK, i).getName() == Data.coolTrophy.getName()) {
+
+                            Data.player.getItem(ItemType.JUNK, i).setName("Volcano Jumping Trophy");
+
+                        }
+
+                    }
+
+                }
 
 			} else {
 

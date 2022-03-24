@@ -1,18 +1,24 @@
 package top.drewssite.volcano;
 
+import java.util.ArrayList;
+
 /**
- * Here is where all the options and their code is stored. I am putting option docs here as I don't have anywhere else to put them for now
+ * Here is where all the options and their code is stored. I am putting option docs here as I don't have anywhere else to put them for now.
+ * 
+ * Note: Docs look better inside the Option.java file, go jump to it instead of reading the little pop-up
+ * vscode gives you when you hover over terms. Then you can see the line breaks I typed.
+ * 
  * To make a new option, add a new enum constant to the list below and put its fancy name in parentheses,
  * along with the code for the option in a method called "opCode()",
  * which should be located in brackets as part of the enum constant.
  * 
- * I have not worked out a way to dynamically add and remove options each turn,
- * other than modifying the main method's code. If you do add a new option, it will not be shown
- * and its code will not be ran until you add in some phrases to the main method in the "PHASE 2" section.
- * If you recieved the game as a binary, you must go download the source code to do this.
+ * To dynamically show your option based on the state of the game, add an isAvailable() method below your opCode() method.
+ * This method should return true when it is okay to show the option, and return false when the option should not be shown.
+ * An example of the use of this is the "Dumpster Dive" option. It is only available when you have less than 10 items.
  * 
  * After making your option and adding it to the main method, you will have to recompile
- * the game. If using a locally installed JRE, this will not take long. If you would like a system binary,
+ * the game. If you are using a locally installed JRE to run the game after compilation, this will not take long.
+ * If you would like a system binary (Grants the ability to run the game without installing a Java runtime),
  * you will have to use some extra tools and things and do it manually, as I have not written a Gradle build script
  * to do it for me.
  * 
@@ -258,22 +264,38 @@ public enum Option {
 
         @Override
         public void opCode() {
+            
+            boolean multipleBottles; //if there is more than one bottle or not
+            ArrayList<Bottle> bottlesInInventory = new ArrayList<Bottle>(); //output of loop
+            Item currentItem; //used only inside loop
+            for (int i = 0; i < Data.player.sizeOfSubList(0); i++) { //loop counts how many bottles you have
 
-                if (Data.nearLiquid.size() > 1) {
+                currentItem = Data.player.getItem(ItemType.JUNK, i);
 
-                    System.out.println("You are currently able to fill your bottle with " + Data.nearLiquid.size() + " liquids near you");
-                    System.out.println();
-                    System.out.println("Here they are:");
-    
-                    for (int i = 0; i < Data.nearLiquid.size(); i++) {
-    
-                        System.out.println((i + 1) + ") " + Data.nearLiquid.get(i).getName());                    
-    
-                    }
+                if (currentItem.getClass() == Bottle.class) {
 
-                    int liquid = Data.intPrompt("Which liquid would you like to fill your bottle with? ");
+                    bottlesInInventory.add((Bottle) currentItem); /* currentItem will always be assigned to a Bottle here,
+                                                                   * but we still need to cast because the
+                }                                                  * variable type is an Item. */
 
-                }
+            }
+
+            //multipleBottles is set to true if the bottlesInInventory list has more than one item in it
+            if (bottlesInInventory.size() > 1) {
+                multipleBottles = true;
+            }
+
+            System.out.println("You are currently able to fill your bottle with " + Data.nearLiquid.size() + " liquids near you");
+            System.out.println();
+            System.out.println("Here they are:");
+
+            for (int i = 0; i < Data.nearLiquid.size(); i++) {
+
+                System.out.println((i + 1) + ") " + Data.nearLiquid.get(i).getName());                    
+
+            }
+
+            int liquid = Data.intPrompt("Which liquid would you like to fill your bottle with? ");
 
         }
 
@@ -288,6 +310,7 @@ public enum Option {
                 //if current item is a Bottle, bottleInInventory = true; otherwise do nothing
                 if (Data.player.getItem(ItemType.JUNK, i).getClass() == Bottle.class) {
 
+                    //set var to true
                     bottleInInventory = true;
 
                 }
@@ -299,19 +322,19 @@ public enum Option {
             //if they satisfy both conditions, return true
             try {
 
-                if (Data.nearLiquid.get(0) != null && bottleInInventory) {
+                if (Data.nearLiquid.get(0) != null && bottleInInventory) { //the "!= null" specifies all possible things that could be in the ArrayList<Liquid>.
     
                     return true;
     
                 }
 
-            } catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException e) { //if the player is not near any liquids this will happen during the above if statement.
 
                 return false;
 
             }
 
-            return false; //if player is not near a liquid and in possesion of a Bottle
+            return false; //if player is near a liquid and not in possesion of a Bottle
 
         }
     },

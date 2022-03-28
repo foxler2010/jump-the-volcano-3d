@@ -322,7 +322,7 @@ public enum Option {
             //if they satisfy both conditions, return true
             try {
 
-                if (Data.nearLiquid.get(0) != null && bottleInInventory) { //the "!= null" specifies all possible things that could be in the ArrayList<Liquid>.
+                if (Data.nearLiquid.get(0) != null && bottleInInventory) { //if index 0 has nothing in it, there must'nt be anything in the other indexes either.
     
                     return true;
     

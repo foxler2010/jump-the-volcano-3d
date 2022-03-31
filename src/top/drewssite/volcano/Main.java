@@ -20,6 +20,13 @@
 package top.drewssite.volcano;
 
 import java.util.ArrayList;
+import com.jme3.app.SimpleApplication;
+import com.jme3.material.Material;
+import com.jme3.material.MaterialDef;
+import com.jme3.math.ColorRGBA;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.shape.Box;
+import com.jme3.system.AppSettings;
 
 /**
  * This is where the main method is located. When the program starts, the methods in here are executed.
@@ -28,15 +35,30 @@ import java.util.ArrayList;
  * @see Data
  * @see Data
  */
-class Main {
-	
-	/**
-	 * This is the main method. When the program is executed, this is the method that is called.
-	 * 
-	 * @param args Arguments from the shell. Currently not used for anything, but that could change.
-	 */
+class Main extends SimpleApplication {
+
 	public static void main(String args[]) {
+
+		Main app = new Main();
+
+		AppSettings settings = new AppSettings(true);
+		settings.setTitle("Jump The Volcano 3D");
+		app.setSettings(settings);
+
+		app.start();
+
+	}
+
+	public void simpleInitApp() {
 		
+		Box box = new Box(1,1,1);
+		Geometry geometry = new Geometry("Box", box);
+		Material material = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+		material.setColor("Color", ColorRGBA.Blue);
+		geometry.setMaterial(material);
+
+		rootNode.attachChild(geometry);
+
 		//WELCOME THE PLAYER TO THE GAME
 		System.out.println("--------------------------------------------------------------------------");
 		System.out.println("Welcome to Jump The Volcano!");
